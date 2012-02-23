@@ -16,7 +16,7 @@
 
     <div class="pill-content">
         <div class="active" id="news">
-        
+
         </div>
         <div id="orders">
             <table>
@@ -25,13 +25,13 @@
         </div>
         <div id="profile">
             {% block profile_form %}
-            {% render "LWVUserBundle:Default:profile" %}
+            {% render "LWVToolkitBundle:User/Default:profile" %}
             {% endblock %}
         </div>
         <div id="password">
-            
-            {% render "LWVUserBundle:Default:password" %}
-            
+
+            {% render "LWVToolkitBundle:User/Default:password" %}
+
         </div>
     </div>
 {% endblock %}

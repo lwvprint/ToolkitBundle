@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * LWV\ToolkitBundle\Entity\User
+ * LWV\ToolkitBundle\Entity\User\User
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\UserRepository")

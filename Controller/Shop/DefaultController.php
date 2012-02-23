@@ -16,10 +16,10 @@ class DefaultController extends Controller
             }
 
             $products = $this->get('doctrine')->getEntityManager()
-                    ->getRepository('LWVToolkitBundle:Shop:Product')
+                    ->getRepository('LWVToolkitBundle:Shop\Product')
                     ->getAllProductsWithImages();
 
-            return $this->render('LWVToolkitBundle:Shop:Default:index.html.twig', array('products' => $products));
+            return $this->render('LWVToolkitBundle:Shop\Default:index.html.twig', array('products' => $products));
 
         } else {
 

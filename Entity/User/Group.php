@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * LWV\ToolkitBundle\Entity\Group
+ * LWV\ToolkitBundle\Entity\User\Group
  *
  * @ORM\Table(name="groups")
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\GroupRepository")

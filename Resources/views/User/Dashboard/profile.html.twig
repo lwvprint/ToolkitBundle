@@ -1,13 +1,13 @@
-{% extends 'LWVUserBundle:Dashboard:index.html.twig' %}
+{% extends 'LWVToolkitBundle:User/Dashboard:index.html.twig' %}
 
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="span12">
-            {% form_theme form 'LWVUserBundle:Form:fields.html.twig' %}
-                
+            {% form_theme form 'LWVToolkitBundle:User/Form:fields.html.twig' %}
+
             {{ form_errors(form) }}
-                
+
             <form action="{{ path('update_profile') }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate="novalidate">
                 <fieldset>
                     <legend>Your Details</legend>

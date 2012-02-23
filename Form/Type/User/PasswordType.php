@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\UserBundle\Form\Type;
+namespace LWV\ToolkitBundle\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -24,7 +24,7 @@ class PasswordType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' => 'LWV\UserBundle\Entity\User',
+            'data_class' => 'LWV\ToolkitBundle\Entity\User\User',
         );
     }
 

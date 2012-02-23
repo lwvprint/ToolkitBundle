@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\UserBundle\Listener;
+namespace LWV\ToolkitBundle\Listener\User;
 
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpFoundation\Session;

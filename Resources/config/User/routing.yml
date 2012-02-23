@@ -1,6 +1,6 @@
 login:
-    pattern:  /login
-    defaults: { _controller: LWVToolkitBundle:User:Login:login }
+  pattern:  /login
+  defaults: { _controller: LWVToolkitBundle:User\Login:login }
 
 login_check:
     pattern: /login_check
@@ -10,21 +10,21 @@ logout:
 
 profile:
     pattern: /profile
-    defaults: { _controller: LWVToolkitBundle:User:Dashboard:profile }
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
 
 update_profile:
     pattern: /profile
-    defaults: { _controller: LWVToolkitBundle:User:Dashboard:profile }
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
     requirements:
         _method: POST
 
 password:
     pattern: /password
-    defaults: { _controller: LWVToolkitBundle:User:Dashboard:password }
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:password }
 
 update_password:
     pattern: /password
-    defaults: { _controller: LWVToolkitBundle:User:Dashboard:password }
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:password }
     requirements:
         _method: POST
 

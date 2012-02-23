@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\UserBundle\Form\Type;
+namespace LWV\ToolkitBundle\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -17,13 +17,13 @@ class ProfileType extends AbstractType
         $builder->add('county');
         $builder->add('postcode');
         $builder->add('telephone');
-        
+
     }
 
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' => 'LWV\UserBundle\Entity\Profile',
+            'data_class' => 'LWV\ToolkitBundle\Entity\User\Profile',
         );
     }
 

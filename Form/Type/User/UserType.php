@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\UserBundle\Form\Type;
+namespace LWV\ToolkitBundle\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;

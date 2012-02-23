@@ -43,7 +43,7 @@ class DashboardController extends Controller
 
         }
 
-        return $this->render('LWVToolkitBundle:User:Dashboard:profile.html.twig', array('form' => $form->createView(),));
+        return $this->render('LWVToolkitBundle:User/Dashboard:profile.html.twig', array('form' => $form->createView(),));
     }
 
     public function passwordAction(Request $request)
@@ -51,7 +51,7 @@ class DashboardController extends Controller
         $id = $this->get('security.context')->getToken()->getUser()->getId();
 
         $user = $this->getDoctrine()
-                ->getRepository('LWVToolkitBundle:User:User')
+                ->getRepository('LWVToolkitBundle:User\User')
                 ->find($id);
 
         $form = $this->createFormBuilder($user)
@@ -62,6 +62,7 @@ class DashboardController extends Controller
                 {
 
                     $encoder = new MessageDigestPasswordEncoder('sha1', false, 1);
+                    //$encoder = $this->container->get('toolkit_encoder')->getEncoder($user);
                     $password = $encoder->encodePassword($form['oldPassword']->getData(), $user->getSalt());
 
                     if($password != $user->getPassword()) {
@@ -101,6 +102,6 @@ class DashboardController extends Controller
 
         }
 
-        return $this->render('LWVToolkitBundle:User:Dashboard:password.html.twig', array('form' => $form->createView()));
+        return $this->render('LWVToolkitBundle:User/Dashboard:password.html.twig', array('form' => $form->createView()));
     }
 }

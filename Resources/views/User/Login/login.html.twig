@@ -7,7 +7,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block styelsheets %}
             {% stylesheets
-                '@LWVUserBundle/Resources/public/css/*'
+                '@LWVToolkitBundle/Resources/public/User/css/*'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -22,7 +22,7 @@
                     <p>Please use the login form opposite to access your account and start ordering POS today!</p>
                 </div>
                 <div class="span6 login-form">
-                    
+
                     {% if error %}
                         <div class="alert alert-error" data-dismiss="alert">
                             <a href="#" class="close">×</a>
@@ -47,7 +47,7 @@
                                     <p class="help-block">Forgotten your <a href="">username</a> or <a href="">password</a>?</p>
                                 </div>
                             </div>
-                            
+
                             <div class="control-group">
                                 <label for="remember_me">Remember me?</label>
                                 <div class="controls">
@@ -65,7 +65,7 @@
                             </div>
                         </fieldset>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
@@ -80,18 +80,18 @@
         </footer>
         {% block javascripts %}
             {% javascripts
-                '@LWVUserBundle/Resources/public/js/jquery-1.7.1.min.js'
-                '@LWVUserBundle/Resources/public/js/*'
+                '@LWVToolkitBundle/Resources/public/User/js/jquery-1.7.1.min.js'
+                '@LWVToolkitBundle/Resources/public/User/js/*'
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
-            
+
             <script type="text/javascript">
             $(document).ready(function(){
                 $(".alert-message").alert()
             });
             </script>
-            
+
         {% endblock %}
     </body>
 </html>

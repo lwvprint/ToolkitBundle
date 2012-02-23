@@ -1,0 +1,3 @@
+staff_dashboard:
+    defaults: { _controller: LWVToolkitBundle:Staff\Default:index }
+    pattern: /staff/
