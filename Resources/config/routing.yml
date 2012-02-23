@@ -1,0 +1,3 @@
+LWVToolkitBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: LWVToolkitBundle:Default:index }
