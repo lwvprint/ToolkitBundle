@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="robots" content="noindex,nofollow" />
+        <title>{% block title %}LWV Toolkit{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        {% block styelsheets %}
+            {% stylesheets
+                '@LWVUserBundle/Resources/public/css/*'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            {% block nav %}
+            {% include '::navbar.html.twig' %}
+            {% endblock %}
+        </header>
+        <section>
+            {% if app.session.flash('success') %}
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+
+                        <div class="alert alert-success">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            {{ app.session.flash('success') }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+                
+            {% block content %}
+            Main content block
+            {% endblock %}
+        </section>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <p>Copyright &copy; 2012 LWV Printworks</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% block javascripts %}
+            {% javascripts
+                '@LWVUserBundle/Resources/public/js/jquery-1.7.1.min.js'
+                '@LWVUserBundle/Resources/public/js/*'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            
+            <script type="text/javascript">
+            $(document).ready(function(){
+                $(".alert-message").alert();
+            });
+            </script>
+            
+        {% endblock %}
+    </body>
+</html>

@@ -1,3 +1,9 @@
-LWVToolkitBundle_homepage:
+_user:
+    resource: "@LWVToolkitBundle/Resources/config/User/routing.yml
+
+_shop:
+    resource: "@LWVToolkitBundle/Resources/config/Shop/routing.yml"
+
+hello_world:
     pattern:  /hello/{name}
     defaults: { _controller: LWVToolkitBundle:Default:index }

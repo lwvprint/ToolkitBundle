@@ -1,0 +1,19 @@
+LWV\ToolkitBundle\Entity\User\Profile:
+    properties:
+        name:
+            - NotBlank:
+                message: Name cannot be blank.
+        pubName:
+            - NotBlank:
+                message: Pub Name cannot be blank.
+
+LWV\ToolkitBundle\Entity\User\User:
+    properties:
+        username:
+            - NotBlank:
+                message: Username cannot be blank.
+        email:
+            - NotBlank: ~
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: true
