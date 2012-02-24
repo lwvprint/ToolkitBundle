@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\Toolkit\ShopBundle\Tests\Controller;
+namespace LWV\ToolkitBundle\Tests\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

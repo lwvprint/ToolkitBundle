@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\UserBundle\Tests\Controller;
+namespace LWV\ToolkitBundle\Tests\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
