@@ -16,7 +16,7 @@ class DashboardController extends Controller
             return $this->redirect($this->generateUrl('staff_dashboard'));
         }
 
-        return $this->render('LWVToolkitBundle:Shop:Dashboard:index.html.twig');
+        return $this->render('LWVToolkitBundle:Shop\Dashboard:index.html.twig');
     }
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace LWV\ToolkitBundle\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -43,7 +42,7 @@ class DashboardController extends Controller
 
         }
 
-        return $this->render('LWVToolkitBundle:User/Dashboard:profile.html.twig', array('form' => $form->createView(),));
+        return $this->render('LWVToolkitBundle:User\Dashboard:profile.html.twig', array('form' => $form->createView(),));
     }
 
     public function passwordAction(Request $request)
@@ -102,6 +101,6 @@ class DashboardController extends Controller
 
         }
 
-        return $this->render('LWVToolkitBundle:User/Dashboard:password.html.twig', array('form' => $form->createView()));
+        return $this->render('LWVToolkitBundle:User\Dashboard:password.html.twig', array('form' => $form->createView()));
     }
 }

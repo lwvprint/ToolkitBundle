@@ -1,12 +1,12 @@
 <?php
 
-namespace LWV\Toolkit\ShopBundle\Entity;
+namespace LWV\ToolkitBundle\Entity\Shop;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="LWV\Toolkit\ShopBundle\Entity\ProductRepository")
+ * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Shop\ProductRepository")
  * @ORM\Table(name="product")
  */
 class Product
@@ -190,7 +190,7 @@ class Product
     /**
      * Add images
      *
-     * @param LWV\Toolkit\ShopBundle\Entity\ProductImage $images
+     * @param LWV\ToolkitBundle\Entity\Shop\ProductImage $images
      */
     public function addProductImage(\LWV\Toolkit\ShopBundle\Entity\ProductImage $images)
     {

@@ -3,6 +3,7 @@ _user:
 
 _shop:
     resource: "@LWVToolkitBundle/Resources/config/Shop/routing.yml"
+    pattern: /
 
 _staff:
     resource: "@LWVToolkitBundle/Resources/config/Staff/routing.yml"

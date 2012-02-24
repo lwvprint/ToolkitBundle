@@ -19,7 +19,7 @@ class DefaultController extends Controller
                     ->getRepository('LWVToolkitBundle:Shop\Product')
                     ->getAllProductsWithImages();
 
-            return $this->render('LWVToolkitBundle:Shop\Default:index.html.twig', array('products' => $products));
+            return $this->render('LWVToolkitBundle:Shop\Dashboard:index.html.twig', array('products' => $products));
 
         } else {
 

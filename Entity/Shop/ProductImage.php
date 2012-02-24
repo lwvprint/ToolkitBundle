@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\Toolkit\ShopBundle\Entity;
+namespace LWV\ToolkitBundle\Entity\Shop;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -62,7 +62,7 @@ class ProductImage
     /**
      * Set product
      *
-     * @param LWV\Toolkit\ShopBundle\Entity\Product $product
+     * @param LWV\ToolkitBundle\Entity\Shop\Product $product
      */
     public function setProduct(\LWV\Toolkit\ShopBundle\Entity\Product $product)
     {
@@ -72,7 +72,7 @@ class ProductImage
     /**
      * Get product
      *
-     * @return LWV\Toolkit\ShopBundle\Entity\Product
+     * @return LWV\ToolkitBundle\Entity\Shop\Product
      */
     public function getProduct()
     {

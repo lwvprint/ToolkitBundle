@@ -1,5 +1,5 @@
 <?php
-namespace LWV\Toolkit\ShopBundle\Entity;
+namespace LWV\ToolkitBundle\Entity\Shop;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -13,7 +13,7 @@ class ProductRepository extends EntityRepository
 {
     public function getAllProductsWithImages()
     {
-        $dql = 'SELECT p, i FROM LWV\Toolkit\ShopBundle\Entity\Product p ' .
+        $dql = 'SELECT p, i FROM LWV\ToolkitBundle\Entity\Shop\Product p ' .
                'LEFT JOIN p.images i ' .
                'ORDER BY p.name DESC';
 
