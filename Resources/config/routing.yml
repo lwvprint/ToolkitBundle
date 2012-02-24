@@ -1,8 +1,8 @@
 _user:
     resource: "@LWVToolkitBundle/Resources/config/User/routing.yml"
 
-_shop:
-    resource: "@LWVToolkitBundle/Resources/config/Shop/routing.yml"
+_frontend:
+    resource: "@LWVToolkitBundle/Resources/config/Frontend/routing.yml"
     pattern: /
 
 _staff:

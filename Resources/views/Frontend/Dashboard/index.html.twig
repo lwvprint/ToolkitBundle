@@ -1,0 +1,46 @@
+{% extends '::tk_layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }} :: Dashboard
+{% endblock %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+
+    <ul class="tabs">
+        <li class="active"><a href="#news">News</a></li>
+        <li><a href="#orders">Orders</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#password">Change Password</a></li>
+    </ul>
+
+    <div class="pill-content">
+        <div class="active" id="news">
+
+        </div>
+        <div id="orders">
+            <table>
+
+            </table>
+        </div>
+        <div id="profile">
+            {% block profile_form %}
+            {% render "LWVToolkitBundle:User\\Default:profile" %}
+            {% endblock %}
+        </div>
+        <div id="password">
+
+            {% render "LWVToolkitBundle:User\\Default:password" %}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    $(function () {
+        $('.tabs').tabs()
+    })
+    </script>
+{% endblock %}

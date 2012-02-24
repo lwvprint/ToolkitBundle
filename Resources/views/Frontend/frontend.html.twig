@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="robots" content="noindex,nofollow" />
+        <title>{% block title %}LWV Toolkit{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        {% block styelsheets %}
+            {% stylesheets
+                'bundles/lwvtoolkit/css/*' filter='cssrewrite'
+                'bundles/lwvtoolkit/Frontend/css/*' filter='cssrewrite'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+            {% endstylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        <!-- header -->
+        <header>
+            <!-- link bar -->
+            <div id="link-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="span6">
+                            <ul id="site-links"><!-- to be floated left -->
+                                <li><a href="">Home</a></li>
+                                <li><a href="">Terms and Conditions</a></li>
+                                <li><a href="">FAQ</a></li>
+                                <li><a href="">Support</a></li>
+                            </ul>
+                        </div>
+                        <div class="span5 offset1">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <ul id="user-links"><!-- to be floated right -->
+                                <li>Logged in as: <strong>{{ app.user.username }}</strong></li>
+                                <li><a href="{{ path('profile') }}">My Account</a></li>
+                                <li><a href="{{ path('logout') }}">Logout</a></li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- link bar end -->
+            <!-- brand bar -->
+            <div id="brand-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="span2">
+                            <div class="logo"><!-- floated left -->
+                                <h1>LWV Toolkit</h1>
+                            </div>
+                        </div>
+                        <div class="span5 offset5">
+                            {% block mini_cart %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- brand bar end -->
+        </header>
+        <!-- header end -->
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <!-- breadcrumb -->
+                    <div class="span8">
+                        {% block breadcrumb %}
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="icon-home"></i>
+                            </li>
+                        </ul>
+                        {% endblock %}
+                    </div>
+                    <!-- breadcrumb end -->
+                    <!-- search -->
+                    <div class="span4">
+                        <form action="#" method="post">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-append">
+                                            <input placeholder="Search..." type="text" />
+                                            <span class="add-on">
+                                                <i class="icon-search"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <!-- search end -->
+                </div>
+            </div>
+        </section>
+        <!-- Flash messages -->
+        {% block flashmessages %}
+        {% if app.session.getFlashes %}
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="well">
+                            {% if app.session.flash('warning') %}
+                            <div class="alert fade in">
+                                <a class="close" data-dismiss="alert">&times;</a>
+                                <i class="icon-warning-sign"></i> {{ app.session.flash('warning') }}
+                            </div>
+                            {% endif %}
+                            {% if app.session.flash('error') %}
+                            <div class="alert alert-error fade in">
+                                <a class="close" data-dismiss="alert">&times;</a>
+                                <i class="icon-ban-circle"></i> {{ app.session.flash('error') }}
+                            </div>
+                            {% endif %}
+                            {% if app.session.flash('success') %}
+                            <div class="alert alert-success fade in">
+                                <a class="close" data-dismiss="alert">&times;</a>
+                                <i class="icon-ok"></i> {{ app.session.flash('success') }}
+                            </div>
+                            {% endif %}
+                            {% if app.session.flash('info') %}
+                            <div class="alert alert-info fade in">
+                                <a class="close" data-dismiss="alert">&times;</a>
+                                <i class="icon-info-sign"></i> {{ app.session.flash('info') }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% endblock %}
+        <!-- Flash messages end -->
+
+        <!-- Content -->
+        {% block content %}
+        This is the default content...
+        {% endblock %}
+        <!-- Content end -->
+
+        <!-- container ends -->
+        {% block javascripts %}
+            {% javascripts
+                '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
+                '@LWVToolkitBundle/Resources/public/js/*'
+                '@LWVToolkitBundle/Resources/public/Frontend/js/*'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script type="text/javascript">
+            $(document).ready(function() {
+                $("#datepicker").datepicker();
+
+                $('.alert').bind('closed', function () {
+                    var count = $(".well").children().length;
+
+                    if(count <= 1) {
+                        $('.well').fadeOut('fast');
+                    }
+                });
+            });
+            </script>
+        {% endblock %}
+    </body>
+</html>

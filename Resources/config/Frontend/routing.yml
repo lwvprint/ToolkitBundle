@@ -1,0 +1,3 @@
+shop:
+    pattern:  /
+    defaults: { _controller: LWVToolkitBundle:Frontend\Default:index }
