@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity;
+namespace LWV\ToolkitBundle\Entity\User;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -239,9 +239,9 @@ class Profile
     /**
      * Set user
      *
-     * @param LWV\UserBundle\Entity\User $user
+     * @param LWV\ToolkitBundle\Entity\User\User $user
      */
-    public function setUser(\LWV\UserBundle\Entity\User $user)
+    public function setUser(\LWV\ToolkitBundle\Entity\User\User $user)
     {
         $this->user = $user;
     }
@@ -249,7 +249,7 @@ class Profile
     /**
      * Get user
      *
-     * @return LWV\UserBundle\Entity\User
+     * @return LWV\ToolkitBundle\Entity\User\User
      */
     public function getUser()
     {
