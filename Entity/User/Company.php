@@ -1,14 +1,18 @@
 <?php
 
 namespace LWV\ToolkitBundle\Entity\User;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * LWV\ToolkitBundle\Entity\User\Company
  *
- * @ORM\Table(name="user_company")
- * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\CompanyRepository")
+ */
+
+ /**
+  * @Gedmo\Tree(type="nested")
+  * @ORM\Table(name="company")
+  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\CompanyRepository")
  */
 class Company
 {
@@ -20,6 +24,43 @@ class Company
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+    * @Gedmo\TreeLeft
+    * @ORM\Column(type="integer")
+    */
+    private $lft;
+
+    /**
+    * @Gedmo\TreeRight
+    * @ORM\Column(type="integer")
+    */
+    private $rgt;
+
+    /**
+    * @Gedmo\TreeRoot
+    * @ORM\Column(type="integer", nullable="true")
+    */
+    private $root;
+
+    /**
+    * @Gedmo\TreeLevel
+    * @ORM\Column(type="integer")
+    */
+    private $lvl;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Company", mappedBy="parent")
+     * @ORM\OrderBy({"lft" = "ASC"})
+     */
+    private $children;
 
     /**
      * @var string $account_no
@@ -122,6 +163,7 @@ class Company
     /**
      * @var date $created_at
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="date", length="25")
      */
     private $created_at;
@@ -129,6 +171,7 @@ class Company
     /**
      * @var date $updated_at
      *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="date", length="25")
      */
     private $updated_at;
@@ -462,5 +505,129 @@ class Company
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Set lft
+     *
+     * @param integer $lft
+     */
+    public function setLft($lft)
+    {
+        $this->lft = $lft;
+    }
+
+    /**
+     * Get lft
+     *
+     * @return integer
+     */
+    public function getLft()
+    {
+        return $this->lft;
+    }
+
+    /**
+     * Set rgt
+     *
+     * @param integer $rgt
+     */
+    public function setRgt($rgt)
+    {
+        $this->rgt = $rgt;
+    }
+
+    /**
+     * Get rgt
+     *
+     * @return integer
+     */
+    public function getRgt()
+    {
+        return $this->rgt;
+    }
+
+    /**
+     * Set root
+     *
+     * @param integer $root
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+    }
+
+    /**
+     * Get root
+     *
+     * @return integer
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Set lvl
+     *
+     * @param integer $lvl
+     */
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+    }
+
+    /**
+     * Get lvl
+     *
+     * @return integer
+     */
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param LWV\ToolkitBundle\Entity\User\Company $parent
+     */
+    public function setParent(\LWV\ToolkitBundle\Entity\User\Company $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return LWV\ToolkitBundle\Entity\User\Company
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+    public function __construct()
+    {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add children
+     *
+     * @param LWV\ToolkitBundle\Entity\User\Company $children
+     */
+    public function addCompany(\LWV\ToolkitBundle\Entity\User\Company $children)
+    {
+        $this->children[] = $children;
+    }
+
+    /**
+     * Get children
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }

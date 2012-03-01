@@ -100,13 +100,13 @@
         <!-- Flash messages -->
         {% block flashmessages %}
         {% if app.session.getFlashes %}
-        <section>
+        <section id="notices">
             <div class="container">
                 <div class="row">
                     <div class="span12">
-                        <div class="well">
+                        <div class="well notices">
                             {% if app.session.flash('warning') %}
-                            <div class="alert">
+                            <div class="alert fade in">
                                 <a class="close" data-dismiss="alert">&times;</a>
                                 <i class="icon-warning-sign"></i> {{ app.session.flash('warning') }}
                             </div>
@@ -143,7 +143,7 @@
         This is the default content...
         {% endblock %}
         <!-- Content end -->
-        
+
         <footer>
             {% block footer %}
             {% endblock %}
@@ -162,9 +162,14 @@
             $(document).ready(function() {
                 $('.alert').bind('closed', function () {
                     var count = $(".well").children().length;
-                    
                     if(count <= 1) {
-                        $('.well').fadeOut('slow');
+                        // $('.well').fadeOut('slow');
+                        $('.notices').animate({
+                            opacity: 0,
+                            height: 'toggle',
+                            padding: 0,
+                            margin: 0
+                        }, 200);
                     }
                 });
             });

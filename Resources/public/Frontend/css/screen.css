@@ -213,3 +213,7 @@ img {
     background-color: #ccc;
     color: #fff;
 }
+.notices {
+    min-height: 0;
+    padding-bottom: 0;
+}
