@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="span6">
                             <ul id="site-links"><!-- to be floated left -->
-                                <li><a href="">Home</a></li>
+                                <li><a href="{{ path('shop') }}">Home</a></li>
                                 <li><a href="">Terms and Conditions</a></li>
                                 <li><a href="">FAQ</a></li>
                                 <li><a href="">Support</a></li>
@@ -106,7 +106,7 @@
                     <div class="span12">
                         <div class="well">
                             {% if app.session.flash('warning') %}
-                            <div class="alert fade in">
+                            <div class="alert">
                                 <a class="close" data-dismiss="alert">&times;</a>
                                 <i class="icon-warning-sign"></i> {{ app.session.flash('warning') }}
                             </div>
@@ -143,6 +143,11 @@
         This is the default content...
         {% endblock %}
         <!-- Content end -->
+        
+        <footer>
+            {% block footer %}
+            {% endblock %}
+        </footer>
 
         <!-- container ends -->
         {% block javascripts %}
@@ -155,13 +160,11 @@
             {% endjavascripts %}
             <script type="text/javascript">
             $(document).ready(function() {
-                $("#datepicker").datepicker();
-
                 $('.alert').bind('closed', function () {
                     var count = $(".well").children().length;
-
+                    
                     if(count <= 1) {
-                        $('.well').fadeOut('fast');
+                        $('.well').fadeOut('slow');
                     }
                 });
             });
