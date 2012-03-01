@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LWV\ToolkitBundle\Entity\Log\AccessLog
  *
- * @ORM\Table()
+ * @ORM\Table(name="log_access")
  * @ORM\Entity
  */
 class AccessLog
@@ -198,5 +198,25 @@ class AccessLog
     public function getLoggedIn()
     {
         return $this->logged_in;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param date $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return date
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
     }
 }

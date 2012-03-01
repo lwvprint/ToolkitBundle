@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LWV\ToolkitBundle\Entity\User\Department
  *
- * @ORM\Table()
+ * @ORM\Table(name="user_department")
  * @ORM\Entity
  */
 class Department
@@ -99,7 +99,7 @@ class Department
     /**
      * Get head_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getHeadId()
     {

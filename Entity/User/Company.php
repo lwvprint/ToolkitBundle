@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LWV\ToolkitBundle\Entity\User\Company
  *
- * @ORM\Table()
+ * @ORM\Table(name="user_company")
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\CompanyRepository")
  */
 class Company
@@ -437,7 +437,7 @@ class Company
     /**
      * Get created_at
      *
-     * @return date 
+     * @return date
      */
     public function getCreatedAt()
     {
@@ -457,7 +457,7 @@ class Company
     /**
      * Get updated_at
      *
-     * @return date 
+     * @return date
      */
     public function getUpdatedAt()
     {

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LWV\ToolkitBundle\Entity\Log\AccessLog
  *
- * @ORM\Table()
+ * @ORM\Table(name="log_access")
  * @ORM\Entity
  */
 class AccessLog
