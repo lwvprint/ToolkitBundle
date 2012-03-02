@@ -1,0 +1,48 @@
+{% extends 'LWVToolkitBundle:Frontend:frontend.html.twig' %}
+
+{% block title %}
+    {{ parent() }} :: Stonegate
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2>{{ category.name }}</h2>
+                {% for product in products %}
+                    {% if loop.first%}
+                    <div class="row">
+                    {% endif %}
+
+                        <div class="span4">
+                            <div class="category-item">
+                                <div class="category-image">
+                                    <img alt="" src="http://placehold.it/100x150&amp;text=Icon" />
+                                </div>
+                                <div class="category-details">
+                                    <h3>{{ product.name }}</h3>
+                                    <p>{{ product.reference }}</p>
+                                    <p>{{ product.description }}</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+
+                    {% if loop.index % 3 == 0 %}
+                    </div>
+                    <div class="row">
+                    {% endif %}
+
+                    {% if loop.last %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                {% if products|length == 0 %}
+                <p>No Products Found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

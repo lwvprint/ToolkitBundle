@@ -27,11 +27,12 @@
                 {% if loop.first%}
                 <div class="row">
                 {% endif %}
-
                     <div class="span4">
                         <div class="category-item">
                             <div class="category-image">
-                                <img alt="" src="http://placehold.it/100x150&amp;text=Icon" />
+                                <a href="{{ path('category', { 'slug': category.slug }) }}">
+                                    <img alt="" src="http://placehold.it/100x150&amp;text=Icon" />
+                                </a>
                             </div>
                             <div class="category-details">
                                 <h3>{{ category.name }}</h3>
@@ -40,7 +41,6 @@
                             <div class="clear"></div>
                         </div>
                     </div>
-
                 {% if loop.index % 3 == 0 %}
                 </div>
                 <div class="row">

@@ -14,20 +14,24 @@ class DefaultController extends Controller
             if($this->get('security.context')->isGranted('ROLE_LWV')) {
                 return $this->redirect($this->generateUrl('staff_dashboard'));
             }
+            
+            $user = $this->get('security.context')->getToken()->getUser();
 
             $categories = $this->get('doctrine')->getEntityManager()
                     ->getRepository('LWVToolkitBundle:Frontend\Category')
-                    ->getAllCategoriesBySegment();
+                    ->findBy(array('company' => $user->getCompany()->getId()));
 
             $products = $this->get('doctrine')->getEntityManager()
                     ->getRepository('LWVToolkitBundle:Frontend\Product')
-                    ->getAllProductsWithImages();
-
+                    ->getActiveProductsWithImages();
+            
+            /*
             $this->get('session')->setFlash('warning', 'WARNING! WARNING! WARNING!');
             $this->get('session')->setFlash('error', 'ERROR! ERROR! ERROR!');
             $this->get('session')->setFlash('success', 'SUCCESS! SUCCESS! SUCCESS!');
             $this->get('session')->setFlash('info', 'INFO! INFO! INFO!');
-
+            */
+            
             return $this->render('LWVToolkitBundle:Frontend\Default:index.html.twig', array('categories' => $categories, 'products' => $products));
 
         } else {
@@ -35,6 +39,27 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('login'));
             ;
         }
+    }
+    
+    public function categoryAction($slug)
+    {
+        $category = $this->getDoctrine()->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Frontend\Category')
+                ->findOneBySlug($slug);
+        
+        if (!$category) {
+            throw $this->createNotFoundException('No category found for '.$slug);
+        }
+        
+        $products = $this->get('doctrine')->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Frontend\Product')
+                ->findBy(array('category' => $category->getId(), 'visible' => '1'));
+        
+        /*if (!$products) {
+            throw $this->createNotFoundException('No products found.');
+        }*/
+        
+        return $this->render('LWVToolkitBundle:Frontend\Default:category.html.twig', array('category' => $category, 'products' => $products));
     }
 
 }

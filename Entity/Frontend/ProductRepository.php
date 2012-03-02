@@ -11,11 +11,28 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
-    public function getAllProductsWithImages()
+    /*
+    public function getActiveProductsFromCategorySlug($slug)
     {
         $dql = 'SELECT p, i FROM LWV\ToolkitBundle\Entity\Frontend\Product p ' .
                'LEFT JOIN p.images i ' .
-               'ORDER BY p.name DESC';
+               'LEFT JOIN p.category c ' .
+               'WHERE c.slug = :slug ' .
+               'AND p.visible = 1 ' .
+               'ORDER BY p.name ASC';
+
+        $query = $this->getEntityManager()->createQuery($dql)->setParameter('slug', $slug);;
+
+        return $query->getResult();
+    }
+    */
+    
+    public function getActiveProductsWithImages()
+    {
+        $dql = 'SELECT p, i FROM LWV\ToolkitBundle\Entity\Frontend\Product p ' .
+               'LEFT JOIN p.images i ' .
+               'WHERE p.visible = 1 ' .
+               'ORDER BY p.name ASC';
 
         $query = $this->getEntityManager()->createQuery($dql);
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace LWV\ToolkitBundle\Entity\User;
+
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,142 +24,142 @@ class Company
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
     * @Gedmo\TreeLeft
     * @ORM\Column(type="integer")
     */
-    private $lft;
+    protected $lft;
 
     /**
     * @Gedmo\TreeRight
     * @ORM\Column(type="integer")
     */
-    private $rgt;
+    protected $rgt;
 
     /**
     * @Gedmo\TreeRoot
     * @ORM\Column(type="integer", nullable="true")
     */
-    private $root;
+    protected $root;
 
     /**
     * @Gedmo\TreeLevel
     * @ORM\Column(type="integer")
     */
-    private $lvl;
+    protected $lvl;
 
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Company")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="Company", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
-    private $children;
+    protected $children;
 
     /**
      * @var string $account_no
      *
      * @ORM\Column(name="account_no", type="string", length=25)
      */
-    private $account_no;
+    protected $account_no;
 
     /**
      * @var integer $contact_id
      *
      * @ORM\Column(name="contact_id", type="integer")
      */
-    private $contact_id;
+    protected $contact_id;
 
     /**
      * @var integer $pricing_id
      *
      * @ORM\Column(name="pricing_id", type="integer")
      */
-    private $pricing_id;
+    protected $pricing_id;
 
     /**
      * @var integer $shipping_id
      *
      * @ORM\Column(name="shipping_id", type="integer")
      */
-    private $shipping_id;
+    protected $shipping_id;
 
     /**
      * @var integer $status_group_id
      *
      * @ORM\Column(name="status_group_id", type="integer")
      */
-    private $status_group_id;
+    protected $status_group_id;
 
     /**
      * @var string $address1
      *
      * @ORM\Column(name="address1", type="string", length=255)
      */
-    private $address1;
+    protected $address1;
 
     /**
      * @var string $address2
      *
      * @ORM\Column(name="address2", type="string", length=255)
      */
-    private $address2;
+    protected $address2;
 
     /**
      * @var string $town
      *
      * @ORM\Column(name="town", type="string", length=100)
      */
-    private $town;
+    protected $town;
 
     /**
      * @var string $city
      *
      * @ORM\Column(name="city", type="string", length=100)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string $post_code
      *
      * @ORM\Column(name="post_code", type="string", length=8)
      */
-    private $post_code;
+    protected $post_code;
 
     /**
      * @var string $email
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string $website
      *
      * @ORM\Column(name="website", type="string", length=255)
      */
-    private $website;
+    protected $website;
 
     /**
      * @var boolean $is_active
      *
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $is_active;
+    protected $is_active;
 
     /**
      * @var integer $account_manager_id
      *
      * @ORM\Column(name="account_manager_id", type="integer")
      */
-    private $account_manager_id;
+    protected $account_manager_id;
 
     /**
      * @var date $created_at
@@ -166,7 +167,7 @@ class Company
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="date", length="25")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var date $updated_at
@@ -174,8 +175,17 @@ class Company
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="date", length="25")
      */
-    private $updated_at;
-
+    protected $updated_at;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Frontend\Category", mappedBy="company")
+     */
+    protected $categories;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="company")
+     */
+    protected $users;
 
     /**
      * Get id
@@ -629,5 +639,45 @@ class Company
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param LWV\ToolkitBundle\Entity\Frontend\Category $categories
+     */
+    public function addCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $categories)
+    {
+        $this->categories[] = $categories;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add users
+     *
+     * @param LWV\ToolkitBundle\Entity\User\User $users
+     */
+    public function addUser(\LWV\ToolkitBundle\Entity\User\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

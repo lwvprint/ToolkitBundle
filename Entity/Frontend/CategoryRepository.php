@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    // FINISH THIS!
     public function getAllCategoriesBySegment()
     {
         $dql = 'SELECT c FROM LWV\ToolkitBundle\Entity\Frontend\Category c ' .
