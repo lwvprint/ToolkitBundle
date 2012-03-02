@@ -1,6 +1,6 @@
 {% block field_row %}
 {% spaceless %}
-    <div class="control-group">
+    <div class="control-group {% if errors|length > 0 %} error {% endif %}">
         {{ form_label(form) }}
         <div class="controls">
             {{ form_widget(form) }}
@@ -13,14 +13,11 @@
 {% block field_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <!--<div class="alert alert-error" data-dismiss="alert">-->
     <span class="help-inline">
-        <!--<a href="#" class="close">×</a>-->
         {% for error in errors %}
             {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br/>
         {% endfor %}
     </span>
-    <!--</div>-->
     {% endif %}
 {% endspaceless %}
 {% endblock field_errors %}
