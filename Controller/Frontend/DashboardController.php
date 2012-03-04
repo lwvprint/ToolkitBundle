@@ -15,6 +15,11 @@ class DashboardController extends Controller
         if ($this->get('security.context')->isGranted('ROLE_LWV')) {
             return $this->redirect($this->generateUrl('staff_dashboard'));
         }
+        /*
+         * Initiate and insert a breadcrumb
+        */
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
 
         return $this->render('LWVToolkitBundle:Frontend\Dashboard:index.html.twig');
     }

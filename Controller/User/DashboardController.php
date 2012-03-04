@@ -37,12 +37,15 @@ class DashboardController extends Controller
                 // Set "success" flash notification
                 $this->get('session')->setFlash('success', 'Profile saved.');
 
-                return $this->redirect($this->generateUrl('profile'));
+
             }
 
         }
-
-        return $this->render('LWVToolkitBundle:User\Dashboard:profile.html.twig', array('form' => $form->createView(),));
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
+        $breadcrumbs->addItem("My Account", $this->get("router")->generate("shop"));
+        $breadcrumbs->addItem("My Profile", $this->get("router")->generate("shop"));
+        return $this->render('LWVToolkitBundle:User\Dashboard:profile.html.twig', array('form' => $form->createView()));
     }
 
     public function passwordAction(Request $request)

@@ -1,24 +1,36 @@
 <!DOCTYPE HTML>
 <html lang="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta charset="UTF-8">
         <meta name="robots" content="noindex,nofollow" />
         <title>{% block title %}LWV Staff{% endblock %}</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block styelsheets %}
             {% stylesheets
-                '@LWVToolkitBundle/Resources/public/User/css/*'
+                'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
     </head>
     <body>
-        <header>
-            {% block nav %}
-            {% include '::navbar.html.twig' %}
+        <header id="top-bar">
+            {% block top_bar %}
+            {% include 'LWVToolkitBundle:Staff:top-bar.html.twig' %}
             {% endblock %}
         </header>
+        <nav id="staff-sidebar">
+            {% block staff_sidebar %}
+            {% include 'LWVToolkitBundle:Staff:staff-sidebar.html.twig' %}
+            {% endblock %}
+        </nav>
+        <section id="breadcrumb-search">
+            {% block breadcrumb_search %}
+            {% include 'LWVToolkitBundle:Staff:breadcrumb-search.html.twig' %}
+            {% endblock %}
+        </section>
+
+
         <section>
             {% if app.session.flash('success') %}
             <div class="container">
@@ -50,18 +62,10 @@
         </footer>
         {% block javascripts %}
             {% javascripts
-                '@LWVToolkitBundle/Resources/public/User/js/jquery-1.7.1.min.js'
-                '@LWVToolkitBundle/Resources/public/User/js/*'
+                '@LWVToolkitBundle/Resources/public/Staff/js/*'
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
-
-            <script type="text/javascript">
-            $(document).ready(function(){
-                $(".alert-message").alert();
-            });
-            </script>
-
         {% endblock %}
     </body>
 </html>

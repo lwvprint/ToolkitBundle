@@ -1,4 +1,4 @@
-{% extends 'LWVToolkitBundle:Frontend:frontend.html.twig' %}
+{% extends 'LWVToolkitBundle:Staff:index.html.twig' %}
 
 {% block content %}
 <div class="container">
@@ -8,7 +8,7 @@
 
             {{ form_errors(form) }}
 
-            <form action="{{ path('tk_update_profile') }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+            <form action="{{ path('staff_update_profile') }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate="novalidate">
                 <fieldset>
                     <legend>Your Details</legend>
                     {{ form_row(form.username) }}

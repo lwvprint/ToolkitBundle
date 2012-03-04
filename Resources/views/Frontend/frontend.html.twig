@@ -33,7 +33,7 @@
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <ul id="user-links"><!-- to be floated right -->
                                 <li>Logged in as: <strong>{{ app.user.username }}</strong></li>
-                                <li><a href="{{ path('profile') }}">My Account</a></li>
+                                <li><a href="{{ path('tk_profile') }}">My Account</a></li>
                                 <li><a href="{{ path('logout') }}">Logout</a></li>
                             </ul>
                             {% endif %}
@@ -67,13 +67,7 @@
                 <div class="row">
                     <!-- breadcrumb -->
                     <div class="span8">
-                        {% block breadcrumb %}
-                        <ul class="breadcrumb">
-                            <li>
-                                <i class="icon-home"></i>
-                            </li>
-                        </ul>
-                        {% endblock %}
+                        {{ wo_render_breadcrumbs() }}
                     </div>
                     <!-- breadcrumb end -->
                     <!-- search -->

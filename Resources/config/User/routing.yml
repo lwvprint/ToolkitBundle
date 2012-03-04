@@ -8,12 +8,23 @@ login_check:
 logout:
     pattern: /logout
 
-profile:
-    pattern: /profile
+tk_profile:
+    pattern: /myaccount/profile
     defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
 
-update_profile:
-    pattern: /profile
+tk_update_profile:
+    pattern: /myaccount/profile
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
+    requirements:
+        _method: POST
+
+staff_profile:
+    pattern: /staff/myaccount/profile
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
+
+
+staff_update_profile:
+    pattern: /staff/myaccount/profile
     defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
     requirements:
         _method: POST
