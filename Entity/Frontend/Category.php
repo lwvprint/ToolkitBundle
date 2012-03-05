@@ -22,9 +22,9 @@ class Category
      * @ORM\Column(type="string", length=100)
      */
     protected $name;
-    
+
     /**
-     * @ORM\Column(type="string", length="100") 
+     * @ORM\Column(type="string")
      */
     protected $slug;
 
@@ -34,7 +34,7 @@ class Category
     protected $description;
 
     /**
-     * @ORM\Column(type="string", length="255")
+     * @ORM\Column(type="string", length=255)
      */
     protected $image;
 
@@ -48,7 +48,7 @@ class Category
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
      */
     protected $products;
-    
+
     public function __construct()
     {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
@@ -157,7 +157,7 @@ class Category
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -177,7 +177,7 @@ class Category
     /**
      * Get company
      *
-     * @return LWV\ToolkitBundle\Entity\User\Company 
+     * @return LWV\ToolkitBundle\Entity\User\Company
      */
     public function getCompany()
     {
