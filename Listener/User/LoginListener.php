@@ -3,7 +3,7 @@
 namespace LWV\ToolkitBundle\Listener\User;
 
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class LoginListener
 {
