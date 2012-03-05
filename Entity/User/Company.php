@@ -40,7 +40,7 @@ class Company
 
     /**
     * @Gedmo\TreeRoot
-    * @ORM\Column(type="integer", nullable="true")
+    * @ORM\Column(type="integer", nullable=true)
     */
     protected $root;
 
@@ -165,7 +165,7 @@ class Company
      * @var date $created_at
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(name="created_at", type="date", length="25")
+     * @ORM\Column(name="created_at", type="date", length=25)
      */
     protected $created_at;
 
@@ -173,15 +173,15 @@ class Company
      * @var date $updated_at
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(name="updated_at", type="date", length="25")
+     * @ORM\Column(name="updated_at", type="date", length=25)
      */
     protected $updated_at;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Frontend\Category", mappedBy="company")
      */
     protected $categories;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="company")
      */
@@ -654,7 +654,7 @@ class Company
     /**
      * Get categories
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -674,7 +674,7 @@ class Company
     /**
      * Get users
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUsers()
     {
