@@ -39,7 +39,7 @@ class CategoriesController extends Controller
             $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
             $breadcrumbs->addItem("Categories", $this->get("router")->generate("categories"));
 
-            return $this->render('LWVToolkitBundle:Frontend\Default:index.html.twig', array('categories' => $categories, 'products' => $products));
+            return $this->render('LWVToolkitBundle:Frontend\Home:index.html.twig', array('categories' => $categories, 'products' => $products));
 
         } else {
 

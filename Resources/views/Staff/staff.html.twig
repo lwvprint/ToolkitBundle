@@ -7,6 +7,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block styelsheets %}
             {% stylesheets
+                'bundles/lwvtoolkit/css/bootstrap-2.0.1.css' filter='cssrewrite'
                 'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -16,41 +17,38 @@
     <body>
         <header id="top-bar">
             {% block top_bar %}
-            {% include 'LWVToolkitBundle:Staff:top-bar.html.twig' %}
+            {% include 'LWVToolkitBundle:Staff\\Includes:top-bar.html.twig' %}
             {% endblock %}
         </header>
         <nav id="staff-sidebar">
             {% block staff_sidebar %}
-            {% include 'LWVToolkitBundle:Staff:staff-sidebar.html.twig' %}
+            {% include 'LWVToolkitBundle:Staff\\Includes:staff-sidebar.html.twig' %}
             {% endblock %}
         </nav>
         <section id="breadcrumb-search">
             {% block breadcrumb_search %}
-            {% include 'LWVToolkitBundle:Staff:breadcrumb-search.html.twig' %}
+            {% include 'LWVToolkitBundle:Staff\\Includes:breadcrumb-search.html.twig' %}
             {% endblock %}
+	        <div class="clearfix"></div>
         </section>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>{% block h1 %}LWV Admin{% endblock %}</h1>
+			</div>
+		</div>
+	</div>
+</div>
 
+{% block notices %}
+            {% include 'LWVToolkitBundle:Global:notices.html.twig' %}
+{% endblock %}
 
-        <section>
-            {% if app.session.flash('success') %}
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
+{% block content %}
+Main content block
+{% endblock %}
 
-                        <div class="alert alert-success">
-                            <a class="close" data-dismiss="alert" href="#">&times;</a>
-                            {{ app.session.flash('success') }}
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            {% block content %}
-            Main content block
-            {% endblock %}
-        </section>
         <footer>
             <div class="container">
                 <div class="row">
@@ -62,6 +60,8 @@
         </footer>
         {% block javascripts %}
             {% javascripts
+                '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
+                '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
                 '@LWVToolkitBundle/Resources/public/Staff/js/*'
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>

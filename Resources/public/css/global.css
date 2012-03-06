@@ -1,0 +1,6 @@
+[class^="notice-"]{display:inline-block;width:14px;height:14px;vertical-align:text-top;background-image:url(../img/glyphicons-halflings.png);background-position:14px 14px;background-repeat:no-repeat;*margin-right:.3em;}[class^="icon-"]:last-child{*margin-left:0;}
+.notice-white{background-image:url(../img/glyphicons-halflings-white.png);}
+.notice-warning{background-position:-144px -120px;}
+.notice-error{background-position:-216px -96px;}
+.notice-success{background-position:-288px 0;}
+.notice-info{background-position:-120px -96px;}

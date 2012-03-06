@@ -1,10 +1,10 @@
 shop:
     pattern:  /
-    defaults: { _controller: LWVToolkitBundle:Frontend\Default:index }
+    defaults: { _controller: LWVToolkitBundle:Frontend\Home:index }
 
 category:
     pattern: /category/{slug}
-    defaults: { _controller: LWVToolkitBundle:Frontend\Default:category }
+    defaults: { _controller: LWVToolkitBundle:Frontend\Home:category }
 
 categories:
     pattern: /categories

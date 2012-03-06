@@ -7,6 +7,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block styelsheets %}
             {% stylesheets
+            	'bundles/lwvtoolkit/css/bootstrap-2.0.1.css' filter='cssrewrite'
                 'bundles/lwvtoolkit/css/*' filter='cssrewrite'
                 'bundles/lwvtoolkit/Frontend/css/*' filter='cssrewrite'
             %}
@@ -91,46 +92,9 @@
                 </div>
             </div>
         </section>
-        <!-- Flash messages -->
-        {% block flashmessages %}
-        {% if app.session.getFlashes %}
-        <section id="notices">
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <div class="well notices">
-                            {% if app.session.flash('warning') %}
-                            <div class="alert fade in">
-                                <a class="close" data-dismiss="alert">&times;</a>
-                                <i class="icon-warning-sign"></i> {{ app.session.flash('warning') }}
-                            </div>
-                            {% endif %}
-                            {% if app.session.flash('error') %}
-                            <div class="alert alert-error fade in">
-                                <a class="close" data-dismiss="alert">&times;</a>
-                                <i class="icon-ban-circle"></i> {{ app.session.flash('error') }}
-                            </div>
-                            {% endif %}
-                            {% if app.session.flash('success') %}
-                            <div class="alert alert-success fade in">
-                                <a class="close" data-dismiss="alert">&times;</a>
-                                <i class="icon-ok"></i> {{ app.session.flash('success') }}
-                            </div>
-                            {% endif %}
-                            {% if app.session.flash('info') %}
-                            <div class="alert alert-info fade in">
-                                <a class="close" data-dismiss="alert">&times;</a>
-                                <i class="icon-info-sign"></i> {{ app.session.flash('info') }}
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        {% endif %}
+        {% block notices %}
+        	     {% include 'LWVToolkitBundle:Global:notices.html.twig' %}
         {% endblock %}
-        <!-- Flash messages end -->
 
         <!-- Content -->
         {% block content %}

@@ -4,7 +4,7 @@ namespace LWV\ToolkitBundle\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class HomeController extends Controller
 {
 
     public function indexAction()
@@ -31,21 +31,21 @@ class DefaultController extends Controller
                     ->getRepository('LWVToolkitBundle:Frontend\Product')
                     ->getActiveProductsWithImages();
 
-            /*
-            $this->get('session')->setFlash('warning', 'WARNING! WARNING! WARNING!');
-            $this->get('session')->setFlash('error', 'ERROR! ERROR! ERROR!');
-            $this->get('session')->setFlash('success', 'SUCCESS! SUCCESS! SUCCESS!');
-            $this->get('session')->setFlash('info', 'INFO! INFO! INFO!');
-            */
 
-            return $this->render('LWVToolkitBundle:Frontend\Default:index.html.twig', array('categories' => $categories, 'products' => $products));
+            $this->get('session')->set('warning', 'WARNING! WARNING! WARNING!');
+            $this->get('session')->set('error', 'ERROR! ERROR! ERROR!');
+            $this->get('session')->set('success', 'SUCCESS! SUCCESS! SUCCESS!');
+            $this->get('session')->set('info', 'INFO! INFO! INFO!');
+
+
+            return $this->render('LWVToolkitBundle:Frontend\Home:index.html.twig', array('categories' => $categories, 'products' => $products));
 
         } else {
 
             return $this->redirect($this->generateUrl('login'));
-            ;
         }
     }
+
 
     public function categoryAction($slug)
     {
@@ -67,13 +67,13 @@ class DefaultController extends Controller
 
         /*
         * Initiate and insert a breadcrumb
-        */
+		*/
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
         $breadcrumbs->addItem("Categories", $this->get("router")->generate("categories"));
         $breadcrumbs->addItem($category->getName(), $this->get("router")->generate("category", array('slug' => $slug)));
 
-        return $this->render('LWVToolkitBundle:Frontend\Default:category.html.twig', array('category' => $category, 'products' => $products));
+        return $this->render('LWVToolkitBundle:Frontend\Category:category.html.twig', array('category' => $category, 'products' => $products));
     }
 
 }
