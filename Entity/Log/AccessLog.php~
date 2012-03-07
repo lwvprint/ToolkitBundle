@@ -66,7 +66,7 @@ class AccessLog
     /**
      * @var date $created_at
      *
-     * @ORM\Column(name="created_at", type="date", length="25")
+     * @ORM\Column(name="created_at", type="date", length=25)
      */
     private $created_at;
 

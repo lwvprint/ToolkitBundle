@@ -1,0 +1,51 @@
+{% extends 'LWVToolkitBundle:Frontend:frontend.html.twig' %}
+
+{% block title %}
+    {{ parent() }} :: Stonegate
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                <h2>Events for {{ dateInfo.currentMonth }} <small>{{ dateInfo.currentYear }}</small></h2>
+                <table class="table table-bordered event-calendar">
+                    <thead>
+                        <tr>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>T</th>
+                            <th>W</th>
+                            <th>T</th>
+                            <th>F</th>
+                            <th>S</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in 0..(dateInfo.maxday+dateInfo.startday)-1 %}
+                        {% if (i % 7) == 0 %}
+                        <tr>
+                        {% endif %}
+                            {% if i < dateInfo.startday %}
+                                <td></td> 
+                            {% else %}
+                                <td>{{ i - dateInfo.startday + 1 }}</td>
+                            {% endif %}
+                        {% if (i % 7) == 6 %}
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="span3">
+                <h2>Upcoming Events</h2>
+                <ul>
+                    <li>Event 1</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -12,6 +12,10 @@
 						<i class="notice-{{ type }}"></i>  {{ flashMessage }}
 					</div>
 					{% endfor %}
+                        
+                    {% if app.session.hasFlash('notice') %}
+                        {{ app.session.flash('notice') }}
+                    {% endif %}
                 </div>
             </div>
         </div>

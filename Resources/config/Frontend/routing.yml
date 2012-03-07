@@ -4,8 +4,21 @@ shop:
 
 category:
     pattern: /category/{slug}
-    defaults: { _controller: LWVToolkitBundle:Frontend\Home:category }
+    defaults: { _controller: LWVToolkitBundle:Frontend\Categories:category }
 
 categories:
     pattern: /categories
     defaults: { _controller: LWVToolkitBundle:Frontend\Categories:index }
+    
+events:
+    pattern: /events
+    defaults: { _controller: LWVToolkitBundle:Frontend\Events:index }
+events_specify_year:
+    pattern: /events/{year}
+    defaults: { _controller: LWVToolkitBundle:Frontend\Events:index }
+events_specify_year_month:
+    pattern: /events/{year}/{month}
+    defaults: { _controller: LWVToolkitBundle:Frontend\Events:index }
+event_show:
+    pattern: /events/view/{slug}
+    defaults: { _controller: LWVToolkitBundle:Frontend\Events:view }
