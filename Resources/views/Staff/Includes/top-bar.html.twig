@@ -28,18 +28,7 @@
                         <span class="logged-in"></i> {{app.user.profile.name}}</span>
                         </a>
                      </li>
-                     <li class="divider-vertical"></li>
-                     <li class="user-details">
-                        <a href="#messages" class="msg">
-                            <span class="wrap">
-                                <span class="count">25</span>
-                                <span class="msgicon">messages</span>
-                            </span>
-                        </a>
-                     </li>
-
-                    <li class="divider-vertical"></li>
-                    <li class="dropdown">
+                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" class="hover-icon"><i class="icon-cog"></i> Settings</a></li>
@@ -49,6 +38,15 @@
                             <li><a href="{{ path('logout')}}" class="hover-icon"><i class="icon-off"></i> Sign out</a></li>
                         </ul>
                     </li>
+                     <li class="divider-vertical"></li>
+                     <li class="user-details">
+                        <a href="#messages" class="msg">
+                            <span class="wrap">
+                                <span class="count">25</span>
+                                <span class="msgicon">messages</span>
+                            </span>
+                        </a>
+                     </li>
                 </ul>
             </div><!-- /.nav-collapse -->
         </div>
