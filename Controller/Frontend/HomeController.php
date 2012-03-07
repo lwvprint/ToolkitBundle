@@ -32,7 +32,7 @@ class HomeController extends Controller
                     ->getActiveProductsWithImages();
 
 
-            $this->get('session')->set('warning', 'WARNING! WARNING! WARNING!');
+            $this->get('session')->getFlashBag()->set('WARNING', 'WARNING! WARNING! WARNING!');
             $this->get('session')->set('error', 'ERROR! ERROR! ERROR!');
             $this->get('session')->set('success', 'SUCCESS! SUCCESS! SUCCESS!');
             $this->get('session')->set('info', 'INFO! INFO! INFO!');
