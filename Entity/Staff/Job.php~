@@ -2,6 +2,7 @@
 
 namespace LWV\ToolkitBundle\Entity\Staff;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -22,46 +23,21 @@ class Job
      */
     private $id;
 
-    /**
-     * @var string $reference_no
+   /**
+     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Order\Order", mappedBy="job")
      *
-     * @ORM\Column(name="reference_no", type="string", length=100)
      */
-    private $reference_no;
+    protected $orders;
 
-    /**
-     * @var integer $staff_id
-     *
-     * @ORM\Column(name="staff_id", type="integer")
-     */
-    private $staff_id;
-
-    /**
-     * @var datetime $created_at
-     *
-     * @ORM\Column(name="created_at", type="datetime")
-     */
-    private $created_at;
-
-    /**
-     * @var datetime $updated_at
-     *
-     * @ORM\Column(name="updated_at", type="datetime")
-     */
-    private $updated_at;
-
-    /**
-     * @var datetime $deleted_at
-     *
-     * @ORM\Column(name="deleted_at", type="datetime")
-     */
-    private $deleted_at;
-
-
+    public function __construct()
+    {
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -69,112 +45,22 @@ class Job
     }
 
     /**
-     * Set reference_no
+     * Add orders
      *
-     * @param string $referenceNo
-     * @return Job
+     * @param LWV\ToolkitBundle\Entity\Order\Order $orders
      */
-    public function setReferenceNo($referenceNo)
+    public function addOrder(\LWV\ToolkitBundle\Entity\Order\Order $orders)
     {
-        $this->reference_no = $referenceNo;
-        return $this;
+        $this->orders[] = $orders;
     }
 
     /**
-     * Get reference_no
+     * Get orders
      *
-     * @return string
+     * @return Doctrine\Common\Collections\Collection 
      */
-    public function getReferenceNo()
+    public function getOrders()
     {
-        return $this->reference_no;
-    }
-
-    /**
-     * Set staff_id
-     *
-     * @param integer $staffId
-     * @return Job
-     */
-    public function setStaffId($staffId)
-    {
-        $this->staff_id = $staffId;
-        return $this;
-    }
-
-    /**
-     * Get staff_id
-     *
-     * @return integer
-     */
-    public function getStaffId()
-    {
-        return $this->staff_id;
-    }
-
-    /**
-     * Set created_at
-     *
-     * @param datetime $createdAt
-     * @return Job
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->created_at = $createdAt;
-        return $this;
-    }
-
-    /**
-     * Get created_at
-     *
-     * @return datetime
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Set updated_at
-     *
-     * @param datetime $updatedAt
-     * @return Job
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updated_at = $updatedAt;
-        return $this;
-    }
-
-    /**
-     * Get updated_at
-     *
-     * @return datetime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * Set deleted_at
-     *
-     * @param datetime $deletedAt
-     * @return Job
-     */
-    public function setDeletedAt($deletedAt)
-    {
-        $this->deleted_at = $deletedAt;
-        return $this;
-    }
-
-    /**
-     * Get deleted_at
-     *
-     * @return datetime
-     */
-    public function getDeletedAt()
-    {
-        return $this->deleted_at;
+        return $this->orders;
     }
 }
