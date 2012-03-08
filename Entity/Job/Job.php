@@ -1,16 +1,16 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Staff;
+namespace LWV\ToolkitBundle\Entity\Job;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * LWV\ToolkitBundle\Entity\Staff\Job
+ * LWV\ToolkitBundle\Entity\Job\Job
  *
  * @ORM\Table(name="job")
- * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Staff\JobRepository")
+ * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Job\JobRepository")
  */
 class Job
 {
@@ -33,11 +33,11 @@ class Job
     {
         $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +57,7 @@ class Job
     /**
      * Get orders
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getOrders()
     {

@@ -24,7 +24,7 @@ class Order
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Staff\Job", inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Job\Job", inversedBy="orders")
      * @ORM\JoinColumn(name="job_id", referencedColumnName="id")
      *
      */
@@ -54,10 +54,10 @@ class Order
     /**
      * Set job
      *
-     * @param LWV\ToolkitBundle\Entity\Staff\Job $job
+     * @param LWV\ToolkitBundle\Entity\Job\Job $job
      * @return Order
      */
-    public function setJob(\LWV\ToolkitBundle\Entity\Staff\Job $job = null)
+    public function setJob(\LWV\ToolkitBundle\Entity\Job\Job $job = null)
     {
         $this->job = $job;
         return $this;
@@ -66,7 +66,7 @@ class Order
     /**
      * Get job
      *
-     * @return LWV\ToolkitBundle\Entity\Staff\Job
+     * @return LWV\ToolkitBundle\Entity\Job\Job
      */
     public function getJob()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Staff;
+namespace LWV\ToolkitBundle\Entity\Job;
 
 use Doctrine\ORM\EntityRepository;
 
