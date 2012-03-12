@@ -1,0 +1,38 @@
+{% extends 'LWVToolkitBundle:Frontend:frontend.html.twig' %}
+
+{% block title %}
+    {{ parent() }} :: Stonegate
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2>{{ product.name }}</h2>
+                <div class="row">
+                    <div class="span2">
+                        <a class="cloud-zoom-gallery" href="http://placehold.it/920x1200&amp;text=Large2" rel="useZoom: 'zoom1', smallImage: 'http://placehold.it/460x600&amp;text=Small2'">
+                            <img alt="" src="http://placehold.it/140&amp;text=Small2" title="{{ product.name }}" />
+                        </a>
+                    </div>
+                    <div class="span4">
+                        <div class="product-image">
+                            <a class="cloud-zoom" href="http://placehold.it/920x1200&amp;text=Large1" id="zoom1" rel="adjustX: 10">
+                                <img alt="" src="http://placehold.it/460x600&amp;text=Small1" title="{{ product.name }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="product-details">
+                            <p>{{ product.reference }}</p>
+                            <p>{{ product.description }}</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

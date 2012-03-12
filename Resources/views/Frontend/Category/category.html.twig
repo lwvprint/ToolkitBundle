@@ -18,7 +18,9 @@
                         <div class="span4">
                             <div class="category-item">
                                 <div class="category-image">
-                                    <img alt="" src="http://placehold.it/100x150&amp;text=Icon" />
+                                    <a href="{{ path('product', { 'slug': product.slug }) }}">
+                                        <img alt="" src="http://placehold.it/100x150&amp;text=Icon" />
+                                    </a>
                                 </div>
                                 <div class="category-details">
                                     <h3>{{ product.name }}</h3>

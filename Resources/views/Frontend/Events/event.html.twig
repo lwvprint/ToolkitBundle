@@ -1,0 +1,20 @@
+{% extends 'LWVToolkitBundle:Frontend:frontend.html.twig' %}
+
+{% block title %}
+    {{ parent() }} :: Stonegate
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                <h2>Event {{ event.title }}</h2>
+                {{ event.desc }}
+            </div>
+            <div class="span3">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -3,18 +3,13 @@
 namespace LWV\ToolkitBundle\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class EventsController extends Controller
 {
     public function indexAction($year = NULL, $month = NULL)
-    {
+    {   
         /*
-         * Initiate and insert a breadcrumb
-         */
-        $breadcrumbs = $this->get("white_october_breadcrumbs");
-        $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
-        $breadcrumbs->addItem("Events", $this->get("router")->generate("events"));
-            
         if($year == NULL) {
             $cYear = date('Y');
         } else {
@@ -50,12 +45,42 @@ class EventsController extends Controller
         $startday = $thismonth['wday'];
         
         $dateInfo = array('maxday' => $maxday, 'thismonth' => $thismonth, 'startday' => $startday, 'currentYear' => $cYear, 'currentMonth' => $currentMonth);
+        */
+        
+        if($year == NULL) {
+            $cYear = date('Y');
+        } else {
+            $cYear = $year;
+        }
+        
+        if($month == NULL) {
+            $cMonth = date('n - 1');
+        } else {
+            $cMonth = $month - 1;
+        }
+        
+        $calendarSettings = array('year' => $cYear, 'month' => $cMonth);
+        
+        /*
+         * Initiate and insert a breadcrumb
+         */
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
+        $breadcrumbs->addItem("Events", $this->get("router")->generate("events"));
 
-        return $this->render('LWVToolkitBundle:Frontend\Events:events.html.twig', array('dateInfo' => $dateInfo));
+        return $this->render('LWVToolkitBundle:Frontend\Events:events.html.twig', array('calendarSettings' => $calendarSettings));
     }
     
-    public function viewAction()
+    public function jsonAction()
     {
+        $events = new Response(json_encode(array(array('id' => 1, 'color' => '#CCC', 'title' => 'Test Event', 'start' => '2012-03-09', 'end' => '2012-03-10', 'url' => '/events/view/Test-Event'), array('id' => 2, 'title' => 'Event 2', 'start' => '2012-03-12'))));
+        return $events;
+    }
+    
+    public function viewAction($slug)
+    {
+        $event = array('title' => $slug, 'desc' => 'Description');
         
+        return $this->render('LWVToolkitBundle:Frontend\Events:event.html.twig', array('event' => $event));
     }
 }

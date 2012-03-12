@@ -396,9 +396,9 @@ class Category
     /**
      * Add children
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Company $children
+     * @param LWV\ToolkitBundle\Entity\User\Company $children
      */
-    public function addCompany(\LWV\ToolkitBundle\Entity\Frontend\Company $children)
+    public function addCompany(\LWV\ToolkitBundle\Entity\User\Company $children)
     {
         $this->children[] = $children;
     }

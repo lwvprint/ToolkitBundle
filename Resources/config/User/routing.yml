@@ -1,6 +1,6 @@
 login:
-  pattern:  /login
-  defaults: { _controller: LWVToolkitBundle:User\Login:login }
+    pattern:  /login
+    defaults: { _controller: LWVToolkitBundle:User\Login:login }
 
 login_check:
     pattern: /login_check

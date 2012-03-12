@@ -9,8 +9,9 @@
     <div class="container">
         <div class="row">
             <div class="span9">
-                <h2>Events for {{ dateInfo.currentMonth }} <small>{{ dateInfo.currentYear }}</small></h2>
-                <table class="table table-bordered event-calendar">
+                <h2>Events {# for {{ dateInfo.currentMonth }} <small>{{ dateInfo.currentYear }}</small>#}</h2>
+                <div id="calendar"></div>
+                <!--<table class="table table-bordered event-calendar">
                     <thead>
                         <tr>
                             <th>S</th>
@@ -23,6 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {#
                         {% for i in 0..(dateInfo.maxday+dateInfo.startday)-1 %}
                         {% if (i % 7) == 0 %}
                         <tr>
@@ -36,8 +38,9 @@
                         </tr>
                         {% endif %}
                         {% endfor %}
+                        #}
                     </tbody>
-                </table>
+                </table>-->
             </div>
             <div class="span3">
                 <h2>Upcoming Events</h2>
@@ -48,4 +51,20 @@
         </div>
     </div>
 </section>
+{% endblock %}
+    
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            // put your options and callbacks here
+            events: {
+                url: "/eventsjson"
+                },
+            year: {{ calendarSettings.year }},
+            month: {{ calendarSettings.month }},
+        });
+    });
+    </script>
 {% endblock %}

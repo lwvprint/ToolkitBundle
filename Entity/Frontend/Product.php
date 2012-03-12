@@ -22,6 +22,11 @@ class Product
      * @ORM\Column(type="string", length=100)
      */
     protected $name;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $slug;
 
     /**
      * @ORM\Column(type="text")
@@ -58,11 +63,16 @@ class Product
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
-
+    
+    public function __construct()
+    {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -73,16 +83,18 @@ class Product
      * Set name
      *
      * @param string $name
+     * @return Product
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -90,19 +102,43 @@ class Product
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Product
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set description
      *
      * @param text $description
+     * @return Product
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
      * Get description
      *
-     * @return text
+     * @return text 
      */
     public function getDescription()
     {
@@ -113,16 +149,18 @@ class Product
      * Set reference
      *
      * @param string $reference
+     * @return Product
      */
     public function setReference($reference)
     {
         $this->reference = $reference;
+        return $this;
     }
 
     /**
      * Get reference
      *
-     * @return string
+     * @return string 
      */
     public function getReference()
     {
@@ -133,16 +171,18 @@ class Product
      * Set activeFrom
      *
      * @param datetime $activeFrom
+     * @return Product
      */
     public function setActiveFrom($activeFrom)
     {
         $this->activeFrom = $activeFrom;
+        return $this;
     }
 
     /**
      * Get activeFrom
      *
-     * @return datetime
+     * @return datetime 
      */
     public function getActiveFrom()
     {
@@ -153,16 +193,18 @@ class Product
      * Set activeTill
      *
      * @param datetime $activeTill
+     * @return Product
      */
     public function setActiveTill($activeTill)
     {
         $this->activeTill = $activeTill;
+        return $this;
     }
 
     /**
      * Get activeTill
      *
-     * @return datetime
+     * @return datetime 
      */
     public function getActiveTill()
     {
@@ -173,24 +215,22 @@ class Product
      * Set visible
      *
      * @param integer $visible
+     * @return Product
      */
     public function setVisible($visible)
     {
         $this->visible = $visible;
+        return $this;
     }
 
     /**
      * Get visible
      *
-     * @return integer
+     * @return integer 
      */
     public function getVisible()
     {
         return $this->visible;
-    }
-    public function __construct()
-    {
-        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -206,7 +246,7 @@ class Product
     /**
      * Get images
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getImages()
     {
@@ -217,16 +257,18 @@ class Product
      * Set category
      *
      * @param LWV\ToolkitBundle\Entity\Frontend\Category $category
+     * @return Product
      */
-    public function setCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $category)
+    public function setCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $category = null)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
      * Get category
      *
-     * @return LWV\ToolkitBundle\Entity\Frontend\Category
+     * @return LWV\ToolkitBundle\Entity\Frontend\Category 
      */
     public function getCategory()
     {
