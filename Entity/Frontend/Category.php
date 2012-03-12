@@ -19,7 +19,7 @@ class Category
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
     * @Gedmo\TreeLeft
     * @ORM\Column(type="integer")
@@ -87,7 +87,7 @@ class Category
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
      */
     protected $products;
-    
+
     /**
      * @var date $created_at
      *
@@ -106,6 +106,7 @@ class Category
 
     public function __construct()
     {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -117,126 +118,6 @@ class Category
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param text $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return text
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Add products
-     *
-     * @param LWV\\ToolkitBundle\Entity\Frontend\Product $products
-     */
-    public function addProduct(\LWV\ToolkitBundle\Entity\Frontend\Product $products)
-    {
-        $this->products[] = $products;
-    }
-
-    /**
-     * Get products
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getProducts()
-    {
-        return $this->products;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set company
-     *
-     * @param LWV\ToolkitBundle\Entity\User\Company $company
-     */
-    public function setCompany(\LWV\ToolkitBundle\Entity\User\Company $company)
-    {
-        $this->company = $company;
-    }
-
-    /**
-     * Get company
-     *
-     * @return LWV\ToolkitBundle\Entity\User\Company
-     */
-    public function getCompany()
-    {
-        return $this->company;
     }
 
     /**
@@ -254,7 +135,7 @@ class Category
     /**
      * Get lft
      *
-     * @return integer 
+     * @return integer
      */
     public function getLft()
     {
@@ -276,7 +157,7 @@ class Category
     /**
      * Get rgt
      *
-     * @return integer 
+     * @return integer
      */
     public function getRgt()
     {
@@ -298,7 +179,7 @@ class Category
     /**
      * Get root
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoot()
     {
@@ -320,11 +201,99 @@ class Category
     /**
      * Get lvl
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvl()
     {
         return $this->lvl;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set description
+     *
+     * @param text $description
+     * @return Category
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return text
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Category
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -342,7 +311,7 @@ class Category
     /**
      * Get created_at
      *
-     * @return date 
+     * @return date
      */
     public function getCreatedAt()
     {
@@ -364,7 +333,7 @@ class Category
     /**
      * Get updated_at
      *
-     * @return date 
+     * @return date
      */
     public function getUpdatedAt()
     {
@@ -386,7 +355,7 @@ class Category
     /**
      * Get parent
      *
-     * @return LWV\ToolkitBundle\Entity\Frontend\Category 
+     * @return LWV\ToolkitBundle\Entity\Frontend\Category
      */
     public function getParent()
     {
@@ -396,9 +365,15 @@ class Category
     /**
      * Add children
      *
+<<<<<<< HEAD
      * @param LWV\ToolkitBundle\Entity\User\Company $children
      */
     public function addCompany(\LWV\ToolkitBundle\Entity\User\Company $children)
+=======
+     * @param LWV\ToolkitBundle\Entity\Frontend\Category $children
+     */
+    public function addCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $children)
+>>>>>>> 3fccac724f0ace871d151e906869f18f2125d0dc
     {
         $this->children[] = $children;
     }
@@ -406,7 +381,7 @@ class Category
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -414,12 +389,44 @@ class Category
     }
 
     /**
-     * Add children
+     * Set company
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Category $children
+     * @param LWV\ToolkitBundle\Entity\User\Company $company
+     * @return Category
      */
-    public function addCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $children)
+    public function setCompany(\LWV\ToolkitBundle\Entity\User\Company $company = null)
     {
-        $this->children[] = $children;
+        $this->company = $company;
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return LWV\ToolkitBundle\Entity\User\Company
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Add products
+     *
+     * @param LWV\ToolkitBundle\Entity\Frontend\Product $products
+     */
+    public function addProduct(\LWV\ToolkitBundle\Entity\Frontend\Product $products)
+    {
+        $this->products[] = $products;
+    }
+
+    /**
+     * Get products
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

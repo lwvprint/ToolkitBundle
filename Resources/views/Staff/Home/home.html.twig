@@ -1,0 +1,12 @@
+{% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
+
+{% block title %}
+	Staff Dashboard :: {{ parent() }}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block sidebar %}
+	{% render "LWVToolkitBundle:Job\Job:latestJobs" with {'max': 5} %}
+{% endblock %}

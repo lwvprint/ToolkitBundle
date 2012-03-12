@@ -1,0 +1,18 @@
+<?php
+
+namespace LWV\ToolkitBundle\Controller\Staff;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class JobController extends Controller
+{
+    public function latestJobsAction($max = 3)
+    {
+        $jobs = $this->get('doctrine')->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Frontend\Category')
+                ->findBy(array('company' => $user->getCompany()->getId()))
+                ->limit($max);
+		return $this->render('LWVToolkitBundle:Staff\Includes:latest-jobs.html.twig', array('articles' => $articles));
+
+    }
+}

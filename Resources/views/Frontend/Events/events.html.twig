@@ -1,7 +1,7 @@
 {% extends 'LWVToolkitBundle:Frontend:frontend.html.twig' %}
 
 {% block title %}
-    {{ parent() }} :: Stonegate
+    Events :: {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,7 @@
                         <tr>
                         {% endif %}
                             {% if i < dateInfo.startday %}
-                                <td></td> 
+                                <td></td>
                             {% else %}
                                 <td>{{ i - dateInfo.startday + 1 }}</td>
                             {% endif %}

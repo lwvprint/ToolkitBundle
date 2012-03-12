@@ -187,6 +187,13 @@ class Company
      */
     protected $users;
 
+    public function __construct()
+    {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -198,333 +205,15 @@ class Company
     }
 
     /**
-     * Set account_no
-     *
-     * @param string $accountNo
-     */
-    public function setAccountNo($accountNo)
-    {
-        $this->account_no = $accountNo;
-    }
-
-    /**
-     * Get account_no
-     *
-     * @return string
-     */
-    public function getAccountNo()
-    {
-        return $this->account_no;
-    }
-
-    /**
-     * Set contact_id
-     *
-     * @param integer $contactId
-     */
-    public function setContactId($contactId)
-    {
-        $this->contact_id = $contactId;
-    }
-
-    /**
-     * Get contact_id
-     *
-     * @return integer
-     */
-    public function getContactId()
-    {
-        return $this->contact_id;
-    }
-
-    /**
-     * Set pricing_id
-     *
-     * @param integer $pricingId
-     */
-    public function setPricingId($pricingId)
-    {
-        $this->pricing_id = $pricingId;
-    }
-
-    /**
-     * Get pricing_id
-     *
-     * @return integer
-     */
-    public function getPricingId()
-    {
-        return $this->pricing_id;
-    }
-
-    /**
-     * Set shipping_id
-     *
-     * @param integer $shippingId
-     */
-    public function setShippingId($shippingId)
-    {
-        $this->shipping_id = $shippingId;
-    }
-
-    /**
-     * Get shipping_id
-     *
-     * @return integer
-     */
-    public function getShippingId()
-    {
-        return $this->shipping_id;
-    }
-
-    /**
-     * Set status_group_id
-     *
-     * @param integer $statusGroupId
-     */
-    public function setStatusGroupId($statusGroupId)
-    {
-        $this->status_group_id = $statusGroupId;
-    }
-
-    /**
-     * Get status_group_id
-     *
-     * @return integer
-     */
-    public function getStatusGroupId()
-    {
-        return $this->status_group_id;
-    }
-
-    /**
-     * Set address1
-     *
-     * @param string $address1
-     */
-    public function setAddress1($address1)
-    {
-        $this->address1 = $address1;
-    }
-
-    /**
-     * Get address1
-     *
-     * @return string
-     */
-    public function getAddress1()
-    {
-        return $this->address1;
-    }
-
-    /**
-     * Set address2
-     *
-     * @param string $address2
-     */
-    public function setAddress2($address2)
-    {
-        $this->address2 = $address2;
-    }
-
-    /**
-     * Get address2
-     *
-     * @return string
-     */
-    public function getAddress2()
-    {
-        return $this->address2;
-    }
-
-    /**
-     * Set town
-     *
-     * @param string $town
-     */
-    public function setTown($town)
-    {
-        $this->town = $town;
-    }
-
-    /**
-     * Get town
-     *
-     * @return string
-     */
-    public function getTown()
-    {
-        return $this->town;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set post_code
-     *
-     * @param string $postCode
-     */
-    public function setPostCode($postCode)
-    {
-        $this->post_code = $postCode;
-    }
-
-    /**
-     * Get post_code
-     *
-     * @return string
-     */
-    public function getPostCode()
-    {
-        return $this->post_code;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set website
-     *
-     * @param string $website
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Set is_active
-     *
-     * @param boolean $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->is_active = $isActive;
-    }
-
-    /**
-     * Get is_active
-     *
-     * @return boolean
-     */
-    public function getIsActive()
-    {
-        return $this->is_active;
-    }
-
-    /**
-     * Set account_manager_id
-     *
-     * @param integer $accountManagerId
-     */
-    public function setAccountManagerId($accountManagerId)
-    {
-        $this->account_manager_id = $accountManagerId;
-    }
-
-    /**
-     * Get account_manager_id
-     *
-     * @return integer
-     */
-    public function getAccountManagerId()
-    {
-        return $this->account_manager_id;
-    }
-
-    /**
-     * Set created_at
-     *
-     * @param date $createdAt
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->created_at = $createdAt;
-    }
-
-    /**
-     * Get created_at
-     *
-     * @return date
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Set updated_at
-     *
-     * @param date $updatedAt
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updated_at = $updatedAt;
-    }
-
-    /**
-     * Get updated_at
-     *
-     * @return date
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
      * Set lft
      *
      * @param integer $lft
+     * @return Company
      */
     public function setLft($lft)
     {
         $this->lft = $lft;
+        return $this;
     }
 
     /**
@@ -541,10 +230,12 @@ class Company
      * Set rgt
      *
      * @param integer $rgt
+     * @return Company
      */
     public function setRgt($rgt)
     {
         $this->rgt = $rgt;
+        return $this;
     }
 
     /**
@@ -561,10 +252,12 @@ class Company
      * Set root
      *
      * @param integer $root
+     * @return Company
      */
     public function setRoot($root)
     {
         $this->root = $root;
+        return $this;
     }
 
     /**
@@ -581,10 +274,12 @@ class Company
      * Set lvl
      *
      * @param integer $lvl
+     * @return Company
      */
     public function setLvl($lvl)
     {
         $this->lvl = $lvl;
+        return $this;
     }
 
     /**
@@ -598,13 +293,367 @@ class Company
     }
 
     /**
+     * Set account_no
+     *
+     * @param string $accountNo
+     * @return Company
+     */
+    public function setAccountNo($accountNo)
+    {
+        $this->account_no = $accountNo;
+        return $this;
+    }
+
+    /**
+     * Get account_no
+     *
+     * @return string
+     */
+    public function getAccountNo()
+    {
+        return $this->account_no;
+    }
+
+    /**
+     * Set contact_id
+     *
+     * @param integer $contactId
+     * @return Company
+     */
+    public function setContactId($contactId)
+    {
+        $this->contact_id = $contactId;
+        return $this;
+    }
+
+    /**
+     * Get contact_id
+     *
+     * @return integer
+     */
+    public function getContactId()
+    {
+        return $this->contact_id;
+    }
+
+    /**
+     * Set pricing_id
+     *
+     * @param integer $pricingId
+     * @return Company
+     */
+    public function setPricingId($pricingId)
+    {
+        $this->pricing_id = $pricingId;
+        return $this;
+    }
+
+    /**
+     * Get pricing_id
+     *
+     * @return integer
+     */
+    public function getPricingId()
+    {
+        return $this->pricing_id;
+    }
+
+    /**
+     * Set shipping_id
+     *
+     * @param integer $shippingId
+     * @return Company
+     */
+    public function setShippingId($shippingId)
+    {
+        $this->shipping_id = $shippingId;
+        return $this;
+    }
+
+    /**
+     * Get shipping_id
+     *
+     * @return integer
+     */
+    public function getShippingId()
+    {
+        return $this->shipping_id;
+    }
+
+    /**
+     * Set status_group_id
+     *
+     * @param integer $statusGroupId
+     * @return Company
+     */
+    public function setStatusGroupId($statusGroupId)
+    {
+        $this->status_group_id = $statusGroupId;
+        return $this;
+    }
+
+    /**
+     * Get status_group_id
+     *
+     * @return integer
+     */
+    public function getStatusGroupId()
+    {
+        return $this->status_group_id;
+    }
+
+    /**
+     * Set address1
+     *
+     * @param string $address1
+     * @return Company
+     */
+    public function setAddress1($address1)
+    {
+        $this->address1 = $address1;
+        return $this;
+    }
+
+    /**
+     * Get address1
+     *
+     * @return string
+     */
+    public function getAddress1()
+    {
+        return $this->address1;
+    }
+
+    /**
+     * Set address2
+     *
+     * @param string $address2
+     * @return Company
+     */
+    public function setAddress2($address2)
+    {
+        $this->address2 = $address2;
+        return $this;
+    }
+
+    /**
+     * Get address2
+     *
+     * @return string
+     */
+    public function getAddress2()
+    {
+        return $this->address2;
+    }
+
+    /**
+     * Set town
+     *
+     * @param string $town
+     * @return Company
+     */
+    public function setTown($town)
+    {
+        $this->town = $town;
+        return $this;
+    }
+
+    /**
+     * Get town
+     *
+     * @return string
+     */
+    public function getTown()
+    {
+        return $this->town;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Company
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set post_code
+     *
+     * @param string $postCode
+     * @return Company
+     */
+    public function setPostCode($postCode)
+    {
+        $this->post_code = $postCode;
+        return $this;
+    }
+
+    /**
+     * Get post_code
+     *
+     * @return string
+     */
+    public function getPostCode()
+    {
+        return $this->post_code;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Company
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     * @return Company
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     * @return Company
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+        return $this;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Set account_manager_id
+     *
+     * @param integer $accountManagerId
+     * @return Company
+     */
+    public function setAccountManagerId($accountManagerId)
+    {
+        $this->account_manager_id = $accountManagerId;
+        return $this;
+    }
+
+    /**
+     * Get account_manager_id
+     *
+     * @return integer
+     */
+    public function getAccountManagerId()
+    {
+        return $this->account_manager_id;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param date $createdAt
+     * @return Company
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return date
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param date $updatedAt
+     * @return Company
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return date
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
      * Set parent
      *
      * @param LWV\ToolkitBundle\Entity\User\Company $parent
+     * @return Company
      */
-    public function setParent(\LWV\ToolkitBundle\Entity\User\Company $parent)
+    public function setParent(\LWV\ToolkitBundle\Entity\User\Company $parent = null)
     {
         $this->parent = $parent;
+        return $this;
     }
 
     /**
@@ -615,10 +664,6 @@ class Company
     public function getParent()
     {
         return $this->parent;
-    }
-    public function __construct()
-    {
-        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

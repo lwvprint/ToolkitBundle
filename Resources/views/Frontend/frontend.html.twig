@@ -54,7 +54,18 @@
                         </div>
                         <div class="span5 offset5">
                             {% block mini_cart %}
-                            {% endblock %}
+								<div id="mini-cart">
+										<a href="#link-to-actual-cart">
+											<i class="icon-shopping-cart icon-white"></i>
+											<span class="my-bag-image">My Cart</span> |
+											<span class="my-cart-items">0 item(s)</span> |
+											<span class="basket-value">£0.00</span>
+										</a>
+									<div class="cart-under"><!-- jquery pop cart will trigger on this div -->
+										<a href="#">View Cart</a>
+									</div>
+								</div>
+							{% endblock %}
                         </div>
                     </div>
                 </div>

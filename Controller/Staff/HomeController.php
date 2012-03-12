@@ -4,7 +4,7 @@ namespace LWV\ToolkitBundle\Controller\Staff;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class StaffController extends Controller
+class HomeController extends Controller
 {
     public function indexAction()
     {
@@ -14,8 +14,8 @@ class StaffController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
 
-        $this->get('session')->setFlash('notice', 'NOTICING');
+        $this->get('session')->getFlashBag()->set('notice', 'NOTICING');
 
-        return $this->render('LWVToolkitBundle:Staff:staff.html.twig');
+        return $this->render('LWVToolkitBundle:Staff\Home:home.html.twig');
     }
 }

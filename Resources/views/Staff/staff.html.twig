@@ -49,15 +49,10 @@
 Main content block
 {% endblock %}
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <p>Copyright &copy; 2012 LWV Printworks</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+{% block footer %}
+    {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
+{% endblock %}
+
         {% block javascripts %}
             {% javascripts
                 '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
