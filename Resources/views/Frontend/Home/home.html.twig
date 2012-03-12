@@ -1,21 +1,7 @@
 {% extends 'LWVToolkitBundle:Frontend:frontend.html.twig' %}
 
 {% block title %}
-    {{ parent() }} :: Stonegate
-{% endblock %}
-
-{% block mini_cart %}
-    <div id="mini-cart">
-        <a href="#link-to-actual-cart">
-            <i class="icon-shopping-cart icon-white"></i>
-            <span class="my-bag-image">My Cart</span> |
-            <span class="my-cart-items">0 item(s)</span> |
-            <span class="basket-value">£0.00</span>
-        </a>
-        <div class="cart-under"><!-- jquery pop cart will trigger on this div -->
-            <a href="#">View Cart</a>
-        </div>
-    </div>
+   Welcome to our toolkit  :: {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -81,7 +67,7 @@
                             <a href="#featured" data-toggle="tab">Featured</a>
                         </li>
                     </ul>
-                        
+
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="home">
                             <div class="row">

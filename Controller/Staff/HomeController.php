@@ -4,7 +4,7 @@ namespace LWV\ToolkitBundle\Controller\Staff;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class StaffController extends Controller
+class HomeController extends Controller
 {
     public function indexAction()
     {
@@ -16,6 +16,6 @@ class StaffController extends Controller
 
         $this->get('session')->getFlashBag()->set('notice', 'NOTICING');
 
-        return $this->render('LWVToolkitBundle:Staff:staff.html.twig');
+        return $this->render('LWVToolkitBundle:Staff\Home:home.html.twig');
     }
 }

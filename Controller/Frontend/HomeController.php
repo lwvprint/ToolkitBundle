@@ -31,14 +31,14 @@ class HomeController extends Controller
                     ->getRepository('LWVToolkitBundle:Frontend\Product')
                     ->getActiveProductsWithImages();
 
-            return $this->render('LWVToolkitBundle:Frontend\Home:index.html.twig', array('categories' => $categories, 'products' => $products));
+            return $this->render('LWVToolkitBundle:Frontend\Home:home.html.twig', array('categories' => $categories, 'products' => $products));
 
         } else {
 
             return $this->redirect($this->generateUrl('login'));
         }
     }
-    
+
     /*if (!$products) {
         throw $this->createNotFoundException('No products found.');
     }*/
