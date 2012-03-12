@@ -109,11 +109,11 @@ class Category
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -135,7 +135,7 @@ class Category
     /**
      * Get lft
      *
-     * @return integer
+     * @return integer 
      */
     public function getLft()
     {
@@ -157,7 +157,7 @@ class Category
     /**
      * Get rgt
      *
-     * @return integer
+     * @return integer 
      */
     public function getRgt()
     {
@@ -179,7 +179,7 @@ class Category
     /**
      * Get root
      *
-     * @return integer
+     * @return integer 
      */
     public function getRoot()
     {
@@ -201,7 +201,7 @@ class Category
     /**
      * Get lvl
      *
-     * @return integer
+     * @return integer 
      */
     public function getLvl()
     {
@@ -223,7 +223,7 @@ class Category
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -245,7 +245,7 @@ class Category
     /**
      * Get slug
      *
-     * @return string
+     * @return string 
      */
     public function getSlug()
     {
@@ -267,7 +267,7 @@ class Category
     /**
      * Get description
      *
-     * @return text
+     * @return text 
      */
     public function getDescription()
     {
@@ -289,7 +289,7 @@ class Category
     /**
      * Get image
      *
-     * @return string
+     * @return string 
      */
     public function getImage()
     {
@@ -311,7 +311,7 @@ class Category
     /**
      * Get created_at
      *
-     * @return date
+     * @return date 
      */
     public function getCreatedAt()
     {
@@ -333,7 +333,7 @@ class Category
     /**
      * Get updated_at
      *
-     * @return date
+     * @return date 
      */
     public function getUpdatedAt()
     {
@@ -355,7 +355,7 @@ class Category
     /**
      * Get parent
      *
-     * @return LWV\ToolkitBundle\Entity\Frontend\Category
+     * @return LWV\ToolkitBundle\Entity\Frontend\Category 
      */
     public function getParent()
     {
@@ -365,15 +365,9 @@ class Category
     /**
      * Add children
      *
-<<<<<<< HEAD
-     * @param LWV\ToolkitBundle\Entity\User\Company $children
-     */
-    public function addCompany(\LWV\ToolkitBundle\Entity\User\Company $children)
-=======
      * @param LWV\ToolkitBundle\Entity\Frontend\Category $children
      */
     public function addCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $children)
->>>>>>> 3fccac724f0ace871d151e906869f18f2125d0dc
     {
         $this->children[] = $children;
     }
@@ -381,7 +375,7 @@ class Category
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getChildren()
     {
@@ -403,7 +397,7 @@ class Category
     /**
      * Get company
      *
-     * @return LWV\ToolkitBundle\Entity\User\Company
+     * @return LWV\ToolkitBundle\Entity\User\Company 
      */
     public function getCompany()
     {
@@ -423,7 +417,7 @@ class Category
     /**
      * Get products
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getProducts()
     {

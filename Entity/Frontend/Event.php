@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LWV\ToolkitBundle\Entity\Frontend\Event
  *
- * @ORM\Table(name=event)
+ * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Frontend\EventRepository")
  */
 class Event
