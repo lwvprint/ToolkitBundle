@@ -1,16 +1,38 @@
 {% block new_jobs %}
 {% if jobs|length %}
 <aside>
-	<h3>New Jobs</h3>
-	<ul id="new-jobs" class="unstyled">
+	<div class="span4">
+		<h2>New Jobs</h2>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Customer</th>
+					<th>Ref. No.</th>
+					<th><abbr title="Priority">!</abbr></th>
+				</tr>
+			</thead>
+			<tbody>
+{#		<ul id="new-jobs" class="unstyled">
+			{% for job in jobs %}
+				<li class="{{ job.id }}">
+					<a href="{# path('job', { 'reference_no' : job.reference_no }) }">
+						{{ job.id }} {{ job.referenceNo }} - {{ app.user.profile.name }} - {{ job.priority.name }} - {{ job.company.name }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+#}
 		{% for job in jobs %}
-			<li class="{{ job.id }}">
-				<a href="{# path('job', { 'reference_no' : job.reference_no }) #}">
-					{{ job.id }} {#{ job.reference_no }#}
-				</a>
-			</li>
+			<tr class="{{ job.priority.name|lower }}">
+				<td>{{ job.company.name }}</td>
+				<td><a href="{# new#}">{{ job.referenceNo }}</a></td>
+				<td>{{ job.priority.name }}</td>
+			</tr>
 		{% endfor %}
-	</ul>
+
+			</tbody>
+		</table>
+	</div>
 </aside>
 {% endif %}
 {% endblock %}

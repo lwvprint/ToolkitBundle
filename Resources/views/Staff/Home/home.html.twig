@@ -9,5 +9,9 @@
 {% endblock %}
 
 {% block asides %}
-	{% render "LWVToolkitBundle:Staff\\Job:latestJobs" with { 'max': 3 } %}
+<div class="container">
+	<div class="row">
+		{% render "LWVToolkitBundle:Staff\\Job:latestJobs" with { 'max': 3 } %}
+	</div>
+</div>
 {% endblock %}
