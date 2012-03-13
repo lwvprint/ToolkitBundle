@@ -64,6 +64,13 @@ class Company
     protected $children;
 
     /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    protected $name;
+
+    /**
      * @var string $account_no
      *
      * @ORM\Column(name="account_no", type="string", length=25)
@@ -724,5 +731,27 @@ class Company
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Company
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
