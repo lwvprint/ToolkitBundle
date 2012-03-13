@@ -45,7 +45,7 @@ class Event
     /**
      * @var datetime $end
      *
-     * @ORM\Column(name="end", type="datetime")
+     * @ORM\Column(name="end", type="datetime", nullable=true)
      */
     private $end;
 
