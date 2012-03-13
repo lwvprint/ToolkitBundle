@@ -31,36 +31,38 @@
             {% endblock %}
 	        <div class="clearfix"></div>
         </section>
-<div class="container">
-	<div class="row">
-		<div class="span12">
-			<div class="page-header">
-				<h1>{% block h1 %}LWV Admin{% endblock %}</h1>
-			</div>
-		</div>
-	</div>
-</div>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header">
+                        <h1>{% block h1 %}LWV Admin{% endblock %}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{% block notices %}
-    {% include 'LWVToolkitBundle:Global:notices.html.twig' %}
-{% endblock %}
+        {% block notices %}
+            {% include 'LWVToolkitBundle:Global:notices.html.twig' %}
+        {% endblock %}
 
-{% block content %}
-Main content block
-{% endblock %}
+        {% block content %}
+        Main content block
+        {% endblock %}
 
-{% block footer %}
-    {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
-{% endblock %}
+        {% block footer %}
+            {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
+        {% endblock %}
 
         {% block javascripts %}
-            {% javascripts
-                '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
-                '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
-                '@LWVToolkitBundle/Resources/public/Staff/js/*'
-            %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+        
+        {% javascripts
+            '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
+            '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
+            '@LWVToolkitBundle/Resources/public/Staff/js/*'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        
         {% endblock %}
     </body>
 </html>

@@ -17,7 +17,6 @@ class ProfileType extends AbstractType
         $builder->add('county');
         $builder->add('postcode');
         $builder->add('telephone');
-
     }
 
     public function getDefaultOptions(array $options)

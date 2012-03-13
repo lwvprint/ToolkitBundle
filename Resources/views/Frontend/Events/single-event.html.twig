@@ -9,8 +9,8 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <h2>Event {{ event.title }}</h2>
-                {{ event.desc }}
+                <h2>{{ event.title }} <small>{{ event.start|date("l, jS F, Y") }}</small></h2>
+                {{ event.description|raw }}
             </div>
         </div>
     </div>

@@ -27,6 +27,13 @@ class Event
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+    
+    /**
+     * @var string $slug
+     *  
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
 
     /**
      * @var text $description
@@ -50,11 +57,11 @@ class Event
     private $end;
 
     /**
-     * @var boolean $active
+     * @var boolean $is_active
      *
-     * @ORM\Column(name="active", type="boolean")
+     * @ORM\Column(name="is_active", type="boolean")
      */
-    private $active;
+    private $is_active;
 
     /**
      * @var string $url
@@ -98,7 +105,6 @@ class Event
      */
     private $allDay;
 
-
     /**
      * Get id
      *
@@ -129,6 +135,28 @@ class Event
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Event
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -198,25 +226,25 @@ class Event
     }
 
     /**
-     * Set active
+     * Set is_active
      *
-     * @param boolean $active
+     * @param boolean $isActive
      * @return Event
      */
-    public function setActive($active)
+    public function setIsActive($isActive)
     {
-        $this->active = $active;
+        $this->is_active = $isActive;
         return $this;
     }
 
     /**
-     * Get active
+     * Get is_active
      *
      * @return boolean 
      */
-    public function getActive()
+    public function getIsActive()
     {
-        return $this->active;
+        return $this->is_active;
     }
 
     /**

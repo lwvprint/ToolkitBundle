@@ -56,7 +56,7 @@ class EventsController extends Controller
         }
         
         if($month == NULL) {
-            $cMonth = date('n - 1');
+            $cMonth = date('n') - 1;
         } else {
             $cMonth = $month - 1;
         }
@@ -75,26 +75,40 @@ class EventsController extends Controller
     
     public function jsonAction()
     {
-        // Find events based on User's Toolkit. Fall back to Company
-        $events = $this->get('doctrine')->getEntityManager()
-                    ->getRepository('LWVToolkitBundle:Frontend\Event')
-                    ->findAll();
+        // Fetch GET values
+        $start = $this->getRequest()->query->get('start');
+        $end = $this->getRequest()->query->get('end');
         
-        // Test data
-        //$events = new Response(json_encode(array(array('id' => 1, 'color' => '#CCC', 'title' => 'Test Event', 'start' => '2012-03-09', 'end' => '2012-03-10', 'url' => '/events/view/Test-Event'), array('id' => 2, 'title' => 'Event 2', 'start' => '2012-03-12'))));
+        // Convert UNIX Timestamp to YYYY-MM-DD HH:MM:SS DateTime
+        $start = date('Y-m-d H:i:s', $start);
+        $end = date('Y-m-d H:i:s', $end);
+        
+        // Find events based on User's Toolkit. Fall back to Company
+        $em = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery('SELECT e FROM LWVToolkitBundle:Frontend\Event e WHERE e.start >= :start AND e.start <= :end')
+                ->setParameters(array('start' => $start, 'end' =>$end));
+
+        $events = $query->getResult();
+        
+        //$events = $this->get('doctrine')->getEntityManager()
+                    //->getRepository('LWVToolkitBundle:Frontend\Event')
+                    //->findBy(array('start'));
         
         // Return JSON Object
         $view = View::create()
                 ->setStatusCode(200)
                 ->setData($events);
 
+        // Return view
         return $this->get('fos_rest.view_handler')->handle($view);
 
     }
     
     public function viewAction($slug)
     {
-        $event = $slug;
+        $event = $this->get('doctrine')->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Frontend\Event')
+                ->findOneBy(array('slug' => $slug));
         
         /*
          * Initiate and insert a breadcrumb
@@ -102,8 +116,8 @@ class EventsController extends Controller
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
         $breadcrumbs->addItem("Events", $this->get("router")->generate("events"));
-        $breadcrumbs->addItem($slug, $this->get("router")->generate("events"));
+        $breadcrumbs->addItem($event->getTitle(), $this->get("router")->generate("events"));
         
-        return $this->render('LWVToolkitBundle:Frontend\Events:event.html.twig', array('event' => $event));
+        return $this->render('LWVToolkitBundle:Frontend\Events:single-event.html.twig', array('event' => $event));
     }
 }

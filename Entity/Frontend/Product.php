@@ -16,53 +16,54 @@ class Product
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $name;
+    private $name;
     
     /**
      * @ORM\Column(type="string")
      */
-    protected $slug;
+    private $slug;
 
     /**
      * @ORM\Column(type="text")
      */
-    protected $description;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $reference;
+    private $reference;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $activeFrom;
+    private $activeFrom;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $activeTill;
+    private $activeTill;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $visible;
+    private $visible;
 
     /**
      * @ORM\OneToMany(targetEntity="ProductImage", mappedBy="product")
      */
-    protected $images;
+    private $images;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
-    protected $category;
+    private $category;
+    
     
     public function __construct()
     {

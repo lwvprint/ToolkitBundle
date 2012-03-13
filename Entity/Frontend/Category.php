@@ -18,75 +18,75 @@ class Category
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
     * @Gedmo\TreeLeft
     * @ORM\Column(type="integer")
     */
-    protected $lft;
+    private $lft;
 
     /**
     * @Gedmo\TreeRight
     * @ORM\Column(type="integer")
     */
-    protected $rgt;
+    private $rgt;
 
     /**
     * @Gedmo\TreeRoot
     * @ORM\Column(type="integer", nullable=true)
     */
-    protected $root;
+    private $root;
 
     /**
     * @Gedmo\TreeLevel
     * @ORM\Column(type="integer")
     */
-    protected $lvl;
+    private $lvl;
 
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    protected $parent;
+    private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
-    protected $children;
+    private $children;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $name;
+    private $name;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $slug;
+    private $slug;
 
     /**
      * @ORM\Column(type="text")
      */
-    protected $description;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    protected $image;
+    private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company", inversedBy="categories")
-     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="categories")
+     * @ORM\JoinColumn(name="toolkit_id", referencedColumnName="id")
      */
-    protected $company;
+    private $toolkit;
 
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
      */
-    protected $products;
+    private $products;
 
     /**
      * @var date $created_at
@@ -94,7 +94,7 @@ class Category
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="date", length=25)
      */
-    protected $created_at;
+    private $created_at;
 
     /**
      * @var date $updated_at
@@ -102,8 +102,9 @@ class Category
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="date", length=25)
      */
-    protected $updated_at;
-
+    private $updated_at;
+    
+    
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
@@ -383,25 +384,25 @@ class Category
     }
 
     /**
-     * Set company
+     * Set toolkit
      *
-     * @param LWV\ToolkitBundle\Entity\User\Company $company
+     * @param LWV\ToolkitBundle\Entity\Toolkit\Toolkit $toolkit
      * @return Category
      */
-    public function setCompany(\LWV\ToolkitBundle\Entity\User\Company $company = null)
+    public function setToolkit(\LWV\ToolkitBundle\Entity\Toolkit\Toolkit $toolkit = null)
     {
-        $this->company = $company;
+        $this->toolkit = $toolkit;
         return $this;
     }
 
     /**
-     * Get company
+     * Get toolkit
      *
-     * @return LWV\ToolkitBundle\Entity\User\Company 
+     * @return LWV\ToolkitBundle\Entity\Toolkit\Toolkit 
      */
-    public function getCompany()
+    public function getToolkit()
     {
-        return $this->company;
+        return $this->toolkit;
     }
 
     /**

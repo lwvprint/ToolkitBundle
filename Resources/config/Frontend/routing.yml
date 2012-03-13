@@ -16,9 +16,11 @@ product:
 events:
     pattern: /events
     defaults: { _controller: LWVToolkitBundle:Frontend\Events:index }
-events_json:
-    pattern: /eventsjson.{_format}
-    defaults: { _controller: LWVToolkitBundle:Frontend\Events:json, _format: json }
+events_feed:
+    pattern: /eventsfeed.{_format}
+    defaults: { _controller: LWVToolkitBundle:Frontend\Events:json }
+    requirements:
+        _method:  GET
 events_specify_year:
     pattern: /events/{year}
     defaults: { _controller: LWVToolkitBundle:Frontend\Events:index }
