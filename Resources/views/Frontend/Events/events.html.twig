@@ -60,7 +60,7 @@
         $('#calendar').fullCalendar({
             // put your options and callbacks here
             events: {
-                url: "/eventsjson"
+                url: "{{ path('events_json') }}"
                 },
             year: {{ calendarSettings.year }},
             month: {{ calendarSettings.month }},
