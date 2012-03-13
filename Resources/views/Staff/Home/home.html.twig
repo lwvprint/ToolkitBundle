@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block content %}
+
 {% endblock %}
 
-{% block sidebar %}
-	{% render "LWVToolkitBundle:Job\Job:latestJobs" with {'max': 5} %}
+{% block asides %}
+	{% render "LWVToolkitBundle:Staff\\Job:latestJobs" with { 'max': 3 } %}
 {% endblock %}

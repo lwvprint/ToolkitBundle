@@ -3,11 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="robots" content="noindex,nofollow" />
-        <title>{% block title %}LWV Staff{% endblock %}</title>
+        <title>{% block title %}LWV Staff Area{% endblock %}</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block styelsheets %}
             {% stylesheets
                 'bundles/lwvtoolkit/css/bootstrap-2.0.1.css' filter='cssrewrite'
+                'bundles/lwvtoolkit/css/global.css' filter='cssrewrite'
                 'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -40,13 +41,19 @@
 		</div>
 	</div>
 </div>
-
 {% block notices %}
     {% include 'LWVToolkitBundle:Global:notices.html.twig' %}
 {% endblock %}
-
-{% block content %}
-Main content block
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			{% block content %}
+				Main Block
+			{% endblock %}
+		</div>
+	</div>
+</div>
+{% block asides %}
 {% endblock %}
 
 {% block footer %}

@@ -1,0 +1,16 @@
+{% block new_jobs %}
+{% if jobs|length %}
+<aside>
+	<h3>New Jobs</h3>
+	<ul id="new-jobs" class="unstyled">
+		{% for job in jobs %}
+			<li class="{{ job.id }}">
+				<a href="{# path('job', { 'reference_no' : job.reference_no }) #}">
+					{{ job.id }} {#{ job.reference_no }#}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</aside>
+{% endif %}
+{% endblock %}

@@ -29,6 +29,20 @@ class Job
      */
     protected $orders;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company", inversedBy="company")
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     *
+     */
+    protected $company;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\User", inversedBy="staff")
+     * @ORM\JoinColumn(name="staff_id", referencedColumnName="id")
+     *
+     */
+    protected $staff;
+
     public function __construct()
     {
         $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
@@ -62,5 +76,49 @@ class Job
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    /**
+     * Set company
+     *
+     * @param LWV\ToolkitBundle\Entity\User\Company $company
+     * @return Job
+     */
+    public function setCompany(\LWV\ToolkitBundle\Entity\User\Company $company = null)
+    {
+        $this->company = $company;
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return LWV\ToolkitBundle\Entity\User\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set staff
+     *
+     * @param LWV\ToolkitBundle\Entity\User\User $staff
+     * @return Job
+     */
+    public function setStaff(\LWV\ToolkitBundle\Entity\User\User $staff = null)
+    {
+        $this->staff = $staff;
+        return $this;
+    }
+
+    /**
+     * Get staff
+     *
+     * @return LWV\ToolkitBundle\Entity\User\User 
+     */
+    public function getStaff()
+    {
+        return $this->staff;
     }
 }
