@@ -24,7 +24,7 @@ class Order
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company, inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company", inversedBy="orders")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *
      */
@@ -47,15 +47,37 @@ class Order
     {
         $this->order_items = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set company
+     *
+     * @param LWV\ToolkitBundle\Entity\User\Company $company
+     * @return Order
+     */
+    public function setCompany(\LWV\ToolkitBundle\Entity\User\Company $company = null)
+    {
+        $this->company = $company;
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return LWV\ToolkitBundle\Entity\User\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 
     /**
@@ -73,7 +95,7 @@ class Order
     /**
      * Get job
      *
-     * @return LWV\ToolkitBundle\Entity\Job\Job
+     * @return LWV\ToolkitBundle\Entity\Job\Job 
      */
     public function getJob()
     {
@@ -93,7 +115,7 @@ class Order
     /**
      * Get order_items
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getOrderItems()
     {

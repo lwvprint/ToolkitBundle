@@ -188,17 +188,23 @@ class Company
      * @ORM\OneToMany(targetEntity="User", mappedBy="company")
      */
     protected $users;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Order\Order", mappedBy="company")
+     */
+    protected $orders;
+
     /**
      * @ORM\OneToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="company")
      * @ORM\JoinColumn(name="toolkit_id", referencedColumnName="id")
      */
     protected $toolkit;
-    
+
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -733,6 +739,26 @@ class Company
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add orders
+     *
+     * @param LWV\ToolkitBundle\Entity\Order\Order $orders
+     */
+    public function addOrder(\LWV\ToolkitBundle\Entity\Order\Order $orders)
+    {
+        $this->orders[] = $orders;
+    }
+
+    /**
+     * Get orders
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
     }
 
     /**
