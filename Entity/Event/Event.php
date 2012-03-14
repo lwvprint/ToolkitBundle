@@ -1,14 +1,14 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Frontend;
+namespace LWV\ToolkitBundle\Entity\Event;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * LWV\ToolkitBundle\Entity\Frontend\Event
+ * LWV\ToolkitBundle\Entity\Event\Event
  *
  * @ORM\Table(name="event")
- * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Frontend\EventRepository")
+ * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Event\EventRepository")
  */
 class Event
 {

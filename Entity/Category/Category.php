@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Frontend;
+namespace LWV\ToolkitBundle\Entity\Category;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @Gedmo\Tree(type="nested")
  * @ORM\Table(name="product_category")
- * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Frontend\CategoryRepository")
+ * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Category\CategoryRepository")
  */
 class Category
 {
@@ -18,75 +18,75 @@ class Category
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
     * @Gedmo\TreeLeft
     * @ORM\Column(type="integer")
     */
-    private $lft;
+    protected $lft;
 
     /**
     * @Gedmo\TreeRight
     * @ORM\Column(type="integer")
     */
-    private $rgt;
+    protected $rgt;
 
     /**
     * @Gedmo\TreeRoot
     * @ORM\Column(type="integer", nullable=true)
     */
-    private $root;
+    protected $root;
 
     /**
     * @Gedmo\TreeLevel
     * @ORM\Column(type="integer")
     */
-    private $lvl;
+    protected $lvl;
 
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
-    private $children;
+    protected $children;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    protected $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="categories")
      * @ORM\JoinColumn(name="toolkit_id", referencedColumnName="id")
      */
-    private $toolkit;
+    protected $toolkit;
 
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Product\Product", mappedBy="category")
      */
-    private $products;
+    protected $products;
 
     /**
      * @var date $created_at
@@ -94,7 +94,7 @@ class Category
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="date", length=25)
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var date $updated_at
@@ -102,7 +102,7 @@ class Category
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="date", length=25)
      */
-    private $updated_at;
+    protected $updated_at;
     
     
     public function __construct()
@@ -344,10 +344,10 @@ class Category
     /**
      * Set parent
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Category $parent
+     * @param LWV\ToolkitBundle\Entity\Category\Category $parent
      * @return Category
      */
-    public function setParent(\LWV\ToolkitBundle\Entity\Frontend\Category $parent = null)
+    public function setParent(\LWV\ToolkitBundle\Entity\Category\Category $parent = null)
     {
         $this->parent = $parent;
         return $this;
@@ -356,7 +356,7 @@ class Category
     /**
      * Get parent
      *
-     * @return LWV\ToolkitBundle\Entity\Frontend\Category 
+     * @return LWV\ToolkitBundle\Entity\Category\Category 
      */
     public function getParent()
     {
@@ -366,9 +366,9 @@ class Category
     /**
      * Add children
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Category $children
+     * @param LWV\ToolkitBundle\Entity\Category\Category $children
      */
-    public function addCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $children)
+    public function addCategory(\LWV\ToolkitBundle\Entity\Category\Category $children)
     {
         $this->children[] = $children;
     }
@@ -408,9 +408,9 @@ class Category
     /**
      * Add products
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Product $products
+     * @param LWV\ToolkitBundle\Entity\Product\Product $products
      */
-    public function addProduct(\LWV\ToolkitBundle\Entity\Frontend\Product $products)
+    public function addProduct(\LWV\ToolkitBundle\Entity\Product\Product $products)
     {
         $this->products[] = $products;
     }

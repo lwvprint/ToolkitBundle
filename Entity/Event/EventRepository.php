@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Frontend;
+namespace LWV\ToolkitBundle\Entity\Event;
 
 use Doctrine\ORM\EntityRepository;
 

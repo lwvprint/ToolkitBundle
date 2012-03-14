@@ -1,6 +1,6 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Frontend;
+namespace LWV\ToolkitBundle\Entity\Product;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,23 +16,25 @@ class ProductImage
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    protected $image;
+    private $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    protected $product;
+    private $product;
+
+    
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -43,16 +45,18 @@ class ProductImage
      * Set image
      *
      * @param string $image
+     * @return ProductImage
      */
     public function setImage($image)
     {
         $this->image = $image;
+        return $this;
     }
 
     /**
      * Get image
      *
-     * @return string
+     * @return string 
      */
     public function getImage()
     {
@@ -62,17 +66,19 @@ class ProductImage
     /**
      * Set product
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Product $product
+     * @param LWV\ToolkitBundle\Entity\Product\Product $product
+     * @return ProductImage
      */
-    public function setProduct(\LWV\ToolkitBundle\Entity\Frontend\Product $product)
+    public function setProduct(\LWV\ToolkitBundle\Entity\Product\Product $product = null)
     {
         $this->product = $product;
+        return $this;
     }
 
     /**
      * Get product
      *
-     * @return LWV\ToolkitBundle\Entity\Frontend\Product
+     * @return LWV\ToolkitBundle\Entity\Product\Product 
      */
     public function getProduct()
     {

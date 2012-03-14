@@ -1,5 +1,5 @@
 <?php
-namespace LWV\ToolkitBundle\Entity\Frontend;
+namespace LWV\ToolkitBundle\Entity\Category;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -14,7 +14,7 @@ class CategoryRepository extends EntityRepository
     // FINISH THIS!
     public function getAllCategoriesBySegment()
     {
-        $dql = 'SELECT c FROM LWV\ToolkitBundle\Entity\Frontend\Category c ' .
+        $dql = 'SELECT c FROM LWV\ToolkitBundle\Entity\Category\Category c ' .
                'ORDER BY c.name ASC';
 
         $query = $this->getEntityManager()->createQuery($dql);

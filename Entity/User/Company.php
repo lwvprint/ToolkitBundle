@@ -10,10 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  *
  */
 
- /**
-  * @Gedmo\Tree(type="nested")
-  * @ORM\Table(name="company")
-  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\CompanyRepository")
+/**
+ * @Gedmo\Tree(type="nested")
+ * @ORM\Table(name="company")
+ * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\CompanyRepository")
  */
 class Company
 {
@@ -45,9 +45,9 @@ class Company
     protected $root;
 
     /**
-    * @Gedmo\TreeLevel
-    * @ORM\Column(type="integer")
-    */
+     * @Gedmo\TreeLevel
+     * @ORM\Column(type="integer")
+     */
     protected $lvl;
 
     /**
@@ -185,26 +185,26 @@ class Company
     protected $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Frontend\Category", mappedBy="company")
-     */
-    protected $categories;
-
-    /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="company")
      */
     protected $users;
-
+    
+    /**
+     * @ORM\OneToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="company")
+     * @ORM\JoinColumn(name="toolkit_id", referencedColumnName="id")
+     */
+    protected $toolkit;
+    
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -226,7 +226,7 @@ class Company
     /**
      * Get lft
      *
-     * @return integer
+     * @return integer 
      */
     public function getLft()
     {
@@ -248,7 +248,7 @@ class Company
     /**
      * Get rgt
      *
-     * @return integer
+     * @return integer 
      */
     public function getRgt()
     {
@@ -270,7 +270,7 @@ class Company
     /**
      * Get root
      *
-     * @return integer
+     * @return integer 
      */
     public function getRoot()
     {
@@ -292,11 +292,33 @@ class Company
     /**
      * Get lvl
      *
-     * @return integer
+     * @return integer 
      */
     public function getLvl()
     {
         return $this->lvl;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Company
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -314,7 +336,7 @@ class Company
     /**
      * Get account_no
      *
-     * @return string
+     * @return string 
      */
     public function getAccountNo()
     {
@@ -336,7 +358,7 @@ class Company
     /**
      * Get contact_id
      *
-     * @return integer
+     * @return integer 
      */
     public function getContactId()
     {
@@ -358,7 +380,7 @@ class Company
     /**
      * Get pricing_id
      *
-     * @return integer
+     * @return integer 
      */
     public function getPricingId()
     {
@@ -380,7 +402,7 @@ class Company
     /**
      * Get shipping_id
      *
-     * @return integer
+     * @return integer 
      */
     public function getShippingId()
     {
@@ -402,7 +424,7 @@ class Company
     /**
      * Get status_group_id
      *
-     * @return integer
+     * @return integer 
      */
     public function getStatusGroupId()
     {
@@ -424,7 +446,7 @@ class Company
     /**
      * Get address1
      *
-     * @return string
+     * @return string 
      */
     public function getAddress1()
     {
@@ -446,7 +468,7 @@ class Company
     /**
      * Get address2
      *
-     * @return string
+     * @return string 
      */
     public function getAddress2()
     {
@@ -468,7 +490,7 @@ class Company
     /**
      * Get town
      *
-     * @return string
+     * @return string 
      */
     public function getTown()
     {
@@ -490,7 +512,7 @@ class Company
     /**
      * Get city
      *
-     * @return string
+     * @return string 
      */
     public function getCity()
     {
@@ -512,7 +534,7 @@ class Company
     /**
      * Get post_code
      *
-     * @return string
+     * @return string 
      */
     public function getPostCode()
     {
@@ -534,7 +556,7 @@ class Company
     /**
      * Get email
      *
-     * @return string
+     * @return string 
      */
     public function getEmail()
     {
@@ -556,7 +578,7 @@ class Company
     /**
      * Get website
      *
-     * @return string
+     * @return string 
      */
     public function getWebsite()
     {
@@ -578,7 +600,7 @@ class Company
     /**
      * Get is_active
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getIsActive()
     {
@@ -600,7 +622,7 @@ class Company
     /**
      * Get account_manager_id
      *
-     * @return integer
+     * @return integer 
      */
     public function getAccountManagerId()
     {
@@ -622,7 +644,7 @@ class Company
     /**
      * Get created_at
      *
-     * @return date
+     * @return date 
      */
     public function getCreatedAt()
     {
@@ -644,7 +666,7 @@ class Company
     /**
      * Get updated_at
      *
-     * @return date
+     * @return date 
      */
     public function getUpdatedAt()
     {
@@ -666,7 +688,7 @@ class Company
     /**
      * Get parent
      *
-     * @return LWV\ToolkitBundle\Entity\User\Company
+     * @return LWV\ToolkitBundle\Entity\User\Company 
      */
     public function getParent()
     {
@@ -686,31 +708,11 @@ class Company
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getChildren()
     {
         return $this->children;
-    }
-
-    /**
-     * Add categories
-     *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Category $categories
-     */
-    public function addCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $categories)
-    {
-        $this->categories[] = $categories;
-    }
-
-    /**
-     * Get categories
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
     }
 
     /**
@@ -726,7 +728,7 @@ class Company
     /**
      * Get users
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getUsers()
     {
@@ -734,24 +736,24 @@ class Company
     }
 
     /**
-     * Set name
+     * Set toolkit
      *
-     * @param string $name
+     * @param LWV\ToolkitBundle\Entity\Toolkit\Toolkit $toolkit
      * @return Company
      */
-    public function setName($name)
+    public function setToolkit(\LWV\ToolkitBundle\Entity\Toolkit\Toolkit $toolkit = null)
     {
-        $this->name = $name;
+        $this->toolkit = $toolkit;
         return $this;
     }
 
     /**
-     * Get name
+     * Get toolkit
      *
-     * @return string
+     * @return LWV\ToolkitBundle\Entity\Toolkit\Toolkit 
      */
-    public function getName()
+    public function getToolkit()
     {
-        return $this->name;
+        return $this->toolkit;
     }
 }

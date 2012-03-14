@@ -20,146 +20,150 @@ class Toolkit
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     
     /**
      * @var integer $company_id
      *
      * @ORM\Column(name="company_id", type="integer")
      */
-    private $company_id;
+    protected $company_id;
 
     /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string $url
      *
      * @ORM\Column(name="url", type="string", length=255)
      */
-    private $url;
+    protected $url;
 
     /**
      * @var boolean $is_active
      *
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $is_active;
+    protected $is_active;
 
     /**
      * @var boolean $is_demo
      *
      * @ORM\Column(name="is_demo", type="boolean")
      */
-    private $is_demo;
+    protected $is_demo;
 
     /**
      * @var boolean $is_secure
      *
      * @ORM\Column(name="is_secure", type="boolean")
      */
-    private $is_secure;
+    protected $is_secure;
 
     /**
      * @var boolean $is_payment
      *
      * @ORM\Column(name="is_payment", type="boolean")
      */
-    private $is_payment;
+    protected $is_payment;
 
     /**
      * @var boolean $maintenance_mode
      *
      * @ORM\Column(name="maintenance_mode", type="boolean")
      */
-    private $maintenance_mode;
+    protected $maintenance_mode;
 
     /**
      * @var string $maintenance_message
      *
      * @ORM\Column(name="maintenance_message", type="string", length=255, nullable=true)
      */
-    private $maintenance_message;
+    protected $maintenance_message;
 
     /**
      * @var integer $status_id
      *
      * @ORM\Column(name="status_id", type="integer")
      */
-    private $status_id;
+    protected $status_id;
 
     /**
      * @var integer $pricing_id
      *
      * @ORM\Column(name="pricing_id", type="integer")
      */
-    private $pricing_id;
+    protected $pricing_id;
 
     /**
      * @var integer $delivery_id
      *
      * @ORM\Column(name="delivery_id", type="integer")
      */
-    private $delivery_id;
+    protected $delivery_id;
 
     /**
      * @var integer $theme_id
      *
      * @ORM\Column(name="theme_id", type="integer")
      */
-    private $theme_id;
+    protected $theme_id;
 
     /**
      * @var boolean $can_edit_profile
      *
      * @ORM\Column(name="can_edit_profile", type="boolean")
      */
-    private $can_edit_profile;
+    protected $can_edit_profile;
 
     /**
      * @var boolean $can_edit_password
      *
      * @ORM\Column(name="can_edit_password", type="boolean")
      */
-    private $can_edit_password;
+    protected $can_edit_password;
 
     /**
      * @var boolean $enable_budget
      *
      * @ORM\Column(name="enable_budget", type="boolean")
      */
-    private $enable_budget;
+    protected $enable_budget;
 
     /**
      * @var decimal $budget
      *
      * @ORM\Column(name="budget", type="decimal", nullable=true)
      */
-    private $budget;
+    protected $budget;
 
     /**
      * @var integer $staff_operator_id
      *
      * @ORM\Column(name="staff_operator_id", type="integer", nullable=true)
      */
-    private $staff_operator_id;
+    protected $staff_operator_id;
 
     /**
      * @var integer $company_operator_id
      *
      * @ORM\Column(name="company_operator_id", type="integer", nullable=true)
      */
-    private $company_operator_id;
+    protected $company_operator_id;
 
     /**
-     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Frontend\Category", mappedBy="toolkit")
+     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Category\Category", mappedBy="toolkit")
      */
-    private $categories;
+    protected $categories;
     
+    /**
+     * @ORM\OneToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company", inversedBy="toolkit")
+     */
+    protected $company;
     
     public function __construct()
     {
@@ -597,9 +601,9 @@ class Toolkit
     /**
      * Add categories
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Category $categories
+     * @param LWV\ToolkitBundle\Entity\Category \Category $categories
      */
-    public function addCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $categories)
+    public function addCategory(\LWV\ToolkitBundle\Entity\Category\Category $categories)
     {
         $this->categories[] = $categories;
     }
@@ -612,5 +616,27 @@ class Toolkit
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set company
+     *
+     * @param LWV\ToolkitBundle\Entity\User\Company $company
+     * @return Toolkit
+     */
+    public function setCompany(\LWV\ToolkitBundle\Entity\User\Company $company = null)
+    {
+        $this->company = $company;
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return LWV\ToolkitBundle\Entity\User\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

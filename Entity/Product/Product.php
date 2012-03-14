@@ -1,12 +1,12 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Frontend;
+namespace LWV\ToolkitBundle\Entity\Product;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Frontend\ProductRepository")
+ * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Product\ProductRepository")
  * @ORM\Table(name="product")
  */
 class Product
@@ -59,11 +59,10 @@ class Product
     private $images;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Category\Category", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
-    
     
     public function __construct()
     {
@@ -237,9 +236,9 @@ class Product
     /**
      * Add images
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\ProductImage $images
+     * @param LWV\ToolkitBundle\Entity\Product\ProductImage $images
      */
-    public function addProductImage(\LWV\ToolkitBundle\Entity\Frontend\ProductImage $images)
+    public function addProductImage(\LWV\ToolkitBundle\Entity\Product\ProductImage $images)
     {
         $this->images[] = $images;
     }
@@ -257,10 +256,10 @@ class Product
     /**
      * Set category
      *
-     * @param LWV\ToolkitBundle\Entity\Frontend\Category $category
+     * @param LWV\ToolkitBundle\Entity\Category\Category $category
      * @return Product
      */
-    public function setCategory(\LWV\ToolkitBundle\Entity\Frontend\Category $category = null)
+    public function setCategory(\LWV\ToolkitBundle\Entity\Category\Category $category = null)
     {
         $this->category = $category;
         return $this;
@@ -269,7 +268,7 @@ class Product
     /**
      * Get category
      *
-     * @return LWV\ToolkitBundle\Entity\Frontend\Category 
+     * @return LWV\ToolkitBundle\Entity\Category\Category 
      */
     public function getCategory()
     {
