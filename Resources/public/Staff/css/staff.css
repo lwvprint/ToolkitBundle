@@ -79,7 +79,7 @@ span.count {
 .lwv-search {
   padding-top: 3px;
 }
-tr.high-priority td {
+tr.urgent td {
   background: #f3e6e6 !important;
 }
 .control-group.inline {

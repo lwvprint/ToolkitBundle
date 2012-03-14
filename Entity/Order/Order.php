@@ -24,6 +24,13 @@ class Order
     private $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company, inversedBy="orders")
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     *
+     */
+    protected $company;
+
+    /**
      * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Job\Job", inversedBy="orders")
      * @ORM\JoinColumn(name="job_id", referencedColumnName="id")
      *

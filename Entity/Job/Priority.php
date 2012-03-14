@@ -33,7 +33,7 @@ class Priority
      *
      * @ORM\Column(name="priority", type="integer")
      */
-    private $priority;
+    protected $priority;
 
     /**
      * Get id

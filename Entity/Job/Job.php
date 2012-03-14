@@ -28,14 +28,14 @@ class Job
       *
       * @ORM\Column(type="string", length=100)
      */
-    protected $reference_no;
+    private $reference_no;
 
     /**
      * @ORM\ManyToOne(targetEntity="Priority", inversedBy="priority")
      * @ORM\JoinColumn(name="job_priority", referencedColumnName="id")
      *
      */
-    protected $priority;
+    private $priority;
 
     /**
      * @var datetime $created_at
@@ -57,21 +57,21 @@ class Job
      * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Order\Order", mappedBy="job")
      *
      */
-    protected $orders;
+    private $orders;
 
     /**
      * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company", inversedBy="company")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *
      */
-    protected $company;
+    private $company;
 
     /**
      * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\User", inversedBy="staff")
      * @ORM\JoinColumn(name="staff_id", referencedColumnName="id")
      *
      */
-    protected $staff;
+    private $staff;
 
     public function __construct()
     {
