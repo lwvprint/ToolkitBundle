@@ -35,7 +35,7 @@ class DashboardController extends Controller
                 $em->flush();
 
                 // Set "success" flash notification
-                $this->get('session')->setFlash('success', 'Profile saved.');
+               // $this->get('session')->setFlash('success', 'Profile saved.');
 
 
             }
@@ -45,7 +45,7 @@ class DashboardController extends Controller
         $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
         $breadcrumbs->addItem("My Account", $this->get("router")->generate("shop"));
         $breadcrumbs->addItem("My Profile", $this->get("router")->generate("shop"));
-        
+
         return $this->render('LWVToolkitBundle:User\Dashboard:profile.html.twig', array('form' => $form->createView()));
     }
 

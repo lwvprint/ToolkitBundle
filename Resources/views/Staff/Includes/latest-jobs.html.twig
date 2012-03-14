@@ -1,37 +1,43 @@
 {% block new_jobs %}
 {% if jobs|length %}
 <aside>
-	<div class="span4">
-		<h2>New Jobs</h2>
-		<table class="table table-bordered table-striped">
-			<thead>
+	<div class="span6">
+			<h3>New Jobs</h3>
+
+			<table class="table table-bordered table-striped">
+				<thead>
 				<tr>
-					<th>Customer</th>
-					<th>Ref. No.</th>
-					<th><abbr title="Priority">!</abbr></th>
+				<th>Customer</th>
+				<th>Ref. No.</th>
+				<th>Date Ordered:</th>
 				</tr>
-			</thead>
-			<tbody>
-{#		<ul id="new-jobs" class="unstyled">
-			{% for job in jobs %}
+				</thead>
+				<tbody>
+				{#		<ul id="new-jobs" class="unstyled">
+				{% for job in jobs %}
 				<li class="{{ job.id }}">
-					<a href="{# path('job', { 'reference_no' : job.reference_no }) }">
-						{{ job.id }} {{ job.referenceNo }} - {{ app.user.profile.name }} - {{ job.priority.name }} - {{ job.company.name }}
-					</a>
+				<a href="{# path('job', { 'reference_no' : job.reference_no }) }">
+				{{ job.id }} {{ job.referenceNo }} - {{ app.user.profile.name }} - {{ job.priority.name }} - {{ job.company.name }}
+				</a>
 				</li>
-			{% endfor %}
-		</ul>
-#}
-		{% for job in jobs %}
-			<tr class="{{ job.priority.name|lower }}">
+				{% endfor %}
+				</ul>
+				#}
+				{% for job in jobs %}
+				<tr class="{{ job.priority.name|lower }}">
 				<td>{{ job.company.name }}</td>
 				<td><a href="{# new#}">{{ job.referenceNo }}</a></td>
-				<td>{{ job.priority.name }}</td>
-			</tr>
-		{% endfor %}
+				<td>
+					{% for order in job.orders %}
+					{{ order.createdAt|date('d-m-Y') }}
+					{% endfor %}
+				</td>
 
-			</tbody>
-		</table>
+				</tr>
+				{% endfor %}
+
+				</tbody>
+			</table>
 	</div>
 </aside>
 {% endif %}

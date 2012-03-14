@@ -57,7 +57,7 @@ class User implements AdvancedUserInterface
      * @ORM\OneToOne(targetEntity="Profile", inversedBy="user")
      */
     protected $profile;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Company", inversedBy="users")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
@@ -70,7 +70,7 @@ class User implements AdvancedUserInterface
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->groups = new ArrayCollection();
     }
-    
+
     public function equals(UserInterface $user)
     {
         return $user->getUsername() === $this->username;
@@ -255,7 +255,7 @@ class User implements AdvancedUserInterface
     /**
      * Get company
      *
-     * @return LWV\ToolkitBundle\Entity\User\Company 
+     * @return LWV\ToolkitBundle\Entity\User\Company
      */
     public function getCompany()
     {

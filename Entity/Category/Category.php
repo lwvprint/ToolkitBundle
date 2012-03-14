@@ -103,18 +103,18 @@ class Category
      * @ORM\Column(name="updated_at", type="date", length=25)
      */
     protected $updated_at;
-    
-    
+
+
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -136,7 +136,7 @@ class Category
     /**
      * Get lft
      *
-     * @return integer 
+     * @return integer
      */
     public function getLft()
     {
@@ -158,7 +158,7 @@ class Category
     /**
      * Get rgt
      *
-     * @return integer 
+     * @return integer
      */
     public function getRgt()
     {
@@ -180,7 +180,7 @@ class Category
     /**
      * Get root
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoot()
     {
@@ -202,7 +202,7 @@ class Category
     /**
      * Get lvl
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvl()
     {
@@ -224,7 +224,7 @@ class Category
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -246,7 +246,7 @@ class Category
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -268,7 +268,7 @@ class Category
     /**
      * Get description
      *
-     * @return text 
+     * @return text
      */
     public function getDescription()
     {
@@ -290,7 +290,7 @@ class Category
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -312,7 +312,7 @@ class Category
     /**
      * Get created_at
      *
-     * @return date 
+     * @return date
      */
     public function getCreatedAt()
     {
@@ -334,7 +334,7 @@ class Category
     /**
      * Get updated_at
      *
-     * @return date 
+     * @return date
      */
     public function getUpdatedAt()
     {
@@ -356,7 +356,7 @@ class Category
     /**
      * Get parent
      *
-     * @return LWV\ToolkitBundle\Entity\Category\Category 
+     * @return LWV\ToolkitBundle\Entity\Category\Category
      */
     public function getParent()
     {
@@ -376,7 +376,7 @@ class Category
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -398,7 +398,7 @@ class Category
     /**
      * Get toolkit
      *
-     * @return LWV\ToolkitBundle\Entity\Toolkit\Toolkit 
+     * @return LWV\ToolkitBundle\Entity\Toolkit\Toolkit
      */
     public function getToolkit()
     {
@@ -418,7 +418,7 @@ class Category
     /**
      * Get products
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {

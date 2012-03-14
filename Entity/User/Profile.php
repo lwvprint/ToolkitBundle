@@ -61,8 +61,8 @@ class Profile
     protected $telephone;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="User", mappedBy="profile")
+     *
      */
     protected $user;
 

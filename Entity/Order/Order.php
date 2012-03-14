@@ -24,6 +24,23 @@ class Order
     private $id;
 
     /**
+     * @var datetime $created_at
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @var datetime $updated_at
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company", inversedBy="orders")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *
@@ -47,11 +64,11 @@ class Order
     {
         $this->order_items = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -73,7 +90,7 @@ class Order
     /**
      * Get company
      *
-     * @return LWV\ToolkitBundle\Entity\User\Company 
+     * @return LWV\ToolkitBundle\Entity\User\Company
      */
     public function getCompany()
     {
@@ -95,7 +112,7 @@ class Order
     /**
      * Get job
      *
-     * @return LWV\ToolkitBundle\Entity\Job\Job 
+     * @return LWV\ToolkitBundle\Entity\Job\Job
      */
     public function getJob()
     {
@@ -115,10 +132,54 @@ class Order
     /**
      * Get order_items
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getOrderItems()
     {
         return $this->order_items;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     * @return Order
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     * @return Order
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
     }
 }
