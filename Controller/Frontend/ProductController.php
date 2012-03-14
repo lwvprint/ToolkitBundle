@@ -9,7 +9,7 @@ class ProductController extends Controller
     public function indexAction($slug)
     {
         $product = $this->getDoctrine()->getEntityManager()
-                ->getRepository('LWVToolkitBundle:Frontend\Product')
+                ->getRepository('LWVToolkitBundle:Product\Product')
                 ->findOneBy(array('slug' => $slug));
         
         /*

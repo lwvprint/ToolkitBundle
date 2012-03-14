@@ -85,7 +85,7 @@ class EventsController extends Controller
         
         // Find events based on User's Toolkit. Fall back to Company
         $em = $this->getDoctrine()->getEntityManager();
-        $query = $em->createQuery('SELECT e FROM LWVToolkitBundle:Frontend\Event e WHERE e.start >= :start AND e.start <= :end')
+        $query = $em->createQuery('SELECT e FROM LWVToolkitBundle:Event\Event e WHERE e.start >= :start AND e.start <= :end')
                 ->setParameters(array('start' => $start, 'end' =>$end));
 
         $events = $query->getResult();
@@ -107,7 +107,7 @@ class EventsController extends Controller
     public function viewAction($slug)
     {
         $event = $this->get('doctrine')->getEntityManager()
-                ->getRepository('LWVToolkitBundle:Frontend\Event')
+                ->getRepository('LWVToolkitBundle:Event\Event')
                 ->findOneBy(array('slug' => $slug));
         
         /*
