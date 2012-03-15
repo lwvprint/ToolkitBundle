@@ -4,12 +4,11 @@ namespace LWV\ToolkitBundle\Entity\Toolkit;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * LWV\ToolkitBundle\Entity\Toolkit\Toolkit
- *
- * @ORM\Table(name="toolkit")
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Toolkit\ToolkitRepository")
+ * @ORM\Table(name="toolkit")
  */
 class Toolkit
 {
@@ -21,153 +20,159 @@ class Toolkit
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
-    /**
-     * @var integer $company_id
-     *
-     * @ORM\Column(name="company_id", type="integer")
-     */
-    protected $company_id;
 
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     protected $name;
 
     /**
      * @var string $url
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     protected $url;
 
     /**
      * @var boolean $is_active
      *
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $is_active;
 
     /**
      * @var boolean $is_demo
      *
-     * @ORM\Column(name="is_demo", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $is_demo;
 
     /**
      * @var boolean $is_secure
      *
-     * @ORM\Column(name="is_secure", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $is_secure;
 
     /**
      * @var boolean $is_payment
      *
-     * @ORM\Column(name="is_payment", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $is_payment;
 
     /**
      * @var boolean $maintenance_mode
      *
-     * @ORM\Column(name="maintenance_mode", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $maintenance_mode;
 
     /**
      * @var string $maintenance_message
      *
-     * @ORM\Column(name="maintenance_message", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $maintenance_message;
 
     /**
-     * @var integer $status_id
-     *
-     * @ORM\Column(name="status_id", type="integer")
-     */
-    protected $status_id;
-
-    /**
-     * @var integer $pricing_id
-     *
-     * @ORM\Column(name="pricing_id", type="integer")
-     */
-    protected $pricing_id;
-
-    /**
-     * @var integer $delivery_id
-     *
-     * @ORM\Column(name="delivery_id", type="integer")
-     */
-    protected $delivery_id;
-
-    /**
-     * @var integer $theme_id
-     *
-     * @ORM\Column(name="theme_id", type="integer")
-     */
-    protected $theme_id;
-
-    /**
      * @var boolean $can_edit_profile
      *
-     * @ORM\Column(name="can_edit_profile", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $can_edit_profile;
 
     /**
      * @var boolean $can_edit_password
      *
-     * @ORM\Column(name="can_edit_password", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $can_edit_password;
 
     /**
      * @var boolean $enable_budget
      *
-     * @ORM\Column(name="enable_budget", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $enable_budget;
 
     /**
-     * @var decimal $budget
+     * @var decimal $budget_amount
      *
-     * @ORM\Column(name="budget", type="decimal", nullable=true)
+     * @ORM\Column(type="decimal", precision=2, nullable=true)
      */
-    protected $budget;
+    protected $budget_amount;
+    
+    /**
+     * @var date $created_at
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="date", length=25)
+     */
+    protected $created_at;
 
     /**
-     * @var integer $staff_operator_id
+     * @var date $updated_at
      *
-     * @ORM\Column(name="staff_operator_id", type="integer", nullable=true)
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="date", length=25)
      */
-    protected $staff_operator_id;
+    protected $updated_at;
+    
+    /**
+     * Default Status Group (multiple, linked status's)
+     * 
+     * ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Status\StatusGroup")
+     * ORM\JoinColumn(referencedColumnName="id")
+    protected $status_group;
+     */
 
     /**
-     * @var integer $company_operator_id
-     *
-     * @ORM\Column(name="company_operator_id", type="integer", nullable=true)
+     * ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Pricing\PricingGroup")
+     * ORM\JoinColumn(referencedColumnName="id")
+    protected $pricing_group;
      */
-    protected $company_operator_id;
 
     /**
-     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Category\Category", mappedBy="toolkit")
+     * ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Shipping\ShippingGroup")
+     * ORM\JoinColumn(referencedColumnName="id")
+    protected $shipping_group;
+     */
+
+    /**
+     * ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Theme\Theme")
+     * ORM\JoinColumn(referencedColumnName="id")
+    protected $theme;
+     */
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\User")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    protected $staff_operator;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\User")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    protected $company_operator;
+
+    /**
+     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Product\ProductCategory", mappedBy="toolkit")
      */
     protected $categories;
     
     /**
-     * @ORM\OneToOne(targetEntity="LWV\ToolkitBundle\Entity\User\Company", inversedBy="toolkit")
+     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\User\Company", mappedBy="toolkit")
      */
     protected $company;
     
     public function __construct()
     {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->company = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -178,28 +183,6 @@ class Toolkit
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set company_id
-     *
-     * @param integer $companyId
-     * @return Toolkit
-     */
-    public function setCompanyId($companyId)
-    {
-        $this->company_id = $companyId;
-        return $this;
-    }
-
-    /**
-     * Get company_id
-     *
-     * @return integer 
-     */
-    public function getCompanyId()
-    {
-        return $this->company_id;
     }
 
     /**
@@ -379,94 +362,6 @@ class Toolkit
     }
 
     /**
-     * Set status_id
-     *
-     * @param integer $statusId
-     * @return Toolkit
-     */
-    public function setStatusId($statusId)
-    {
-        $this->status_id = $statusId;
-        return $this;
-    }
-
-    /**
-     * Get status_id
-     *
-     * @return integer 
-     */
-    public function getStatusId()
-    {
-        return $this->status_id;
-    }
-
-    /**
-     * Set pricing_id
-     *
-     * @param integer $pricingId
-     * @return Toolkit
-     */
-    public function setPricingId($pricingId)
-    {
-        $this->pricing_id = $pricingId;
-        return $this;
-    }
-
-    /**
-     * Get pricing_id
-     *
-     * @return integer 
-     */
-    public function getPricingId()
-    {
-        return $this->pricing_id;
-    }
-
-    /**
-     * Set delivery_id
-     *
-     * @param integer $deliveryId
-     * @return Toolkit
-     */
-    public function setDeliveryId($deliveryId)
-    {
-        $this->delivery_id = $deliveryId;
-        return $this;
-    }
-
-    /**
-     * Get delivery_id
-     *
-     * @return integer 
-     */
-    public function getDeliveryId()
-    {
-        return $this->delivery_id;
-    }
-
-    /**
-     * Set theme_id
-     *
-     * @param integer $themeId
-     * @return Toolkit
-     */
-    public function setThemeId($themeId)
-    {
-        $this->theme_id = $themeId;
-        return $this;
-    }
-
-    /**
-     * Get theme_id
-     *
-     * @return integer 
-     */
-    public function getThemeId()
-    {
-        return $this->theme_id;
-    }
-
-    /**
      * Set can_edit_profile
      *
      * @param boolean $canEditProfile
@@ -533,77 +428,121 @@ class Toolkit
     }
 
     /**
-     * Set budget
+     * Set budget_amount
      *
-     * @param decimal $budget
+     * @param decimal $budgetAmount
      * @return Toolkit
      */
-    public function setBudget($budget)
+    public function setBudgetAmount($budgetAmount)
     {
-        $this->budget = $budget;
+        $this->budget_amount = $budgetAmount;
         return $this;
     }
 
     /**
-     * Get budget
+     * Get budget_amount
      *
      * @return decimal 
      */
-    public function getBudget()
+    public function getBudgetAmount()
     {
-        return $this->budget;
+        return $this->budget_amount;
     }
 
     /**
-     * Set staff_operator_id
+     * Set created_at
      *
-     * @param integer $staffOperatorId
+     * @param date $createdAt
      * @return Toolkit
      */
-    public function setStaffOperatorId($staffOperatorId)
+    public function setCreatedAt($createdAt)
     {
-        $this->staff_operator_id = $staffOperatorId;
+        $this->created_at = $createdAt;
         return $this;
     }
 
     /**
-     * Get staff_operator_id
+     * Get created_at
      *
-     * @return integer 
+     * @return date 
      */
-    public function getStaffOperatorId()
+    public function getCreatedAt()
     {
-        return $this->staff_operator_id;
+        return $this->created_at;
     }
 
     /**
-     * Set company_operator_id
+     * Set updated_at
      *
-     * @param integer $companyOperatorId
+     * @param date $updatedAt
      * @return Toolkit
      */
-    public function setCompanyOperatorId($companyOperatorId)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->company_operator_id = $companyOperatorId;
+        $this->updated_at = $updatedAt;
         return $this;
     }
 
     /**
-     * Get company_operator_id
+     * Get updated_at
      *
-     * @return integer 
+     * @return date 
      */
-    public function getCompanyOperatorId()
+    public function getUpdatedAt()
     {
-        return $this->company_operator_id;
+        return $this->updated_at;
+    }
+
+    /**
+     * Set staff_operator
+     *
+     * @param LWV\ToolkitBundle\Entity\User\User $staffOperator
+     * @return Toolkit
+     */
+    public function setStaffOperator(\LWV\ToolkitBundle\Entity\User\User $staffOperator = null)
+    {
+        $this->staff_operator = $staffOperator;
+        return $this;
+    }
+
+    /**
+     * Get staff_operator
+     *
+     * @return LWV\ToolkitBundle\Entity\User\User 
+     */
+    public function getStaffOperator()
+    {
+        return $this->staff_operator;
+    }
+
+    /**
+     * Set company_operator
+     *
+     * @param LWV\ToolkitBundle\Entity\User\User $companyOperator
+     * @return Toolkit
+     */
+    public function setCompanyOperator(\LWV\ToolkitBundle\Entity\User\User $companyOperator = null)
+    {
+        $this->company_operator = $companyOperator;
+        return $this;
+    }
+
+    /**
+     * Get company_operator
+     *
+     * @return LWV\ToolkitBundle\Entity\User\User 
+     */
+    public function getCompanyOperator()
+    {
+        return $this->company_operator;
     }
 
     /**
      * Add categories
      *
-     * @param LWV\ToolkitBundle\Entity\Category \Category $categories
+     * @param LWV\ToolkitBundle\Entity\Product\ProductCategory $categories
      */
-    public function addCategory(\LWV\ToolkitBundle\Entity\Category\Category $categories)
+    public function addProductCategory(\LWV\ToolkitBundle\Entity\Product\ProductCategory $categories)
     {
         $this->categories[] = $categories;
     }
@@ -619,21 +558,19 @@ class Toolkit
     }
 
     /**
-     * Set company
+     * Add company
      *
      * @param LWV\ToolkitBundle\Entity\User\Company $company
-     * @return Toolkit
      */
-    public function setCompany(\LWV\ToolkitBundle\Entity\User\Company $company = null)
+    public function addCompany(\LWV\ToolkitBundle\Entity\User\Company $company)
     {
-        $this->company = $company;
-        return $this;
+        $this->company[] = $company;
     }
 
     /**
      * Get company
      *
-     * @return LWV\ToolkitBundle\Entity\User\Company 
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getCompany()
     {

@@ -3,14 +3,12 @@
 namespace LWV\ToolkitBundle\Entity\Order;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * LWV\ToolkitBundle\Entity\Order\Order
- *
- * @ORM\Table(name="orders")
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Order\OrderRepository")
+ * @ORM\Table(name="orders")
  */
 class Order
 {

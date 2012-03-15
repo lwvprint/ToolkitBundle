@@ -1,17 +1,17 @@
 <?php
 
-namespace LWV\ToolkitBundle\Entity\Category;
+namespace LWV\ToolkitBundle\Entity\Product;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @Gedmo\Tree(type="nested")
+ * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Product\ProductCategoryRepository")
  * @ORM\Table(name="product_category")
- * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Category\CategoryRepository")
+ * @Gedmo\Tree(type="nested")
  */
-class Category
+class ProductCategory
 {
     /**
      * @ORM\Id
@@ -46,13 +46,13 @@ class Category
 
     /**
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="ProductCategory")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     protected $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="ProductCategory", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $children;
@@ -78,21 +78,10 @@ class Category
     protected $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="categories")
-     * @ORM\JoinColumn(name="toolkit_id", referencedColumnName="id")
-     */
-    protected $toolkit;
-
-    /**
-     * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\Product\Product", mappedBy="category")
-     */
-    protected $products;
-
-    /**
      * @var date $created_at
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(name="created_at", type="date", length=25)
+     * @ORM\Column(type="datetime", length=25)
      */
     protected $created_at;
 
@@ -100,21 +89,31 @@ class Category
      * @var date $updated_at
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(name="updated_at", type="date", length=25)
+     * @ORM\Column(type="datetime", length=25)
      */
     protected $updated_at;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="categories")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    protected $toolkit;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
+     */
+    protected $products;
 
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -125,7 +124,7 @@ class Category
      * Set lft
      *
      * @param integer $lft
-     * @return Category
+     * @return ProductCategory
      */
     public function setLft($lft)
     {
@@ -136,7 +135,7 @@ class Category
     /**
      * Get lft
      *
-     * @return integer
+     * @return integer 
      */
     public function getLft()
     {
@@ -147,7 +146,7 @@ class Category
      * Set rgt
      *
      * @param integer $rgt
-     * @return Category
+     * @return ProductCategory
      */
     public function setRgt($rgt)
     {
@@ -158,7 +157,7 @@ class Category
     /**
      * Get rgt
      *
-     * @return integer
+     * @return integer 
      */
     public function getRgt()
     {
@@ -169,7 +168,7 @@ class Category
      * Set root
      *
      * @param integer $root
-     * @return Category
+     * @return ProductCategory
      */
     public function setRoot($root)
     {
@@ -180,7 +179,7 @@ class Category
     /**
      * Get root
      *
-     * @return integer
+     * @return integer 
      */
     public function getRoot()
     {
@@ -191,7 +190,7 @@ class Category
      * Set lvl
      *
      * @param integer $lvl
-     * @return Category
+     * @return ProductCategory
      */
     public function setLvl($lvl)
     {
@@ -202,7 +201,7 @@ class Category
     /**
      * Get lvl
      *
-     * @return integer
+     * @return integer 
      */
     public function getLvl()
     {
@@ -213,7 +212,7 @@ class Category
      * Set name
      *
      * @param string $name
-     * @return Category
+     * @return ProductCategory
      */
     public function setName($name)
     {
@@ -224,7 +223,7 @@ class Category
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -235,7 +234,7 @@ class Category
      * Set slug
      *
      * @param string $slug
-     * @return Category
+     * @return ProductCategory
      */
     public function setSlug($slug)
     {
@@ -246,7 +245,7 @@ class Category
     /**
      * Get slug
      *
-     * @return string
+     * @return string 
      */
     public function getSlug()
     {
@@ -257,7 +256,7 @@ class Category
      * Set description
      *
      * @param text $description
-     * @return Category
+     * @return ProductCategory
      */
     public function setDescription($description)
     {
@@ -268,7 +267,7 @@ class Category
     /**
      * Get description
      *
-     * @return text
+     * @return text 
      */
     public function getDescription()
     {
@@ -279,7 +278,7 @@ class Category
      * Set image
      *
      * @param string $image
-     * @return Category
+     * @return ProductCategory
      */
     public function setImage($image)
     {
@@ -290,7 +289,7 @@ class Category
     /**
      * Get image
      *
-     * @return string
+     * @return string 
      */
     public function getImage()
     {
@@ -300,8 +299,8 @@ class Category
     /**
      * Set created_at
      *
-     * @param date $createdAt
-     * @return Category
+     * @param datetime $createdAt
+     * @return ProductCategory
      */
     public function setCreatedAt($createdAt)
     {
@@ -312,7 +311,7 @@ class Category
     /**
      * Get created_at
      *
-     * @return date
+     * @return datetime 
      */
     public function getCreatedAt()
     {
@@ -322,8 +321,8 @@ class Category
     /**
      * Set updated_at
      *
-     * @param date $updatedAt
-     * @return Category
+     * @param datetime $updatedAt
+     * @return ProductCategory
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -334,7 +333,7 @@ class Category
     /**
      * Get updated_at
      *
-     * @return date
+     * @return datetime 
      */
     public function getUpdatedAt()
     {
@@ -344,10 +343,10 @@ class Category
     /**
      * Set parent
      *
-     * @param LWV\ToolkitBundle\Entity\Category\Category $parent
-     * @return Category
+     * @param LWV\ToolkitBundle\Entity\Product\ProductCategory $parent
+     * @return ProductCategory
      */
-    public function setParent(\LWV\ToolkitBundle\Entity\Category\Category $parent = null)
+    public function setParent(\LWV\ToolkitBundle\Entity\Product\ProductCategory $parent = null)
     {
         $this->parent = $parent;
         return $this;
@@ -356,7 +355,7 @@ class Category
     /**
      * Get parent
      *
-     * @return LWV\ToolkitBundle\Entity\Category\Category
+     * @return LWV\ToolkitBundle\Entity\Product\ProductCategory 
      */
     public function getParent()
     {
@@ -366,9 +365,9 @@ class Category
     /**
      * Add children
      *
-     * @param LWV\ToolkitBundle\Entity\Category\Category $children
+     * @param LWV\ToolkitBundle\Entity\Product\ProductCategory $children
      */
-    public function addCategory(\LWV\ToolkitBundle\Entity\Category\Category $children)
+    public function addProductCategory(\LWV\ToolkitBundle\Entity\Product\ProductCategory $children)
     {
         $this->children[] = $children;
     }
@@ -376,7 +375,7 @@ class Category
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getChildren()
     {
@@ -387,7 +386,7 @@ class Category
      * Set toolkit
      *
      * @param LWV\ToolkitBundle\Entity\Toolkit\Toolkit $toolkit
-     * @return Category
+     * @return ProductCategory
      */
     public function setToolkit(\LWV\ToolkitBundle\Entity\Toolkit\Toolkit $toolkit = null)
     {
@@ -398,7 +397,7 @@ class Category
     /**
      * Get toolkit
      *
-     * @return LWV\ToolkitBundle\Entity\Toolkit\Toolkit
+     * @return LWV\ToolkitBundle\Entity\Toolkit\Toolkit 
      */
     public function getToolkit()
     {
@@ -418,7 +417,7 @@ class Category
     /**
      * Get products
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getProducts()
     {

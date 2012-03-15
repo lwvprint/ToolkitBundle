@@ -4,6 +4,7 @@ namespace LWV\ToolkitBundle\Entity\Product;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Product\ProductRepository")
@@ -16,53 +17,74 @@ class Product
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    protected $name;
     
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $reference;
+    protected $reference;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", length=25)
      */
-    private $activeFrom;
+    protected $active_from;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", length=25)
      */
-    private $activeTill;
+    protected $active_till;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $visible;
+    protected $is_active;
+    
+    /**
+     * @var date $created_at
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", length=25)
+     */
+    protected $created_at;
+
+    /**
+     * @var date $updated_at
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", length=25, nullable=true)
+     */
+    protected $updated_at;
+    
+    /**
+     * @ORM\Column(type="datetime", length=25, nullable=true)
+     */
+    protected $deleted_at;
 
     /**
      * @ORM\OneToMany(targetEntity="ProductImage", mappedBy="product")
      */
-    private $images;
+    protected $images;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Category\Category", inversedBy="products")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="products")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
-    private $category;
+    protected $category;
     
     public function __construct()
     {
@@ -168,69 +190,135 @@ class Product
     }
 
     /**
-     * Set activeFrom
+     * Set active_from
      *
      * @param datetime $activeFrom
      * @return Product
      */
     public function setActiveFrom($activeFrom)
     {
-        $this->activeFrom = $activeFrom;
+        $this->active_from = $activeFrom;
         return $this;
     }
 
     /**
-     * Get activeFrom
+     * Get active_from
      *
      * @return datetime 
      */
     public function getActiveFrom()
     {
-        return $this->activeFrom;
+        return $this->active_from;
     }
 
     /**
-     * Set activeTill
+     * Set active_till
      *
      * @param datetime $activeTill
      * @return Product
      */
     public function setActiveTill($activeTill)
     {
-        $this->activeTill = $activeTill;
+        $this->active_till = $activeTill;
         return $this;
     }
 
     /**
-     * Get activeTill
+     * Get active_till
      *
      * @return datetime 
      */
     public function getActiveTill()
     {
-        return $this->activeTill;
+        return $this->active_till;
     }
 
     /**
-     * Set visible
+     * Set is_active
      *
-     * @param integer $visible
+     * @param boolean $isActive
      * @return Product
      */
-    public function setVisible($visible)
+    public function setIsActive($isActive)
     {
-        $this->visible = $visible;
+        $this->is_active = $isActive;
         return $this;
     }
 
     /**
-     * Get visible
+     * Get is_active
      *
-     * @return integer 
+     * @return boolean 
      */
-    public function getVisible()
+    public function getIsActive()
     {
-        return $this->visible;
+        return $this->is_active;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     * @return Product
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     * @return Product
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set deleted_at
+     *
+     * @param datetime $deletedAt
+     * @return Product
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deleted_at = $deletedAt;
+        return $this;
+    }
+
+    /**
+     * Get deleted_at
+     *
+     * @return datetime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deleted_at;
     }
 
     /**
@@ -256,10 +344,10 @@ class Product
     /**
      * Set category
      *
-     * @param LWV\ToolkitBundle\Entity\Category\Category $category
+     * @param LWV\ToolkitBundle\Entity\Product\ProductCategory $category
      * @return Product
      */
-    public function setCategory(\LWV\ToolkitBundle\Entity\Category\Category $category = null)
+    public function setCategory(\LWV\ToolkitBundle\Entity\Product\ProductCategory $category = null)
     {
         $this->category = $category;
         return $this;
@@ -268,7 +356,7 @@ class Product
     /**
      * Get category
      *
-     * @return LWV\ToolkitBundle\Entity\Category\Category 
+     * @return LWV\ToolkitBundle\Entity\Product\ProductCategory
      */
     public function getCategory()
     {

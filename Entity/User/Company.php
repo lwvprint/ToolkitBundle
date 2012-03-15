@@ -2,18 +2,14 @@
 
 namespace LWV\ToolkitBundle\Entity\User;
 
-use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * LWV\ToolkitBundle\Entity\User\Company
- *
- */
-
-/**
- * @Gedmo\Tree(type="nested")
- * @ORM\Table(name="company")
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\User\CompanyRepository")
+ * @ORM\Table(name="company")
+ * @Gedmo\Tree(type="nested")
  */
 class Company
 {
@@ -53,7 +49,7 @@ class Company
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Company")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     protected $parent;
 
@@ -66,113 +62,78 @@ class Company
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     protected $name;
 
     /**
      * @var string $account_no
      *
-     * @ORM\Column(name="account_no", type="string", length=25)
+     * @ORM\Column(type="string", length=25)
      */
     protected $account_no;
 
     /**
-     * @var integer $contact_id
-     *
-     * @ORM\Column(name="contact_id", type="integer")
-     */
-    protected $contact_id;
-
-    /**
-     * @var integer $pricing_id
-     *
-     * @ORM\Column(name="pricing_id", type="integer")
-     */
-    protected $pricing_id;
-
-    /**
-     * @var integer $shipping_id
-     *
-     * @ORM\Column(name="shipping_id", type="integer")
-     */
-    protected $shipping_id;
-
-    /**
-     * @var integer $status_group_id
-     *
-     * @ORM\Column(name="status_group_id", type="integer")
-     */
-    protected $status_group_id;
-
-    /**
      * @var string $address1
      *
-     * @ORM\Column(name="address1", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     protected $address1;
 
     /**
      * @var string $address2
      *
-     * @ORM\Column(name="address2", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     protected $address2;
 
     /**
      * @var string $town
      *
-     * @ORM\Column(name="town", type="string", length=100)
+     * @ORM\Column(type="string", length=100)
      */
     protected $town;
 
     /**
      * @var string $city
      *
-     * @ORM\Column(name="city", type="string", length=100)
+     * @ORM\Column(type="string", length=100)
      */
     protected $city;
 
     /**
      * @var string $post_code
      *
-     * @ORM\Column(name="post_code", type="string", length=8)
+     * @ORM\Column(type="string", length=8)
      */
     protected $post_code;
 
     /**
      * @var string $email
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     protected $email;
 
     /**
      * @var string $website
      *
-     * @ORM\Column(name="website", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     protected $website;
 
     /**
      * @var boolean $is_active
      *
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $is_active;
-
-    /**
-     * @var integer $account_manager_id
-     *
-     * @ORM\Column(name="account_manager_id", type="integer")
-     */
-    protected $account_manager_id;
 
     /**
      * @var date $created_at
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(name="created_at", type="date", length=25)
+     * @ORM\Column(type="datetime", length=25)
      */
     protected $created_at;
 
@@ -180,7 +141,7 @@ class Company
      * @var date $updated_at
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(name="updated_at", type="date", length=25)
+     * @ORM\Column(type="datetime", length=25)
      */
     protected $updated_at;
 
@@ -195,8 +156,8 @@ class Company
     protected $orders;
 
     /**
-     * @ORM\OneToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="company")
-     * @ORM\JoinColumn(name="toolkit_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="company")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
     protected $toolkit;
 
@@ -347,94 +308,6 @@ class Company
     public function getAccountNo()
     {
         return $this->account_no;
-    }
-
-    /**
-     * Set contact_id
-     *
-     * @param integer $contactId
-     * @return Company
-     */
-    public function setContactId($contactId)
-    {
-        $this->contact_id = $contactId;
-        return $this;
-    }
-
-    /**
-     * Get contact_id
-     *
-     * @return integer 
-     */
-    public function getContactId()
-    {
-        return $this->contact_id;
-    }
-
-    /**
-     * Set pricing_id
-     *
-     * @param integer $pricingId
-     * @return Company
-     */
-    public function setPricingId($pricingId)
-    {
-        $this->pricing_id = $pricingId;
-        return $this;
-    }
-
-    /**
-     * Get pricing_id
-     *
-     * @return integer 
-     */
-    public function getPricingId()
-    {
-        return $this->pricing_id;
-    }
-
-    /**
-     * Set shipping_id
-     *
-     * @param integer $shippingId
-     * @return Company
-     */
-    public function setShippingId($shippingId)
-    {
-        $this->shipping_id = $shippingId;
-        return $this;
-    }
-
-    /**
-     * Get shipping_id
-     *
-     * @return integer 
-     */
-    public function getShippingId()
-    {
-        return $this->shipping_id;
-    }
-
-    /**
-     * Set status_group_id
-     *
-     * @param integer $statusGroupId
-     * @return Company
-     */
-    public function setStatusGroupId($statusGroupId)
-    {
-        $this->status_group_id = $statusGroupId;
-        return $this;
-    }
-
-    /**
-     * Get status_group_id
-     *
-     * @return integer 
-     */
-    public function getStatusGroupId()
-    {
-        return $this->status_group_id;
     }
 
     /**
@@ -614,31 +487,9 @@ class Company
     }
 
     /**
-     * Set account_manager_id
-     *
-     * @param integer $accountManagerId
-     * @return Company
-     */
-    public function setAccountManagerId($accountManagerId)
-    {
-        $this->account_manager_id = $accountManagerId;
-        return $this;
-    }
-
-    /**
-     * Get account_manager_id
-     *
-     * @return integer 
-     */
-    public function getAccountManagerId()
-    {
-        return $this->account_manager_id;
-    }
-
-    /**
      * Set created_at
      *
-     * @param date $createdAt
+     * @param datetime $createdAt
      * @return Company
      */
     public function setCreatedAt($createdAt)
@@ -650,7 +501,7 @@ class Company
     /**
      * Get created_at
      *
-     * @return date 
+     * @return datetime 
      */
     public function getCreatedAt()
     {
@@ -660,7 +511,7 @@ class Company
     /**
      * Set updated_at
      *
-     * @param date $updatedAt
+     * @param datetime $updatedAt
      * @return Company
      */
     public function setUpdatedAt($updatedAt)
@@ -672,7 +523,7 @@ class Company
     /**
      * Get updated_at
      *
-     * @return date 
+     * @return datetime 
      */
     public function getUpdatedAt()
     {
