@@ -4,11 +4,64 @@
 Toolkit Centre :: {{ parent() }}
 {% endblock %}
 
+{% block h1 %}
+Toolkit Centre
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h2>Toolkit Centre</h2>
+            <table class="records_list">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Url</th>
+                        <th>Active?</th>
+                        <th>Demo?</th>
+                        <th>Secure?</th>
+                        <th>Payment?</th>
+                        <th>Maintenance mode</th>
+                        <th>Maintenance message</th>
+                        <th>Can edit profile</th>
+                        <th>Can edit password</th>
+                        <th>Budget Enabled?</th>
+                        <th>Budget amount</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('staff_toolkit_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.url }}</td>
+                        <td>{% if entity.isactive == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{% if entity.isdemo == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{% if entity.issecure == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{% if entity.ispayment == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{% if entity.maintenancemode == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{{ entity.maintenancemessage }}</td>
+                        <td>{% if entity.caneditprofile == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{% if entity.caneditpassword == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{% if entity.enablebudget == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        <td>{% if entity.enablebudget == 1 %}{{ entity.budgetamount }}{% else %}N/A{% endif %}</td>
+                        <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
+                        <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif%}</td>
+                        <td>
+                            <a class="btn" href="{{ path('staff_toolkit_show', { 'id': entity.id }) }}">show</a>
+                            <a class="btn" href="{{ path('staff_toolkit_edit', { 'id': entity.id }) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a class="btn" href="{{ path('staff_toolkit_new') }}">
+                Create a new entry
+            </a>
         </div>
     </div>
 </div>

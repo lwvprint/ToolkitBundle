@@ -35,12 +35,11 @@ class DashboardController extends Controller
                 $em->flush();
 
                 // Set "success" flash notification
-               // $this->get('session')->setFlash('success', 'Profile saved.');
-
-
+                // $this->get('session')->setFlash('success', 'Profile saved.');
             }
 
         }
+        
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
         $breadcrumbs->addItem("My Account", $this->get("router")->generate("shop"));

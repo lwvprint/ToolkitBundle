@@ -1,6 +1,6 @@
 <!-- Flash messages -->
 {% block flashmessages %}
-
+{% if app.session.flashbag.all()|length > 0 %}
 <section id="notices">
     <div class="container">
         <div class="row">
@@ -21,6 +21,6 @@
         </div>
     </div>
 </section>
-
+{% endif %}
 {% endblock %}
 <!-- Flash messages end -->

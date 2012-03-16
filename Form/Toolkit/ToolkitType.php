@@ -10,26 +10,26 @@ class ToolkitType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('company_id')
             ->add('name')
             ->add('url')
-            ->add('is_active')
-            ->add('is_demo')
-            ->add('is_secure')
-            ->add('is_payment')
-            ->add('maintenance_mode')
+            ->add('is_active', null, array('required' => false))
+            ->add('is_demo', null, array('required' => false  ))
+            ->add('is_secure', null, array('required' => false))
+            ->add('is_payment', null, array('required' => false))
+            ->add('maintenance_mode', null, array('required' => false))
             ->add('maintenance_message')
-            ->add('status_id')
-            ->add('pricing_id')
-            ->add('delivery_id')
-            ->add('theme_id')
-            ->add('can_edit_profile')
-            ->add('can_edit_password')
-            ->add('enable_budget')
-            ->add('budget')
-            ->add('staff_operator_id')
-            ->add('company_operator_id')
-            ->add('categories')
+            ->add('can_edit_profile', null, array('required' => false))
+            ->add('can_edit_password', null, array('required' => false))
+            ->add('enable_budget', null, array('required' => false))
+            ->add('budget_amount')
+            ->add('staff_operator', 'entity', array(
+                'class' => 'LWV\ToolkitBundle\Entity\User\User',
+                'property' => 'username'
+            ))
+            ->add('company_operator', 'entity', array(
+                'class' => 'LWV\ToolkitBundle\Entity\User\User',
+                'property' =>'username'
+            ))
         ;
     }
 

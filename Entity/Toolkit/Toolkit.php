@@ -8,6 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="LWV\ToolkitBundle\Entity\Toolkit\ToolkitRepository")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="toolkit")
  */
 class Toolkit
@@ -109,7 +110,7 @@ class Toolkit
      * @var date $created_at
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="date", length=25)
+     * @ORM\Column(type="datetime", length=25)
      */
     protected $created_at;
 
@@ -117,7 +118,7 @@ class Toolkit
      * @var date $updated_at
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="date", length=25)
+     * @ORM\Column(type="datetime", length=25, nullable=true)
      */
     protected $updated_at;
     
@@ -142,10 +143,10 @@ class Toolkit
      */
 
     /**
-     * ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Theme\Theme")
-     * ORM\JoinColumn(referencedColumnName="id")
-    protected $theme;
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Theme\Theme")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
+    protected $theme;
     
     /**
      * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\User\User")
@@ -167,12 +168,12 @@ class Toolkit
     /**
      * @ORM\OneToMany(targetEntity="LWV\ToolkitBundle\Entity\User\Company", mappedBy="toolkit")
      */
-    protected $company;
+    protected $companies;
     
     public function __construct()
     {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->company = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -452,7 +453,7 @@ class Toolkit
     /**
      * Set created_at
      *
-     * @param date $createdAt
+     * @param datetime $createdAt
      * @return Toolkit
      */
     public function setCreatedAt($createdAt)
@@ -464,7 +465,7 @@ class Toolkit
     /**
      * Get created_at
      *
-     * @return date 
+     * @return datetime 
      */
     public function getCreatedAt()
     {
@@ -474,7 +475,7 @@ class Toolkit
     /**
      * Set updated_at
      *
-     * @param date $updatedAt
+     * @param datetime $updatedAt
      * @return Toolkit
      */
     public function setUpdatedAt($updatedAt)
@@ -486,11 +487,33 @@ class Toolkit
     /**
      * Get updated_at
      *
-     * @return date 
+     * @return datetime 
      */
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param LWV\ToolkitBundle\Entity\Theme\Theme $theme
+     * @return Toolkit
+     */
+    public function setTheme(\LWV\ToolkitBundle\Entity\Theme\Theme $theme = null)
+    {
+        $this->theme = $theme;
+        return $this;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return LWV\ToolkitBundle\Entity\Theme\Theme 
+     */
+    public function getTheme()
+    {
+        return $this->theme;
     }
 
     /**
@@ -558,22 +581,22 @@ class Toolkit
     }
 
     /**
-     * Add company
+     * Add companies
      *
-     * @param LWV\ToolkitBundle\Entity\User\Company $company
+     * @param LWV\ToolkitBundle\Entity\User\Company $companies
      */
-    public function addCompany(\LWV\ToolkitBundle\Entity\User\Company $company)
+    public function addCompany(\LWV\ToolkitBundle\Entity\User\Company $companies)
     {
-        $this->company[] = $company;
+        $this->companies[] = $companies;
     }
 
     /**
-     * Get company
+     * Get companies
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getCompany()
+    public function getCompanies()
     {
-        return $this->company;
+        return $this->companies;
     }
 }
