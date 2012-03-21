@@ -15,7 +15,7 @@ class ProductRepository extends EntityRepository
     {
         $dql = 'SELECT p, i FROM LWV\ToolkitBundle\Entity\Product\Product p ' .
                'LEFT JOIN p.images i ' .
-               'WHERE p.visible = 1 ' .
+               'WHERE p.is_active = 1 ' .
                'ORDER BY p.name ASC';
 
         $query = $this->getEntityManager()->createQuery($dql);

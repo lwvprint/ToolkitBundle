@@ -10,7 +10,7 @@ class SwitchUserListener
     /**
      * @var Symfony\Component\HttpFoundation\Session
      */
-    protected $sesion;
+    protected $session;
 
     /**
      * Constructor.

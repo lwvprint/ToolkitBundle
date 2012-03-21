@@ -23,7 +23,7 @@ class CompanyController extends Controller
 
         $entities = $em->getRepository('LWVToolkitBundle:User\Company')->findAll();
 
-        return $this->render('LWVToolkitBundle:Staff/Company:index.html.twig', array(
+        return $this->render('LWVToolkitBundle:Staff/Company:company.html.twig', array(
             'entities' => $entities,
         ));
     }

@@ -18,7 +18,7 @@ class CategoriesController extends Controller
         $toolkit = $company->getToolkit();
 
         $categories = $this->get('doctrine')->getEntityManager()
-                ->getRepository('LWVToolkitBundle:Category\Category')
+                ->getRepository('LWVToolkitBundle:Product\ProductCategory')
                 ->findBy(array('toolkit' => $toolkit->getId()), array('name' => 'ASC'));
 
         $products = $this->get('doctrine')->getEntityManager()
@@ -42,7 +42,7 @@ class CategoriesController extends Controller
         $toolkit = $company->getToolkit();
         
         $category = $this->getDoctrine()->getEntityManager()
-                ->getRepository('LWVToolkitBundle:Category\Category')
+                ->getRepository('LWVToolkitBundle:Product\ProductCategory')
                 ->findOneBy(array('slug' => $slug, 'toolkit' => $toolkit->getId()));
 
         if (!$category) {
@@ -51,7 +51,7 @@ class CategoriesController extends Controller
 
         $products = $this->get('doctrine')->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\Product')
-                ->findBy(array('category' => $category->getId(), 'visible' => '1'));
+                ->findBy(array('category' => $category->getId(), 'is_active' => '1'));
 
         /*
          * Initiate and insert a breadcrumb

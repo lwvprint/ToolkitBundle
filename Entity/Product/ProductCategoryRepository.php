@@ -1,5 +1,5 @@
 <?php
-namespace LWV\ToolkitBundle\Entity\Category;
+namespace LWV\ToolkitBundle\Entity\Product;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
 /**
@@ -9,12 +9,12 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  * repository methods below.
  */
 
-class CategoryRepository extends NestedTreeRepository
+class ProductCategoryRepository extends NestedTreeRepository
 {
     // FINISH THIS!
     public function getAllCategoriesBySegment()
     {
-        $dql = 'SELECT c FROM LWV\ToolkitBundle\Entity\Category\Category c ' .
+        $dql = 'SELECT c FROM LWV\ToolkitBundle\Entity\Product\ProductCategory c ' .
                'ORDER BY c.name ASC';
 
         $query = $this->getEntityManager()->createQuery($dql);

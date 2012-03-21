@@ -5,7 +5,6 @@ use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 class ToolkitEncoder implements PasswordEncoderInterface
 {
-
     public function encodePassword($raw, $salt)
     {
         $mix = $raw . "{" . $salt . "}";

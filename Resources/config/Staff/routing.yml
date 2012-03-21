@@ -2,64 +2,14 @@ staff_home:
     pattern: /staff
     defaults: { _controller: LWVToolkitBundle:Staff\Home:index }
     
-staff_toolkit:
-    pattern:  /staff/toolkit
-    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:index" }
-
-staff_toolkit_show:
-    pattern:  /staff/toolkit/{id}/show
-    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:show" }
-
-staff_toolkit_new:
-    pattern:  /staff/toolkit/new
-    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:new" }
-
-staff_toolkit_create:
-    pattern:  /staff/toolkit/create
-    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:create" }
-    requirements: { _method: post }
-
-staff_toolkit_edit:
-    pattern:  /staff/toolkit/{id}/edit
-    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:edit" }
-
-staff_toolkit_update:
-    pattern:  /staff/toolkit/{id}/update
-    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:update" }
-    requirements: { _method: post }
-
-staff_toolkit_delete:
-    pattern:  /staff/toolkit/{id}/delete
-    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:delete" }
-    requirements: { _method: post }
+LWVToolkitBundle_staff_toolkit:
+    resource: "@LWVToolkitBundle/Resources/config/Staff/toolkit.yml"
+    prefix:   /staff/toolkit
     
-staff_company:
-    pattern:  /staff/company
-    defaults: { _controller: "LWVToolkitBundle:Staff\Company:index" }
-
-staff_company_show:
-    pattern:  /staff/company/{id}/show
-    defaults: { _controller: "LWVToolkitBundle:Staff\Company:show" }
-
-staff_company_new:
-    pattern:  /staff/company/new
-    defaults: { _controller: "LWVToolkitBundle:Staff\Company:new" }
-
-staff_company_create:
-    pattern:  /staff/company/create
-    defaults: { _controller: "LWVToolkitBundle:Staff\Company:create" }
-    requirements: { _method: post }
-
-staff_company_edit:
-    pattern:  /staff/company/{id}/edit
-    defaults: { _controller: "LWVToolkitBundle:Staff\Company:edit" }
-
-staff_company_update:
-    pattern:  /staff/company/{id}/update
-    defaults: { _controller: "LWVToolkitBundle:Staff\Company:update" }
-    requirements: { _method: post }
-
-staff_company_delete:
-    pattern:  /staff/company/{id}/delete
-    defaults: { _controller: "LWVToolkitBundle:Staff\Company:delete" }
-    requirements: { _method: post }
+LWVToolkitBundle_staff_company:
+    resource: "@LWVToolkitBundle/Resources/config/Staff/company.yml"
+    prefix:   /staff/company
+    
+LWVToolkitBundle_staff_product_category:
+    resource: "@LWVToolkitBundle/Resources/config/Staff/productcategory.yml"
+    prefix:   /staff/product_category

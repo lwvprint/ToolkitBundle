@@ -1,0 +1,30 @@
+staff_product_category:
+    pattern:  /
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:index" }
+
+staff_product_category_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:show" }
+
+staff_product_category_new:
+    pattern:  /new
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:new" }
+
+staff_product_category_create:
+    pattern:  /create
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:create" }
+    requirements: { _method: post }
+
+staff_product_category_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:edit" }
+
+staff_product_category_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:update" }
+    requirements: { _method: post }
+
+staff_product_category_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:delete" }
+    requirements: { _method: post }

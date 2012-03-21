@@ -1,0 +1,30 @@
+staff_toolkit:
+    pattern:  /
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:index" }
+
+staff_toolkit_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:show" }
+
+staff_toolkit_new:
+    pattern:  /new
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:new" }
+
+staff_toolkit_create:
+    pattern:  /create
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:create" }
+    requirements: { _method: post }
+
+staff_toolkit_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:edit" }
+
+staff_toolkit_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:update" }
+    requirements: { _method: post }
+
+staff_toolkit_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:delete" }
+    requirements: { _method: post }

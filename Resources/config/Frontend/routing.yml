@@ -1,5 +1,5 @@
 shop:
-    pattern:  /
+    pattern: /
     defaults: { _controller: LWVToolkitBundle:Frontend\Home:index }
 
 category:

@@ -123,12 +123,10 @@ class Toolkit
     protected $updated_at;
     
     /**
-     * Default Status Group (multiple, linked status's)
-     * 
-     * ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Status\StatusGroup")
-     * ORM\JoinColumn(referencedColumnName="id")
-    protected $status_group;
+     * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Status\Status")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
+    protected $status_group;
 
     /**
      * ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Pricing\PricingGroup")
@@ -598,5 +596,27 @@ class Toolkit
     public function getCompanies()
     {
         return $this->companies;
+    }
+
+    /**
+     * Set status_group
+     *
+     * @param LWV\ToolkitBundle\Entity\Status\Status $statusGroup
+     * @return Toolkit
+     */
+    public function setStatusGroup(\LWV\ToolkitBundle\Entity\Status\Status $statusGroup = null)
+    {
+        $this->status_group = $statusGroup;
+        return $this;
+    }
+
+    /**
+     * Get status_group
+     *
+     * @return LWV\ToolkitBundle\Entity\Status\Status 
+     */
+    public function getStatusGroup()
+    {
+        return $this->status_group;
     }
 }
