@@ -71,21 +71,14 @@ Welcome to our toolkit  :: {{ parent() }}
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="home">
                             <div class="row">
+                                {% for product in products %}
                                 <div class="span3">
                                     <div class="popular-image">
+                                        <p>{{ product.name }}</p>
                                         <img src="http://placehold.it/200x200&amp;text=Icon" />
                                     </div>
                                 </div>
-                                <div class="span3">
-                                    <div class="popular-image">
-                                        <img src="http://placehold.it/200x200&amp;text=Icon" />
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <div class="popular-image">
-                                        <img src="http://placehold.it/200x200&amp;text=Icon" />
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="tab-pane fade in" id="featured">

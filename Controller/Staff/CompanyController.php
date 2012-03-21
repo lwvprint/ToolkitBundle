@@ -21,10 +21,14 @@ class CompanyController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('LWVToolkitBundle:User\Company')->findAll();
+        //$entities = $em->getRepository('LWVToolkitBundle:User\Company')->findAll();
+        $entities = $em->getRepository('LWVToolkitBundle:User\Company')->getCompanyWithParent();
 
+        $vars = var_dump($entities);
+        
         return $this->render('LWVToolkitBundle:Staff/Company:company.html.twig', array(
             'entities' => $entities,
+            'vars' => $vars
         ));
     }
 
