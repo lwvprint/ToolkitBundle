@@ -21,3 +21,5 @@ format: function (date) {
   return dom + "/" + month + "/" + date.getFullYear();
 }
 });
+// Scroll to top
+$().UItoTop({ easingType: 'easeOutQuart' });

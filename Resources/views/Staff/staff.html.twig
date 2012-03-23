@@ -8,6 +8,7 @@
         {% block styelsheets %}
             {% stylesheets
                 'bundles/lwvtoolkit/css/bootstrap-2.0.1.css' filter='cssrewrite'
+                'bundles/lwvtoolkit/css/ui.totop.css' filter='cssrewrite'
                 'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -60,6 +61,9 @@
         {% javascripts
             '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
             '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
+            '@LWVToolkitBundle/Resources/public/js/bootstrap-datepicker.js'
+            '@LWVToolkitBundle/Resources/public/js/jquery-easing.min.js'
+            '@LWVToolkitBundle/Resources/public/js/jquery.ui.totop.js'
             '@LWVToolkitBundle/Resources/public/Staff/js/*'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>

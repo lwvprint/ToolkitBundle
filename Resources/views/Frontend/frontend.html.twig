@@ -126,6 +126,9 @@
                 '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
                 '@LWVToolkitBundle/Resources/public/js/bootstrap-tab.js'
                 '@LWVToolkitBundle/Resources/public/js/fullcalendar.js'
+                '@LWVToolkitBundle/Resources/public/js/jquery.ui.totop.js'
+                '@LWVToolkitBundle/Resources/public/js/jquery-easing.min.js'
+
 
                 '@LWVToolkitBundle/Resources/public/Frontend/js/*'
             %}
@@ -146,6 +149,7 @@
                         }, 200);
                     }
                 });
+        		$().UItoTop({ easingType: 'easeOutQuart' });
             });
             </script>
         {% endblock %}
