@@ -213,3 +213,10 @@ i.side-toggle.open {
 #panel-tab:focus {
   outline: none;
 }
+.notices {
+    min-height: 0;
+    padding-bottom: 0;
+}
+a.no-hover:hover {
+	text-decoration: none;
+}

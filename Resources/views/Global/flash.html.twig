@@ -1,0 +1,55 @@
+{% macro flash(type, message, close, use_raw) %}
+    <div class="alert alert-{{ type }} fade in" data-alert="alert">
+	{% if close|default(false) %}
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <i class="notice-{{ type }}"></i>
+	{% endif %}
+
+	{% if use_raw|default(false) %}
+	    {{ message|trans|raw }}
+	{% else %}
+	    {{ message|trans }}
+	{% endif %}
+    </div>
+{% endmacro %}
+
+{% macro session_flash(type, close, use_raw, class, well) %}
+    {% set types = ['info', 'error', 'warning', 'success'] %}
+    {% if close is not defined %}
+        {% set close = false %}
+    {% endif %}
+    {% if use_raw is not defined %}
+        {% set use_raw = false %}
+    {% endif %}
+    {% if well is not defined %}
+        {% set well = false %}
+    {% endif %}
+    {% if app.session.flashbag.peekAll|length > 0 %}
+    <section id="notices">
+    	<div class="container">
+	        <div class="row">
+	            <div class="{{ class|default('span12') }}">
+	            	{% if well == true %}<div class="well notices">{% endif %}
+	                {% if type|default(false) %}
+	                    {% if app.session.flashbag.has(type) %}
+	                        {% for message in app.session.flashbag.get(type) %}
+	                            {{ _self.flash(type, message, close, use_raw) }}
+	                        {% endfor %}
+	                    {% endif %}
+	                {% else %}
+	                    {% for type in types %}
+	                        {% if app.session.flashbag.has(type) %}
+	                            {% for message in app.session.flashbag.get(type) %}
+	                                {{ _self.flash(type, message, close, use_raw) }}
+	                            {% endfor %}
+	                        {% endif %}
+	                    {% endfor %}
+	                {% endif %}
+	                {% if well == true %}</div>{% endif %}
+	            	</div>
+	            </div>
+	    	</div>
+        </div>
+    </section>
+    {% endif %}
+{% endmacro %}

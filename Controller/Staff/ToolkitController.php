@@ -3,6 +3,7 @@
 namespace LWV\ToolkitBundle\Controller\Staff;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use LWV\ToolkitBundle\Entity\Toolkit\Toolkit;
 use LWV\ToolkitBundle\Form\Toolkit\ToolkitType;
@@ -138,6 +139,10 @@ class ToolkitController extends Controller
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
+            // Set flash message
+            $this->get('session')->getFlashBag()->add('info', 'message');
+            $this->get('session')->getFlashBag()->add('info', 'message 2');
+
 
             return $this->redirect($this->generateUrl('staff_toolkit_edit', array('id' => $id)));
         }
