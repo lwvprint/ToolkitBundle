@@ -15,11 +15,11 @@ class CompanyRepository extends EntityRepository
 {
     public function getCompanyWithParent()
     {
-        $dql = 'SELECT c, (SELECT p.name FROM LWV\ToolkitBundle\Entity\User\Company p WHERE p.id = c.parent) as parent_name FROM LWV\ToolkitBundle\Entity\User\Company c';
+        $dql = 'SELECT c.id, c.name, c.account_no, c.address1, c.address2, c.town, c.city, c.post_code, c.email, c.website, c.is_active, (SELECT p.name FROM LWV\ToolkitBundle\Entity\User\Company p WHERE p.id = c.parent) as parent_name FROM LWV\ToolkitBundle\Entity\User\Company c';
         //$dql = 'SELECT c FROM LWV\ToolkitBundle\Entity\User\Company c';
         
         $query = $this->getEntityManager()->createQuery($dql);
         
-        return $query->getResult();
+        return $query->getArrayResult();
     }
 }

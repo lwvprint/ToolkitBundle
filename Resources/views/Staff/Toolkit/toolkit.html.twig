@@ -13,7 +13,7 @@ Toolkit List
     <div class="container">
         <div class="row">
             <div class="span12">
-                <table class="records_list">
+                <table class="records_list table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -23,14 +23,12 @@ Toolkit List
                             <th>Demo?</th>
                             <th>Secure?</th>
                             <th>Payment?</th>
-                            <th>Maintenance mode</th>
+                            <th>Maintenance mode?</th>
                             <th>Maintenance message</th>
-                            <th>Can edit profile</th>
-                            <th>Can edit password</th>
-                            <th>Budget Enabled?</th>
+                            <th>Edit profile?</th>
+                            <th>Edit password?</th>
+                            <th>Budget enabled?</th>
                             <th>Budget amount</th>
-                            <th>Created</th>
-                            <th>Updated</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -50,8 +48,6 @@ Toolkit List
                             <td>{% if entity.caneditpassword == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                             <td>{% if entity.enablebudget == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                             <td>{% if entity.enablebudget == 1 %}{{ entity.budgetamount }}{% else %}N/A{% endif %}</td>
-                            <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
-                            <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif%}</td>
                             <td>
                                 <a class="btn" href="{{ path('staff_toolkit_show', { 'id': entity.id }) }}">show</a>
                                 <a class="btn" href="{{ path('staff_toolkit_edit', { 'id': entity.id }) }}">edit</a>

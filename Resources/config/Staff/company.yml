@@ -1,30 +1,30 @@
 staff_company:
-    pattern:  /
+    pattern: /
     defaults: { _controller: "LWVToolkitBundle:Staff\Company:index" }
 
 staff_company_show:
-    pattern:  /{id}/show
+    pattern: /{id}/show
     defaults: { _controller: "LWVToolkitBundle:Staff\Company:show" }
 
 staff_company_new:
-    pattern:  /new
+    pattern: /new
     defaults: { _controller: "LWVToolkitBundle:Staff\Company:new" }
 
 staff_company_create:
-    pattern:  /create
+    pattern: /create
     defaults: { _controller: "LWVToolkitBundle:Staff\Company:create" }
     requirements: { _method: post }
 
 staff_company_edit:
-    pattern:  /{id}/edit
+    pattern: /{id}/edit
     defaults: { _controller: "LWVToolkitBundle:Staff\Company:edit" }
 
 staff_company_update:
-    pattern:  /{id}/update
+    pattern: /{id}/update
     defaults: { _controller: "LWVToolkitBundle:Staff\Company:update" }
     requirements: { _method: post }
 
 staff_company_delete:
-    pattern:  /{id}/delete
+    pattern: /{id}/delete
     defaults: { _controller: "LWVToolkitBundle:Staff\Company:delete" }
     requirements: { _method: post }

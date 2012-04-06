@@ -21,14 +21,11 @@ class CompanyController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        //$entities = $em->getRepository('LWVToolkitBundle:User\Company')->findAll();
-        $entities = $em->getRepository('LWVToolkitBundle:User\Company')->getCompanyWithParent();
-
-        $vars = var_dump($entities);
+        $entities = $em->getRepository('LWVToolkitBundle:User\Company')->findBy(array('lvl' => 0));
+        //$entities = $em->getRepository('LWVToolkitBundle:User\Company')->getCompanyWithParent();
         
         return $this->render('LWVToolkitBundle:Staff/Company:company.html.twig', array(
             'entities' => $entities,
-            'vars' => $vars
         ));
     }
 
@@ -143,7 +140,7 @@ class CompanyController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('staff_company_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('staff_company'));
         }
 
         return $this->render('LWVToolkitBundle:Staff/Company:edit.html.twig', array(

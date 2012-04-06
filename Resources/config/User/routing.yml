@@ -1,6 +1,10 @@
 login:
     pattern:  /login
     defaults: { _controller: LWVToolkitBundle:User\Login:login }
+    
+staff_login:
+    pattern: /staff/login
+    defaults: { _controller: LWVToolkitBundle:User\Login:staffLogin }
 
 login_check:
     pattern: /login_check

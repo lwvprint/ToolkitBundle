@@ -1,0 +1,36 @@
+<form action="{{ path('login_check') }}" class="form-horizontal" method="post" novalidate>
+    <fieldset>
+        <legend>Login</legend>
+
+        <div class="control-group">
+            <label for="username">Username:</label>
+            <div class="controls">
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="password">Password:</label>
+            <div class="controls">
+                <input type="password" id="password" name="_password" required="required"/>
+                <p class="help-block">Forgotten your <a href="">username</a> or <a href="">password</a>?</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="remember_me">Remember me?</label>
+            <div class="controls">
+                <input type="checkbox" id="remember_me" name="_remember_me" checked />
+            </div>
+        </div>
+
+        {#
+            If you want to control the URL the user is redirected to on success (more details below)
+            <input type="hidden" name="_target_path" value="/account" />
+        #}
+        <div class="form-actions">
+            <input class="btn-primary" type="submit" name="login" value="Login" />
+            <input class="btn-warning" type="reset" value="Cancel" />
+        </div>
+    </fieldset>
+</form>
