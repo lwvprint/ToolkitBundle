@@ -8,15 +8,15 @@ login_check:
 logout:
     pattern: /logout
     
-staff_login:
-    pattern: /staff/login
-    defaults: { _controller: LWVToolkitBundle:User\Login:staffLogin }
+#staff_login:
+#    pattern: /staff/login
+#    defaults: { _controller: LWVToolkitBundle:User\Login:staffLogin }
 
-staff_login_check:
-    pattern: /staff/login_check
+#staff_login_check:
+#    pattern: /staff/login_check
     
-staff_logout:
-    pattern: /staff/logout
+#staff_logout:
+#    pattern: /staff/logout
 
 tk_profile:
     pattern: /myaccount/profile
@@ -28,6 +28,16 @@ tk_update_profile:
     requirements:
         _method: POST
 
+tk_password:
+    pattern: /myaccount/password
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:password }
+
+tk_update_password:
+    pattern: /myaccount/password
+    defaults: { _controller: LWVToolkitBundle:User\Dashboard:password }
+    requirements:
+        _method: POST
+        
 staff_profile:
     pattern: /staff/myaccount/profile
     defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
@@ -38,14 +48,3 @@ staff_update_profile:
     defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
     requirements:
         _method: POST
-
-password:
-    pattern: /password
-    defaults: { _controller: LWVToolkitBundle:User\Dashboard:password }
-
-update_password:
-    pattern: /password
-    defaults: { _controller: LWVToolkitBundle:User\Dashboard:password }
-    requirements:
-        _method: POST
-

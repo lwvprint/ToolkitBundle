@@ -103,6 +103,11 @@ class DashboardController extends Controller
             }
 
         }
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("shop"));
+        $breadcrumbs->addItem("My Account", $this->get("router")->generate("shop"));
+        $breadcrumbs->addItem("Change My Password", $this->get("router")->generate("shop"));
 
         return $this->render('LWVToolkitBundle:User\Dashboard:password.html.twig', array('form' => $form->createView()));
     }

@@ -50,7 +50,7 @@ class LoginController extends Controller
         return $this->render('LWVToolkitBundle:User\Login:staff-login.html.twig', array(
             // last username entered by the user
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-            'error'         => $error
+            'error' => $error
         ));
     }
 

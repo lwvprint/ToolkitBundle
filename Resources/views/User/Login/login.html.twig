@@ -46,6 +46,13 @@
                         
                 {% else %}
                         
+                    {% if error %}
+                        <div class="alert alert-error" data-dismiss="alert">
+                            <a href="#" class="close">×</a>
+                            {{ error.message|trans }}
+                        </div>
+                    {% endif %}
+                        
                     {% include 'LWVToolkitBundle:User\\Form:login-form.html.twig' %}
                         
                 {% endif %}
