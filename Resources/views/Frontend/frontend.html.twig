@@ -1,3 +1,4 @@
+{% from 'LWVToolkitBundle:Global:flash.html.twig' import session_flash %}
 <!DOCTYPE HTML>
 <html lang="en-GB">
     <head>
@@ -103,9 +104,10 @@
                 </div>
             </div>
         </section>
-        {% block notices %}
-        	     {% include 'LWVToolkitBundle:Global:notices.html.twig' %}
+        {% block flashes %}
+            {{ session_flash(null, 'true', 'false', null, 'true') }}
         {% endblock %}
+
 
         <!-- Content -->
         {% block content %}
@@ -125,29 +127,16 @@
                 '@LWVToolkitBundle/Resources/public/js/bootstrap-datepicker.js'
                 '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
                 '@LWVToolkitBundle/Resources/public/js/bootstrap-tab.js'
+                '@LWVToolkitBundle/Resources/public/js/bootstrap-alert.js'
+                '@LWVToolkitBundle/Resources/public/js/bootstrap-transition.js'
                 '@LWVToolkitBundle/Resources/public/js/fullcalendar.js'
-
+                '@LWVToolkitBundle/Resources/public/js/jquery.ui.totop.js'
+                '@LWVToolkitBundle/Resources/public/js/jquery-easing.min.js'
+                '@LWVToolkitBundle/Resources/public/js/global.js'
                 '@LWVToolkitBundle/Resources/public/Frontend/js/*'
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
-
-            <script type="text/javascript">
-            $(document).ready(function() {
-                $('.alert').bind('closed', function () {
-                    var count = $(".well").children().length;
-                    if(count <= 1) {
-                        // $('.well').fadeOut('slow');
-                        $('.notices').animate({
-                            opacity: 0,
-                            height: 'toggle',
-                            padding: 0,
-                            margin: 0
-                        }, 200);
-                    }
-                });
-            });
-            </script>
         {% endblock %}
     </body>
 </html>

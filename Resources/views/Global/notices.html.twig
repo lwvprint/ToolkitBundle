@@ -1,21 +1,19 @@
 <!-- Flash messages -->
-{% block flashmessages %}
-{% if app.session.flashbag.all()|length > 0 %}
+{% block flashes %}
+ {% if app.session.flashbag.peekAll()|length > 0 %}
 <section id="notices">
     <div class="container">
         <div class="row">
             <div class="span12">
                 <div class="well notices">
-					{% for type, flashMessage in app.session.flashbag.all() %}
-					<div class="alert fade in">
-						<a class="close" data-dismiss="alert">&times;</a>
-						<i class="notice-{{ type }}"></i>  {{ flashMessage }}
-					</div>
+					{% for type, flashMessages in app.session.flashbag.all() %}
+						 {% for flashMessage in flashMessages %}
+							<div class="alert fade in">
+								<a class="close" data-dismiss="alert" href="#">&times;</a>
+								<i class="notice-{{ type }}"></i>  {{ flashMessage }}
+							</div>
+						{% endfor %}
 					{% endfor %}
-                        
-                    {% if app.session.hasFlash('notice') %}
-                        {{ app.session.flash('notice') }}
-                    {% endif %}
                 </div>
             </div>
         </div>

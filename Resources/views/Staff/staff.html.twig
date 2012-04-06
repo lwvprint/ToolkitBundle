@@ -1,3 +1,4 @@
+{% from 'LWVToolkitBundle:Global:flash.html.twig' import session_flash %}
 <!DOCTYPE HTML>
 <html lang="">
     <head>
@@ -8,6 +9,8 @@
         {% block styelsheets %}
             {% stylesheets
                 'bundles/lwvtoolkit/css/bootstrap-2.0.1.css' filter='cssrewrite'
+                'bundles/lwvtoolkit/css/*' filter='cssrewrite'
+
                 'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -40,10 +43,10 @@
                 </div>
             </div>
         </div>
-
-        {% block notices %}
-            {% include 'LWVToolkitBundle:Global:notices.html.twig' %}
+        {% block flashes %}
+            {{ session_flash(null, 'true', 'false', null, 'true') }}
         {% endblock %}
+
 
         {% block content %}
         Main content block
@@ -53,18 +56,24 @@
 
         {% block footer %}
             {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
-        {% endblock %}
+        {% endblock %}*-
 
         {% block javascripts %}
 
         {% javascripts
             '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
+            '@LWVToolkitBundle/Resources/public/js/bootstrap-datepicker.js'
             '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
+            '@LWVToolkitBundle/Resources/public/js/bootstrap-tab.js'
+            '@LWVToolkitBundle/Resources/public/js/bootstrap-alert.js'
+            '@LWVToolkitBundle/Resources/public/js/bootstrap-transition.js'
+            '@LWVToolkitBundle/Resources/public/js/jquery.ui.totop.js'
+            '@LWVToolkitBundle/Resources/public/js/jquery-easing.min.js'
+            '@LWVToolkitBundle/Resources/public/js/global.js'
             '@LWVToolkitBundle/Resources/public/Staff/js/*'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
         {% endblock %}
     </body>
 </html>

@@ -9,13 +9,13 @@ class HomeController extends Controller
     public function indexAction()
     {
         if($this->get('security.context')->isGranted('ROLE_LWV')) {
-            return redirect($this->generateUrl('staff_home'));
+            return $this->redirect($this->generateUrl('staff_home'));
         }
-        
+
         $user = $this->get('security.context')->getToken()->getUser();
         $company = $user->getCompany();
         $toolkit = $company->getToolkit();
-        
+
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\ProductCategory')
                 ->findBy(array('toolkit' => $toolkit));
