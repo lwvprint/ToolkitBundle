@@ -31,7 +31,7 @@
                         </div>
                     {% endif %}
 
-                    <form action="{{ path('login_check') }}" class="form-horizontal" method="post">
+                    <form action="{{ path('staff_login_check') }}" class="form-horizontal" method="post">
                         <fieldset>
                             <legend>Login</legend>
                             <div class="control-group">
@@ -58,9 +58,9 @@
 
                             {#
                                 If you want to control the URL the user is redirected to on success (more details below)
+                                <input type="hidden" name="_target_path" value="/staff" />
                             #}
                             <div class="form-actions">
-                                <input type="hidden" name="_target_path" value="/staff" />
                                 <input class="btn-primary" type="submit" name="login" value="Login" />
                                 <input class="btn-warning" type="reset" value="Cancel" />
                             </div>
