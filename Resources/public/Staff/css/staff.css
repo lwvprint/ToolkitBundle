@@ -220,3 +220,46 @@ i.side-toggle.open {
 a.no-hover:hover {
 	text-decoration: none;
 }
+
+
+/*toolbarBox*/
+.toolbarBox { background-color: #F8F8F8; border: 1px solid #CCCCCC; margin-bottom:10px; padding: 8px 0 8px 0; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
+.toolbarBox .pageTitle { margin-left:10px; line-height:48px}
+.toolbarBox .pageTitle h1 {font-size: 2.3em; font-weight: normal; line-height: 62px; margin: 0; padding: 0; text-shadow:0 1px 0 #fff;}
+.toolbarBox ul.toolbar_button {float:right;margin:0 10px 0 0;padding:0;}
+.toolbarBox ul.toolbar_button li {color: #666666; float: left; height: 48px; list-style: none outside none; padding: 1px 1px 3px 4px; text-align: center;}
+.toolbarBox a.toolbar_btn {   border:1px solid #f8f8f8; min-width:50px; border-width: 1px; font-size:12px;cursor: pointer; display: block; float: left; padding: 4px 5px; white-space: nowrap; text-shadow: 0 1px 0 #ffffff;}
+.toolbarBox a.toolbar_btn:hover { background-color:#fff; border:1px solid #ccc; border-radius:3px; text-decoration: none;}
+.toolbarBox .toolbar_btn span{ display: block;float: none;height: 32px;margin: 0 auto;width: 32px; /*hacking ie7*/ margin:0 !ie; position:relative !ie;}
+.toolbarBox .process-icon-delete { background-image: url('../img/process-icon-delete.png');}
+.toolbarBox .process-icon-duplicate { background-image: url('../img/process-icon-duplicate.png');}
+.toolbarBox .process-icon-preview { background-image: url('../img/process-icon-preview.png');}
+.toolbarBox .process-icon-stats { background-image: url('../img/process-icon-stats.png');}
+.toolbarBox .process-icon-cancel, .toolbarBox .toolbar-cancel { background-image: url('../img/process-icon-cancel.png');}
+.toolbarBox .process-icon-new, .toolbarBox .toolbar-new{ background-image: url('../img/process-icon-new.png');}
+.toolbarBox .process-icon-save { background-image: url('../img/process-icon-save.png');}
+.toolbarBox .process-icon-save-and-stay { background-image: url('../img/process-icon-save-and-stay.png');}
+.toolbarBox .process-icon-edit { background-image: url('../img/process-icon-edit.png');}
+.toolbarBox .process-icon-back { background-image: url('../img/process-icon-back.png');}
+.toolbarBox .process-icon-refresh-index  { background-image: url('../img/process-icon-refresh-index.png');}
+.toolbarBox .process-icon-refresh-cache  { background-image: url('../img/process-icon-refresh-cache.png');}
+.toolbarBox .process-icon-save-calendar { background-image: url('../img/process-icon-save-calendar.png');}
+.toolbarBox .process-icon-new-module { background-image: url('../img/process-icon-new-module.png');}
+.toolbarBox .process-icon-new-url { background-image: url('../img/process-icon-new-url.png');}
+.toolbarBox .process-icon-new-module-addon { background-image: url('../img/process-icon-new-module-addon.png');}
+.toolbarBox .process-icon-save-and-preview { background-image: url('../img/process-icon-preview.png');}
+.toolbarBox .process-icon-export { background-image: url('../img/process-icon-export-csv.png');}
+.toolbarBox .process-icon-export-all { background-image: url('../img/process-icon-export-csv-details.png');}
+.toolbarBox .process-icon-export-stock-state-quantities-csv { background-image: url('../img/process-icon-export-csv.png');}
+.toolbarBox .process-icon-export-stock-state-prices-csv { background-image: url('../img/process-icon-export-csv-details.png');}
+.toolbarBox .process-icon-export-csv-orders { background-image: url('../img/process-icon-export-csv.png');}
+.toolbarBox .process-icon-export-csv-details { background-image: url('../img/process-icon-export-csv-details.png');}
+.toolbarBox .process-icon-export-stock-mvt-csv { background-image: url('../img/process-icon-export-csv.png');}
+.toolbarBox .process-icon-newAttributes, .toolbarBox .toolbar-new{ background-image: url('../img/process-icon-new.png');}
+.toolbarBox .process-icon-new.add_product{ background-image: url('../img/process-icon-addProduct.png');}
+.toolbarBox .process-icon-partialRefund{ background-image: url('../img/process-icon-partial-refund.png');}
+.toolbarBox .process-icon-standardRefund{ background-image: url('../img/process-icon-standard-refund.png');}
+.toolbarBox .process-icon-help{ background-image: url('../img/process-icon-help.png');}
+.toolbarBox .process-icon-help-new{ background-image: url('../img/process-icon-help-new.png');}
+
+div.fix-toolbar {border-bottom: 1px solid #E0E0E0;position:fixed;top:38px;opacity:0.9;z-index:1;}

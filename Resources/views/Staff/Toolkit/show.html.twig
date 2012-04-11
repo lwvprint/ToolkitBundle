@@ -4,8 +4,24 @@
 View Toolkit :: {{ parent() }}
 {% endblock %}
 
+{% block toolbar_options %}
+    <li>
+        <a id="desc-cart_rule-new" class="toolbar_btn" href="{{ path('staff_toolkit_edit', { 'id': entity.id }) }}" title="Edit" >
+            <span class="process-icon-edit" ></span>
+            <div>Edit</div>
+        </a>
+    </li>
+    <li>
+        <a class="toolbar_btn" href="{{ path('staff_toolkit') }}" title="Back to List" >
+            <span class="process-icon-back" ></span>
+            <div>Back to List</div>
+        </a>
+    </li>
+
+{% endblock %}
+
 {% block h1 %}
-{{ entity.name }}
+{{ entity.name }} <small>{{entity.url }}</small>
 {% endblock %}
 
 {% block content %}
@@ -87,7 +103,7 @@ View Toolkit :: {{ parent() }}
                         </tr>
                         <tr>
                             <th>Theme</th>
-                            <td>{{ entity.theme.name }}</td>
+                            <td>{# entity.theme.name #}</td>
                         </tr>
                     </tbody>
                 </table>

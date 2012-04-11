@@ -1,64 +1,95 @@
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
 {% from 'LWVToolkitBundle:Global:flash.html.twig' import session_flash %}
-<!DOCTYPE HTML>
-<html lang="">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="robots" content="noindex,nofollow" />
-        <title>{% block title %}LWV Staff{% endblock %}</title>
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-        {% block styelsheets %}
-            {% stylesheets
-                'bundles/lwvtoolkit/css/bootstrap-2.0.1.css' filter='cssrewrite'
-                'bundles/lwvtoolkit/css/*' filter='cssrewrite'
+{% block head_style %}
+    {% stylesheets
+        'bundles/lwvtoolkit/less/bootstrap.less' filter='less, cssrewrite' output="css/bootstrap.css"
+        'bundles/lwvtoolkit/css/global.css' filter='cssrewrite'
+        'bundles/lwvtoolkit/css/ui.totop.css' filter='cssrewrite'
+        'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" media="screen" type="text/css" />
+    {% endstylesheets %}
+{% endblock head_style %}
 
-                'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
-            %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
-        {% endblock %}
-    </head>
-    <body>
-        <header id="top-bar">
-            {% block top_bar %}
-            {% include 'LWVToolkitBundle:Staff\\Includes:top-bar.html.twig' %}
-            {% endblock %}
-        </header>
-        <nav id="staff-sidebar">
-            {% block staff_sidebar %}
-            {% include 'LWVToolkitBundle:Staff\\Includes:staff-sidebar.html.twig' %}
-            {% endblock %}
-        </nav>
-        <section id="breadcrumb-search">
-            {% block breadcrumb_search %}
-            {% include 'LWVToolkitBundle:Staff\\Includes:breadcrumb-search.html.twig' %}
-            {% endblock %}
-	        <div class="clearfix"></div>
-        </section>
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-                    <div class="page-header">
-                        <h1>{% block h1 %}LWV Admin{% endblock %}</h1>
+{% block head_script %}
+<meta name="robots" content="noindex,nofollow" />
+{% endblock head_script %}
+
+
+{% block title %}LWV Admin{% endblock %}
+
+
+{% block navbar %}
+<header id="top-bar">
+    {% block top_bar %}
+    {% include 'LWVToolkitBundle:Staff\\Includes:top-bar.html.twig' %}
+    {% endblock top_bar %}
+</header>
+<nav id="staff-sidebar">
+    {% block staff_sidebar %}
+    {% include 'LWVToolkitBundle:Staff\\Includes:staff-sidebar.html.twig' %}
+    {% endblock staff_sidebar %}
+</nav>
+<section id="breadcrumb-search">
+    {% block breadcrumb_search %}
+    {% include 'LWVToolkitBundle:Staff\\Includes:breadcrumb-search.html.twig' %}
+    {% endblock breadcrumb_search %}
+    <div class="clearfix"></div>
+</section>
+{% endblock navbar %}
+{% block page_header %}
+{% if app.request.get('_route') != 'staff_home' %}
+        <section id="toolbar">
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="toolbarBox toolbarHead">
+                            <ul class="toolbar_button">
+                                {% block toolbar_options %}
+                                <li>
+                                    <a class="toolbar_btn" href="{# path('staff_toolkit_new') #}/help" title="Help" >
+                                        <span class="process-icon-help" ></span>
+                                        <div>Help</div>
+                                    </a>
+                                </li>
+                                {% endblock %}
+                            </ul>
+                            <div class="pageTitle">
+                                <h1>
+                                    {% block h1 %}LWV Admin{% endblock %}
+                                </h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+{% else %}
+
+{% endif %}
+
+{% endblock page_header %}
+
+
         {% block flashes %}
             {{ session_flash(null, 'true', 'false', null, 'true') }}
         {% endblock %}
 
-
+{% block content_row %}
         {% block content %}
-        Main content block
-        {% endblock %}
-
-        {% block asides %}{% endblock %}
+        <div class="span9">Test Date</div>
+        <div class="span3">
+            {% block content_sidebar %}
+            {{ parent() }}
+            {% endblock content_sidebar %}
+        </div>
+        {% endblock content %}
+{% endblock content_row %}
 
         {% block footer %}
             {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
-        {% endblock %}*-
-
-        {% block javascripts %}
+        {% endblock %}
+        {% block foot_script %}
 
         {% javascripts
             '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
@@ -74,6 +105,4 @@
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% endblock %}
-    </body>
-</html>
+        {% endblock foot_script %}

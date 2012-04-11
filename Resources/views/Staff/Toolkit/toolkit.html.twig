@@ -7,6 +7,15 @@ Toolkit List :: {{ parent() }}
 {% block h1 %}
 Toolkit List
 {% endblock %}
+{% block toolbar_options %}
+<li>
+    <a class="toolbar_btn" href="{{ path('staff_toolkit_new') }}" title="Add New" >
+        <span class="process-icon-new" ></span>
+        <div>Add New</div>
+    </a>
+</li>
+
+{% endblock %}
 
 {% block content %}
 <section>
