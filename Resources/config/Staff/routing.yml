@@ -1,15 +1,19 @@
 staff_home:
     pattern: /staff
     defaults: { _controller: LWVToolkitBundle:Staff\Home:index }
-    
+
 LWVToolkitBundle_staff_toolkit:
     resource: "@LWVToolkitBundle/Resources/config/Staff/toolkit.yml"
     prefix:   /staff/toolkit
-    
+
 LWVToolkitBundle_staff_company:
     resource: "@LWVToolkitBundle/Resources/config/Staff/company.yml"
     prefix:   /staff/company
-    
+
 LWVToolkitBundle_staff_product_category:
     resource: "@LWVToolkitBundle/Resources/config/Staff/productcategory.yml"
     prefix:   /staff/product_category
+
+LWVToolkitBundle_settings_modify:
+    resource: "@LWVToolkitBundle/Resources/config/Staff/settings.yml"
+    prefix: /staff/settings

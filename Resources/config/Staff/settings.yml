@@ -1,0 +1,3 @@
+lwv_settings_modify:
+    pattern:  /modify
+    defaults: { _controller: "LWVToolkitBundle:Staff\Settings:modify" }

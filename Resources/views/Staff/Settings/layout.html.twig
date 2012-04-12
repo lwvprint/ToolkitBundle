@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		{% block stylesheets %}
+
+		{% endblock %}
+	</head>
+	<body>
+		{% for key, flash in app.session.getFlashes() %}
+			<div class="{{ key }}">
+				{{ flash }}
+			</div>
+		{% endfor %}
+
+		{% block lwv_config_content %}
+		{% endblock %}
+	</body>
+</html>

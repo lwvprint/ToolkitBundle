@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="row">
+		<div class="span12">
+		{% if form.settings | length > 0 %}
+			{% include 'LWVToolkitBundle:Staff\\Settings\\Includes:modify_form.html.twig' %}
+		{% else %}
+			{% include 'LWVToolkitBundle:Staff\\Settings\\Includes:modify_form_empty.html.twig' %}
+		{% endif %}
+		</div>
+	</div>
+</div>
