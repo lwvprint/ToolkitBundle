@@ -26,6 +26,9 @@ class ToolkitController extends Controller
 
         $entities = $em->getRepository('LWVToolkitBundle:Toolkit\Toolkit')->findAll();
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
         return $this->render('LWVToolkitBundle:Staff/Toolkit:toolkit.html.twig', array(
             'entities' => $entities,
         ));
@@ -46,7 +49,10 @@ class ToolkitController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
+        $breadcrumbs->addItem("". $entity->getName() . "", $this->get("router")->generate("staff_toolkit_show", array('id' => $entity->getId())));
         return $this->render('LWVToolkitBundle:Staff/Toolkit:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -61,6 +67,11 @@ class ToolkitController extends Controller
     {
         $entity = new Toolkit();
         $form   = $this->createForm(new ToolkitType(), $entity);
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
+        $breadcrumbs->addItem("New Toolkit", $this->get("router")->generate("staff_toolkit_new"));
 
         return $this->render('LWVToolkitBundle:Staff/Toolkit:new.html.twig', array(
             'entity' => $entity,

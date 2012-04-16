@@ -4,12 +4,12 @@ parameters:
 
 services:
     #lwv_toolkit_listener_user.login_listener:
-    #    class: %lwv_toolkit_listener_user.login_listener.class%
-    #    arguments: [ @session ]
-    #    tags:
-    #        - { name: kernel.event_listener, event: security.interactive_login, method: onLogin }
-    #security.listener:
-    #    class: %security.listener.class%
-    #    arguments: [ @router, @security.context ]
-    #    tags:
-    #        - { name: kernel.event_listener, event: kernel.request, method: onSecurityInteractiveLogin }
+       # class: %lwv_toolkit_listener_user.login_listener.class%
+        #arguments: [ @session ]
+        #tags:
+        #   - { name: kernel.event_listener, event: security.interactive_login, method: onLogin }
+    security.listener:
+        class: %security.listener.class%
+        arguments: [  @service_container ]
+        tags:
+            - { name: kernel.event_listener, priority: 0, event: kernel.request, method: onPageLoad }

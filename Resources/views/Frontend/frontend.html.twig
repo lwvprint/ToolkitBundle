@@ -1,80 +1,77 @@
+{% extends 'LWVToolkitBundle::base.html.twig' %}
 {% from 'LWVToolkitBundle:Global:flash.html.twig' import session_flash %}
-<!DOCTYPE HTML>
-<html lang="en-GB">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="robots" content="noindex,nofollow" />
-        <title>{% block title %}LWV Toolkit{% endblock %}</title>
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-        {% block styelsheets %}
-            {% stylesheets
-            	'bundles/lwvtoolkit/css/bootstrap-2.0.1.css' filter='cssrewrite'
-                'bundles/lwvtoolkit/css/*' filter='cssrewrite'
-                'bundles/lwvtoolkit/Frontend/css/*' filter='cssrewrite'
-            %}
-                <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
-            {% endstylesheets %}
-        {% endblock %}
-    </head>
-    <body>
-        <!-- header -->
-        <header>
-            <!-- link bar -->
-            <div id="link-bar">
-                <div class="container">
-                    <div class="row">
-                        <div class="span6">
-                            <ul id="site-links"><!-- to be floated left -->
-                                <li><a href="{{ path('shop') }}">Home</a></li>
-                                <li><a href="">Terms and Conditions</a></li>
-                                <li><a href="">FAQ</a></li>
-                                <li><a href="">Support</a></li>
-                            </ul>
-                        </div>
-                        <div class="span5 offset1">
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <ul id="user-links"><!-- to be floated right -->
-                                <li>Logged in as: <strong>{{ app.user.username }}</strong></li>
-                                <li><a href="{{ path('tk_profile') }}">My Account</a></li>
-                                <li><a href="{{ path('logout') }}">Logout</a></li>
-                            </ul>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- link bar end -->
-            <!-- brand bar -->
-            <div id="brand-bar">
-                <div class="container">
-                    <div class="row">
-                        <div class="span2">
-                            <div class="logo"><!-- floated left -->
-                                <h1>LWV Toolkit</h1>
-                            </div>
-                        </div>
-                        <div class="span5 offset5">
-                            {% block mini_cart %}
-								<div id="mini-cart">
-										<a href="#link-to-actual-cart">
-											<i class="icon-shopping-cart icon-white"></i>
-											<span class="my-bag-image">My Cart</span> |
-											<span class="my-cart-items">0 item(s)</span> |
-											<span class="basket-value">£0.00</span>
-										</a>
-									<div class="cart-under"><!-- jquery pop cart will trigger on this div -->
-										<a href="#">View Cart</a>
-									</div>
-								</div>
-							{% endblock %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- brand bar end -->
-        </header>
-        <!-- header end -->
+{% block title %}LWV Toolkit{% endblock %}
 
+{% block head_style %}
+{{ parent() }}
+{% stylesheets
+'bundles/lwvtoolkit/Frontend/css/*' filter='cssrewrite'
+filter='?yui_css' output='css/frontend.css'
+%}
+<link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+{% endstylesheets %}
+{% endblock %}
+{% block navbar %}
+<!-- header -->
+<header>
+    <!-- link bar -->
+    <div id="link-bar">
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <ul id="site-links"><!-- to be floated left -->
+                        <li><a href="{{ path('shop') }}">Home</a></li>
+                        <li><a href="">Terms and Conditions</a></li>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Support</a></li>
+                    </ul>
+                </div>
+                <div class="span5 offset1">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <ul id="user-links"><!-- to be floated right -->
+                        <li>Logged in as: <strong>{{ app.user.username }}</strong></li>
+                        <li><a href="{{ path('tk_profile') }}">My Account</a></li>
+                        <li><a href="{{ path('logout') }}">Logout</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- link bar end -->
+    <!-- brand bar -->
+    <div id="brand-bar">
+        <div class="container">
+            <div class="row">
+                <div class="span2">
+                    <div class="logo"><!-- floated left -->
+                        <h1>LWV Toolkit</h1>
+                    </div>
+                </div>
+                <div class="span5 offset5">
+                    {% block mini_cart %}
+						<div id="mini-cart">
+								<a href="#link-to-actual-cart">
+									<i class="icon-shopping-cart icon-white"></i>
+									<span class="my-bag-image">My Cart</span> |
+									<span class="my-cart-items">0 item(s)</span> |
+									<span class="basket-value">£0.00</span>
+								</a>
+							<div class="cart-under"><!-- jquery pop cart will trigger on this div -->
+								<a href="#">View Cart</a>
+							</div>
+						</div>
+					{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- brand bar end -->
+</header>
+<!-- header end -->
+{% endblock navbar %}
+
+{% block container %}
         <section>
             <div class="container">
                 <div class="row">
@@ -119,24 +116,17 @@
             {% block footer %}
             {% endblock %}
         </footer>
-
         <!-- container ends -->
-        {% block javascripts %}
-            {% javascripts
-                '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
-                '@LWVToolkitBundle/Resources/public/js/bootstrap-datepicker.js'
-                '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
-                '@LWVToolkitBundle/Resources/public/js/bootstrap-tab.js'
-                '@LWVToolkitBundle/Resources/public/js/bootstrap-alert.js'
-                '@LWVToolkitBundle/Resources/public/js/bootstrap-transition.js'
-                '@LWVToolkitBundle/Resources/public/js/fullcalendar.js'
-                '@LWVToolkitBundle/Resources/public/js/jquery.ui.totop.js'
-                '@LWVToolkitBundle/Resources/public/js/jquery-easing.min.js'
-                '@LWVToolkitBundle/Resources/public/js/global.js'
-                '@LWVToolkitBundle/Resources/public/Frontend/js/*'
-            %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        {% endblock %}
-    </body>
-</html>
+
+{% endblock container %}
+{% block foot_script %}
+{{ parent() }}
+    {% javascripts
+        '@LWVToolkitBundle/Resources/public/js/bootstrap-datepicker.js'
+        '@LWVToolkitBundle/Resources/public/js/fullcalendar.js'
+        '@LWVToolkitBundle/Resources/public/Frontend/js/*'
+        filter="yui_js" output='js/lwv_frontend.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -24,8 +24,8 @@
                 </div>
                 <div class="span8 login-form">
 
-                {% if toolkit.maintenancemode is defined %}
-                    
+                {#% if toolkit.maintenancemode is defined %}
+
                     {% if toolkit.maintenancemode == 1 %}
 
                         <h2>Maintenance</h2>
@@ -43,19 +43,19 @@
                         {% include 'LWVToolkitBundle:User\\Form:login-form.html.twig' %}
 
                     {% endif %}
-                        
-                {% else %}
-                        
+
+                {% else % #}
+
                     {% if error %}
                         <div class="alert alert-error" data-dismiss="alert">
                             <a href="#" class="close">×</a>
                             {{ error.message|trans }}
                         </div>
                     {% endif %}
-                        
+
                     {% include 'LWVToolkitBundle:User\\Form:login-form.html.twig' %}
-                        
-                {% endif %}
+
+                {#% endif %#}
 
                 </div>
             </div>
