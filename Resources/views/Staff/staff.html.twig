@@ -1,21 +1,12 @@
-{% extends 'MopaBootstrapBundle::base.html.twig' %}
-{% from 'LWVToolkitBundle:Global:flash.html.twig' import session_flash %}
+{% extends 'LWVToolkitBundle::base.html.twig' %}
 {% block head_style %}
-    {% stylesheets
-        'bundles/lwvtoolkit/less/bootstrap.less' filter='less, cssrewrite' output="css/bootstrap.css"
-        'bundles/lwvtoolkit/css/global.css' filter='cssrewrite'
-        'bundles/lwvtoolkit/css/ui.totop.css' filter='cssrewrite'
-        'bundles/lwvtoolkit/Staff/css/*' filter='cssrewrite'
-    %}
-        <link rel="stylesheet" href="{{ asset_url }}" media="screen" type="text/css" />
-    {% endstylesheets %}
+{{ parent() }}{% stylesheets
+    'bundles/lwvtoolkit/Staff/css/*'
+    filter="cssrewrite, ?yui_css" output='css/staff.css'
+%}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+{% endstylesheets %}
 {% endblock head_style %}
-
-{% block head_script %}
-<meta name="robots" content="noindex,nofollow" />
-{% endblock head_script %}
-
-
 {% block title %}LWV Admin{% endblock %}
 
 
@@ -71,9 +62,6 @@
 {% endblock page_header %}
 
 
-        {% block flashes %}
-            {{ session_flash(null, 'true', 'false', null, 'true') }}
-        {% endblock %}
 
 {% block content_row %}
         {% block content %}
@@ -90,18 +78,11 @@
             {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
         {% endblock %}
         {% block foot_script %}
-
+        {{ parent() }}
         {% javascripts
-            '@LWVToolkitBundle/Resources/public/js/jquery-1.7.1.min.js'
             '@LWVToolkitBundle/Resources/public/js/bootstrap-datepicker.js'
-            '@LWVToolkitBundle/Resources/public/js/bootstrap-dropdown.js'
-            '@LWVToolkitBundle/Resources/public/js/bootstrap-tab.js'
-            '@LWVToolkitBundle/Resources/public/js/bootstrap-alert.js'
-            '@LWVToolkitBundle/Resources/public/js/bootstrap-transition.js'
-            '@LWVToolkitBundle/Resources/public/js/jquery.ui.totop.js'
-            '@LWVToolkitBundle/Resources/public/js/jquery-easing.min.js'
-            '@LWVToolkitBundle/Resources/public/js/global.js'
             '@LWVToolkitBundle/Resources/public/Staff/js/*'
+            filter='yui_js' output='js/staff.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
