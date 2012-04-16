@@ -1,19 +1,34 @@
-LWV\ToolkitBundle\Entity\User\Profile:
-    properties:
-        name:
-            - NotBlank:
-                message: Name cannot be blank.
-        pubName:
-            - NotBlank:
-                message: Pub Name cannot be blank.
-
 LWV\ToolkitBundle\Entity\User\User:
     properties:
         username:
             - NotBlank:
-                message: Username cannot be blank.
+                groups: profile
+                message: Username cannot be left blank.
         email:
-            - NotBlank: ~
+            - NotBlank:
+                groups: profile
+                message: Email cannot be left blank
             - Email:
+                groups: profile
                 message: The email "{{ value }}" is not a valid email.
                 checkMX: true
+        password:
+            - MaxLength: { limit: 20, message: "Your password must not exceed {{ limit }} characters." }
+            - MinLength: { limit: 4, message: "Your password must have at least {{ limit }} characters." }
+            - NotBlank: ~
+LWV\ToolkitBundle\Entity\User\Profile:
+    properties:
+        address1:
+            - NotBlank: { groups: [profile] }
+        name:
+            - NotBlank: { groups: [profile] }
+        pubName:
+            - NotBlank: { groups: [profile] }
+LWV\ToolkitBundle\Entity\Toolkit\Toolkit:
+    properties:
+        name:
+            - NotBlank: ~
+        url:
+            - NotBlank: ~
+        maintenance_message:
+            - NotBlank: ~

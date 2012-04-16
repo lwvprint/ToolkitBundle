@@ -2,18 +2,18 @@
 namespace LWV\ToolkitBundle\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\SecurityContext;
-
-use LWV\ToolkitBundle\Entity\User\User;
-use LWV\ToolkitBundle\Form\Type\User\UserType;
-//use LWV\UserBundle\Form\Type\PasswordType;
-
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session;
 
 use Symfony\Component\Form\CallbackValidator;
-use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+
+use LWV\ToolkitBundle\Entity\User\Profile;
+use LWV\ToolkitBundle\Entity\User\User;
+use LWV\ToolkitBundle\Form\Type\User\ProfileType;
+use LWV\ToolkitBundle\Form\Type\User\UserType;
 
 class DashboardController extends Controller
 {

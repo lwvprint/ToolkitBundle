@@ -3,7 +3,11 @@
 namespace LWV\ToolkitBundle\Form\Toolkit;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackValidator;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormError;
+
+use LWV\ToolkitBundle\Form\Toolkit\ThemeType;
 
 class ToolkitType extends AbstractType
 {
@@ -21,7 +25,7 @@ class ToolkitType extends AbstractType
             ->add('can_edit_profile', null, array('required' => false))
             ->add('can_edit_password', null, array('required' => false))
             ->add('enable_budget', null, array('required' => false))
-            ->add('budget_amount')
+            ->add('budget_amount', null, array('required' => false))
             ->add('staff_operator', 'entity', array(
                 'class' => 'LWV\ToolkitBundle\Entity\User\User',
                 'property' => 'username'
@@ -30,11 +34,25 @@ class ToolkitType extends AbstractType
                 'class' => 'LWV\ToolkitBundle\Entity\User\User',
                 'property' =>'username'
             ))
+            ->add('theme', 'entity', array(
+                'class' => 'LWV\ToolkitBundle\Entity\Theme\Theme',
+                'property' => 'name',
+                'empty_value' => 'Choose a theme',
+                'required' => false
+            ))
+            ->add('new_theme', new ThemeType(), array('property_path' => false))
         ;
+    }
+    
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'LWV\ToolkitBundle\Entity\Toolkit\Toolkit',
+        );
     }
 
     public function getName()
     {
-        return 'lwv_toolkitbundle_toolkit_toolkittype';
+        return 'toolkit';
     }
 }

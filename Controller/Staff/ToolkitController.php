@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use LWV\ToolkitBundle\Entity\Toolkit\Toolkit;
 use LWV\ToolkitBundle\Form\Toolkit\ToolkitType;
 
+use LWV\ToolkitBundle\Entity\Theme\Theme;
+
 /**
  * Toolkit\Toolkit controller.
  *
@@ -73,16 +75,36 @@ class ToolkitController extends Controller
     public function createAction()
     {
         $entity  = new Toolkit();
+        $theme = new Theme();
         $request = $this->getRequest();
         $form    = $this->createForm(new ToolkitType(), $entity);
-        $form->bindRequest($request);
+        
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
-            $em->flush();
+            if ($form->isValid()) {
+                $postData = $request->request->get('toolkit');
+                
+                if($postData['theme'] != NULL){
+                    //$themeId = $postData['theme'];
+                    //$entity->setTheme();
+                } else {
+                    $name = $postData['new_theme']['theme_name'];
+                    $path = $postData['new_theme']['theme_path'];
+                    
+                    $theme->setName($name);
+                    $theme->setPath($path);
+                    
+                    $entity->setTheme($theme);
+                }
+                
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($theme);
+                $em->persist($entity);
+                $em->flush();
 
-            return $this->redirect($this->generateUrl('staff_toolkit_show', array('id' => $entity->getId())));
+                return $this->redirect($this->generateUrl('staff_toolkit_show', array('id' => $entity->getId())));
+            }
         }
 
         return $this->render('LWVToolkitBundle:Staff/Toolkit:new.html.twig', array(
@@ -140,8 +162,8 @@ class ToolkitController extends Controller
             $em->persist($entity);
             $em->flush();
             // Set flash message
-            $this->get('session')->getFlashBag()->add('info', 'message');
-            $this->get('session')->getFlashBag()->add('info', 'message 2');
+            //$this->get('session')->getFlashBag()->add('info', 'message');
+            //$this->get('session')->getFlashBag()->add('info', 'message 2');
 
 
             return $this->redirect($this->generateUrl('staff_toolkit_edit', array('id' => $id)));

@@ -13,20 +13,46 @@ Toolkit Creation
     <div class="container">
         <div class="row">
             <div class="span12">
-                <form action="{{ path('staff_toolkit_create') }}" method="post" {{ form_enctype(form) }}>
-                    {{ form_widget(form) }}
-                    <p>
-                        <button type="submit">Create</button>
-                    </p>
-                </form>
+                {% form_theme form 'LWVToolkitBundle:Global:fields.html.twig' %}
 
-                <ul class="record_actions">
-                    <li>
-                        <a href="{{ path('staff_toolkit') }}">
-                            Back to the list
-                        </a>
-                    </li>
-                </ul>
+                {{ form_errors(form) }}
+                    
+                <form action="{{ path('staff_toolkit_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate>
+                    <fieldset>
+                        <legend>Toolkit Details</legend>
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.url) }}
+                        {{ form_row(form.is_active) }}
+                        {{ form_row(form.is_demo) }}
+                        {{ form_row(form.is_secure) }}
+                        {{ form_row(form.is_payment) }}
+                        {{ form_row(form.maintenance_mode) }}
+                        {{ form_row(form.maintenance_message) }}
+                        {{ form_row(form.can_edit_profile) }}
+                        {{ form_row(form.can_edit_password) }}
+                        {{ form_row(form.enable_budget) }}
+                        {{ form_row(form.budget_amount) }}
+                        {{ form_row(form.staff_operator) }}
+                        {{ form_row(form.company_operator) }}
+                    </fieldset>
+                    <fieldset>
+                        <legend>Toolkit Theme</legend>
+                        {{ form_row(form.theme) }}
+                        <p>or</p>
+                        {{ form_row(form.new_theme.theme_name) }}
+                        {{ form_row(form.new_theme.theme_path) }}
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-actions">
+                            {{ form_rest(form) }}
+                            <input class="btn-primary" type="submit" value="Create" />
+                            <input class="btn-warning" type="reset" value="Reset">
+                            <a class="btn" href="{{ path('staff_toolkit') }}">
+                                Back to the list
+                            </a>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>

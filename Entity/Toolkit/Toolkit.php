@@ -493,6 +493,28 @@ class Toolkit
     }
 
     /**
+     * Set status_group
+     *
+     * @param LWV\ToolkitBundle\Entity\Status\Status $statusGroup
+     * @return Toolkit
+     */
+    public function setStatusGroup(\LWV\ToolkitBundle\Entity\Status\Status $statusGroup = null)
+    {
+        $this->status_group = $statusGroup;
+        return $this;
+    }
+
+    /**
+     * Get status_group
+     *
+     * @return LWV\ToolkitBundle\Entity\Status\Status 
+     */
+    public function getStatusGroup()
+    {
+        return $this->status_group;
+    }
+
+    /**
      * Set theme
      *
      * @param LWV\ToolkitBundle\Entity\Theme\Theme $theme
@@ -596,27 +618,5 @@ class Toolkit
     public function getCompanies()
     {
         return $this->companies;
-    }
-
-    /**
-     * Set status_group
-     *
-     * @param LWV\ToolkitBundle\Entity\Status\Status $statusGroup
-     * @return Toolkit
-     */
-    public function setStatusGroup(\LWV\ToolkitBundle\Entity\Status\Status $statusGroup = null)
-    {
-        $this->status_group = $statusGroup;
-        return $this;
-    }
-
-    /**
-     * Get status_group
-     *
-     * @return LWV\ToolkitBundle\Entity\Status\Status 
-     */
-    public function getStatusGroup()
-    {
-        return $this->status_group;
     }
 }

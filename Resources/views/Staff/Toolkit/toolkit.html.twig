@@ -29,6 +29,7 @@ Toolkit List
                             <th>Edit password?</th>
                             <th>Budget enabled?</th>
                             <th>Budget amount</th>
+                            <th>Theme</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -48,6 +49,7 @@ Toolkit List
                             <td>{% if entity.caneditpassword == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                             <td>{% if entity.enablebudget == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                             <td>{% if entity.enablebudget == 1 %}{{ entity.budgetamount }}{% else %}N/A{% endif %}</td>
+                            <td>{{ entity.theme.name }}</td>
                             <td>
                                 <a class="btn" href="{{ path('staff_toolkit_show', { 'id': entity.id }) }}">show</a>
                                 <a class="btn" href="{{ path('staff_toolkit_edit', { 'id': entity.id }) }}">edit</a>

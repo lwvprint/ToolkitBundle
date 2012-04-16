@@ -48,3 +48,27 @@ staff_update_profile:
     defaults: { _controller: LWVToolkitBundle:User\Dashboard:profile }
     requirements:
         _method: POST
+
+password_request_update:
+    pattern: /request/password
+    defaults: { _controller: LWVToolkitBundle:User\Reset:passwordRequest }
+    requirements:
+        _method: POST
+        
+password_request:
+    pattern: /request/password
+    defaults: { _controller: LWVToolkitBundle:User\Reset:passwordRequest }
+    
+password_reset_update:
+    pattern: /reset/password/{key}
+    defaults: { _controller: LWVToolkitBundle:User\Reset:passwordReset }
+    requirements:
+        _method: POST
+        
+password_reset:
+    pattern: /reset/password/{key}
+    defaults: { _controller: LWVToolkitBundle:User\Reset:passwordReset }
+    
+password_reset_success:
+    pattern: /reset/success
+    defaults: { _controller: LWVToolkitBundle:User\Reset:passwordSuccess }

@@ -157,7 +157,7 @@ class Company
 
     /**
      * @ORM\ManyToOne(targetEntity="LWV\ToolkitBundle\Entity\Toolkit\Toolkit", inversedBy="company")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     protected $toolkit;
 

@@ -1,0 +1,29 @@
+{% form_theme form 'LWVToolkitBundle:User\\Form:fields.html.twig' %}
+
+{{ form_errors(form) }}
+
+<form action="{{ path('tk_update_profile') }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+    <fieldset>
+        <legend>Your Details</legend>
+        {{ form_row(form.username) }}
+        {{ form_row(form.profile.name) }}
+        {{ form_row(form.email) }}
+    </fieldset>
+    <fieldset>
+        <legend>Pub Details</legend>
+        {{ form_row(form.profile.pubName) }}
+        {{ form_row(form.profile.address1) }}
+        {{ form_row(form.profile.address2) }}
+        {{ form_row(form.profile.city) }}
+        {{ form_row(form.profile.county) }}
+        {{ form_row(form.profile.postcode) }}
+        {{ form_row(form.profile.telephone) }}
+    </fieldset>
+    <fieldset>
+        <div class="form-actions">
+            {{ form_rest(form) }}
+            <input class="btn-primary" type="submit" value="Save" />
+            <input class="btn-warning" type="reset" value="Reset">
+        </div>
+    </fieldset>
+</form>

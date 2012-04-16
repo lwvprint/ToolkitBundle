@@ -13,7 +13,7 @@ View Toolkit :: {{ parent() }}
     <div class="container">
         <div class="row">
             <div class="span12">
-                <table class="record_properties">
+            <table class="record_properties table table-bordered">
                     <tbody>
                         <tr>
                             <th>Id</th>
@@ -28,51 +28,51 @@ View Toolkit :: {{ parent() }}
                             <td>{{ entity.url }}</td>
                         </tr>
                         <tr>
-                            <th>Is_active</th>
-                            <td>{{ entity.isactive }}</td>
+                            <th>Is active?</th>
+                            <td>{% if entity.isactive == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Is_demo</th>
-                            <td>{{ entity.isdemo }}</td>
+                            <th>Is demo?</th>
+                            <td>{% if entity.isdemo == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Is_secure</th>
-                            <td>{{ entity.issecure }}</td>
+                            <th>Is secure?</th>
+                            <td>{% if entity.issecure == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Is_payment</th>
-                            <td>{{ entity.ispayment }}</td>
+                            <th>Is payment?</th>
+                            <td>{% if entity.ispayment == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Maintenance_mode</th>
-                            <td>{{ entity.maintenancemode }}</td>
+                            <th>Maintenance mode?</th>
+                            <td>{% if entity.maintenancemode == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Maintenance_message</th>
+                            <th>Maintenance message</th>
                             <td>{{ entity.maintenancemessage }}</td>
                         </tr>
                         <tr>
-                            <th>Can_edit_profile</th>
-                            <td>{{ entity.caneditprofile }}</td>
+                            <th>Can edit profile?</th>
+                            <td>{% if entity.caneditprofile == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Can_edit_password</th>
-                            <td>{{ entity.caneditpassword }}</td>
+                            <th>Can edit password?</th>
+                            <td>{% if entity.caneditpassword == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Enable_budget</th>
-                            <td>{{ entity.enablebudget }}</td>
+                            <th>Budget Enabled?</th>
+                            <td>{% if entity.enablebudget == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Budget_amount</th>
+                            <th>Budget amount</th>
                             <td>{{ entity.budgetamount }}</td>
                         </tr>
                         <tr>
-                            <th>Created_at</th>
+                            <th>Created</th>
                             <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
                         </tr>
                         <tr>
-                            <th>Updated_at</th>
+                            <th>Updated</th>
                             <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
                         </tr>
                         <tr>
@@ -87,29 +87,28 @@ View Toolkit :: {{ parent() }}
                         </tr>
                         <tr>
                             <th>Theme</th>
-                            <td>{{ entity.theme.name }}</td>
+                            <td>{% if entity.theme is not null %}{{ entity.theme.name }}{% endif %}</td>
                         </tr>
                     </tbody>
                 </table>
-
-                <ul class="record_actions">
-                    <li>
-                        <a href="{{ path('staff_toolkit') }}">
+                    
+                <div class="row">
+                    <div class="span11">
+                        <a class="btn" href="{{ path('staff_toolkit') }}">
                             Back to the list
                         </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('staff_toolkit_edit', { 'id': entity.id }) }}">
+
+                        <a class="btn" href="{{ path('staff_toolkit_edit', { 'id': entity.id }) }}">
                             Edit
                         </a>
-                    </li>
-                    <li>
+                    </div>
+                    <div class="span1">
                         <form action="{{ path('staff_toolkit_delete', { 'id': entity.id }) }}" method="post">
                             {{ form_widget(delete_form) }}
-                            <input type="submit" value="Delete"/>
+                            <input class="btn-danger" type="submit" value="Delete" />
                         </form>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

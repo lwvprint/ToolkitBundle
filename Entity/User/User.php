@@ -46,6 +46,16 @@ class User implements AdvancedUserInterface
      * @ORM\Column(name="is_active", type="boolean")
      */
     protected $isActive;
+    
+    /**
+     * @ORM\Column(name="reset_token", type="string", length=200)
+     */
+    protected $resetToken;
+    
+    /**
+     * @ORM\Column(name="reset_token_date", type="datetime", length=25, nullable=true)
+     */
+    protected $resetTokenDate;
 
     /**
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
@@ -260,5 +270,49 @@ class User implements AdvancedUserInterface
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set resetToken
+     *
+     * @param string $resetToken
+     * @return User
+     */
+    public function setResetToken($resetToken)
+    {
+        $this->resetToken = $resetToken;
+        return $this;
+    }
+
+    /**
+     * Get resetToken
+     *
+     * @return string 
+     */
+    public function getResetToken()
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * Set resetTokenDate
+     *
+     * @param datetime $resetTokenDate
+     * @return User
+     */
+    public function setResetTokenDate($resetTokenDate)
+    {
+        $this->resetTokenDate = $resetTokenDate;
+        return $this;
+    }
+
+    /**
+     * Get resetTokenDate
+     *
+     * @return datetime 
+     */
+    public function getResetTokenDate()
+    {
+        return $this->resetTokenDate;
     }
 }

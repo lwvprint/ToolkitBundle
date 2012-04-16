@@ -1,55 +1,57 @@
-<h1>Product\ProductCategory list</h1>
+{% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Lft</th>
-            <th>Rgt</th>
-            <th>Root</th>
-            <th>Lvl</th>
-            <th>Name</th>
-            <th>Slug</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Created_at</th>
-            <th>Updated_at</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('staff_product_category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.lft }}</td>
-            <td>{{ entity.rgt }}</td>
-            <td>{{ entity.root }}</td>
-            <td>{{ entity.lvl }}</td>
-            <td>{{ entity.name }}</td>
-            <td>{{ entity.slug }}</td>
-            <td>{{ entity.description }}</td>
-            <td>{{ entity.image }}</td>
-            <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
-            <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif%}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('staff_product_category_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('staff_product_category_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% block title %}
+Category List :: {{ parent() }}
+{% endblock %}
 
-<ul>
-    <li>
-        <a href="{{ path('staff_product_category_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+{% block h1 %}
+Category List
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <table class="records_list table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Slug</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Toolkit</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in entities %}
+                        <tr>
+                            <td><a href="{{ path('staff_product_category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                            <td>{{ entity.name }}</td>
+                            <td>{{ entity.slug }}</td>
+                            <td>{{ entity.description }}</td>
+                            <td>{{ entity.image }}</td>
+                            <td>{{ entity.toolkit.name }}</td>
+                            <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
+                            <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif%}</td>
+                            <td>
+                                <a class="btn" href="{{ path('staff_product_category_show', { 'id': entity.id }) }}">show</a>
+                                <a class="btn" href="{{ path('staff_product_category_edit', { 'id': entity.id }) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a class="btn" href="{{ path('staff_product_category_new') }}">
+                    Create a new entry
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

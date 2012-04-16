@@ -3,7 +3,9 @@
 namespace LWV\ToolkitBundle\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackValidator;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormError;
 
 class ProfileType extends AbstractType
 {
@@ -23,6 +25,7 @@ class ProfileType extends AbstractType
     {
         return array(
             'data_class' => 'LWV\ToolkitBundle\Entity\User\Profile',
+            'validation_groups' => 'profile',
         );
     }
 
