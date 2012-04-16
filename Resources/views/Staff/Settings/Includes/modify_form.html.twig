@@ -1,8 +1,6 @@
 {% form_theme form 'LWVToolkitBundle:Staff\\Settings:form.html.twig' %}
-
 <form method="post" class="lwv_config_settings_modify form-inline" {{ form_enctype(form) }}>
 	{{ form_errors(form) }}
-
 	{% for section in sections | lwv_sortSections %}
 		{% if section is not empty %}
 			<fieldset>
@@ -24,6 +22,27 @@
 	{% endfor %}
 
 	{{ form_rest(form) }}
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary">{{ 'modify_settings' | trans }}</button>
+		<button type="reset" class="btn">{{ 'cancel_changes' | trans }}</button>
+	</div>
 
-	<button type="submit">{{ 'modify_settings' | trans({}, 'LWVToolkitBundle') }}</button>
+
 </form>
+
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs span3">
+   	<li class="active"><a href="#t1" data-toggle="tab">test one</a></li>
+   	<li><a href="#t2" data-toggle="tab"><i class="icon-edit"></i> General Settings</a></li>
+   	<li><a href="#t2" data-toggle="tab">test two</a></li>
+   	<li><a href="#t2" data-toggle="tab">test two</a></li>
+   	<li><a href="#t2" data-toggle="tab">test two</a></li>
+   	<li><a href="#t2" data-toggle="tab">test two</a></li>
+   	<li><a href="#t2" data-toggle="tab">test two</a></li>
+   	<li><a href="#t2" data-toggle="tab">test two</a></li>
+  </ul>
+  <div class="tab-content" style="display: block; width: none;">
+    <div class="tab-pane active" id="t1"> Tab one content</div>
+    <div class="tab-pane" id="t2"> Tab two content</div>
+  </div>
+</div>

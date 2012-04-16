@@ -7,9 +7,10 @@
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
 {% endstylesheets %}
 {% endblock head_style %}
+{% block head_meta %}
+<meta name="robots" content="noindex,nofollow" />
+{% endblock %}
 {% block title %}LWV Admin{% endblock %}
-
-
 {% block navbar %}
 <header id="top-bar">
     {% block top_bar %}

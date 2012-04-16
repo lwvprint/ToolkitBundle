@@ -26,8 +26,8 @@
 {% endblock head_style %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% block head_meta %}
-<meta name="robots" content="noindex,nofollow" />
-{% endblock %}
+
+{% endblock head_meta %}
 {% block head_script %}
 {# Overwrite this block to add your own js here, to get them generated into final files #}
 {% endblock head_script %}
@@ -46,7 +46,7 @@
         <div class="content">
             {% block page_header %}
             <div class="page-header">
-                  <h1>{% block headline %}Mopa Bootstrap Bundle{% endblock %}</h1>
+                  <h1>{% block headline %}LWV Print Toolkit{% endblock %}</h1>
             </div>
             {% endblock page_header %}
 
@@ -58,7 +58,7 @@
             <div class="row-fluid">
                 {% block content %}
                 <div class="span9">
-                    <strong>Hier könnte Ihre Werbung stehen ... </strong>
+                    <strong>Main Content </strong>
                 </div>
                 <div class="span3">
                     {% block content_sidebar %}
@@ -71,7 +71,7 @@
         </div>
         <footer>
             {% block footer %}
-            <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011</p>
+            <p>&copy; <a href="http://www.lwvprintworks.com.de" target="_blank">LWV Printworks.com</a> 2011</p>
             {% endblock footer %}
         </footer>
     </div> <!-- /container -->
