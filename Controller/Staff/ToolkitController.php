@@ -28,38 +28,43 @@ class ToolkitController extends Controller
     public function indexAction()
     {
         //$em = $this->getDoctrine()->getEntityManager();
-        //$query = $em->getRepository('LWVToolkitBundle:Toolkit\Toolkit')->findAll();
+        //$entities = $em->getRepository('LWVToolkitBundle:Toolkit\Toolkit')->findAll();
         
-        $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM LWVToolkitBundle:Toolkit\Toolkit a";
-        $query = $em->createQuery($dql);
+        //$em = $this->get('doctrine.orm.entity_manager');
+        //$dql = "SELECT a FROM LWVToolkitBundle:Toolkit\Toolkit a";
+        //$query = $em->createQuery($dql);
         
-        $paginator = $this->get('knp_paginator');
-        $entities = $paginator->paginate(
+        //$paginator = $this->get('knp_paginator');
+        /*$entities = $paginator->paginate(
             $query,
             $this->get('request')->query->get('page', 1),
             10
-        );
+        );*/
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
         $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
         
         return $this->render('LWVToolkitBundle:Staff/Toolkit:toolkit.html.twig', array(
-            'entities' => $entities,
+            //'entities' => $entities,
         ));
     }
     
-    public function restAction()
+    public function restAction(Request $request)
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT a FROM LWVToolkitBundle:Toolkit\Toolkit a";
+        $dql = "SELECT t.id, t.name, t.url, t.is_active FROM LWVToolkitBundle:Toolkit\Toolkit t";
         $query = $em->createQuery($dql);
         
-        $entities = $query->getResult();
+        $entities = $query->getArrayResult();
+        
+        foreach($entities as &$entity) {
+            $entity['null'] = 'null';
+            //array_push($entity, 'null');
+        }
         
         $view = View::create()
-                ->setData($entities)
+                ->setData(array('aaData' => $entities))
                 ->setFormat('json')
                 ->setStatusCode(200);
 

@@ -22,55 +22,19 @@ Toolkit List
     <div class="container">
         <div class="row">
             <div class="span12">
-                <table class="records_list table table-bordered table-striped">
+                <table class="records_list table table-striped" id="toolkit_datatable">
                     <thead>
                         <tr>
-                            <th style="width:50px;">{{ entities.sortable('ID', 'a.id')|raw }}</th>
-                            <th style="width:75px;">{{ entities.sortable('Name', 'a.name')|raw }}</th>
-                            <th>Slug</th>
-                            <th>Url</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>URL</th>
                             <th>Active?</th>
-                            <th>Demo?</th>
-                            <th>Secure?</th>
-                            <th>Payment?</th>
-                            <th>Maintenance?</th>
-                            <th>Edit profile?</th>
-                            <th>Edit password?</th>
-                            <th>Budget enabled?</th>
-                            <th>Budget amount</th>
-                            <th>Theme</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {% for entity in entities %}
-                        <tr>
-                            <td><a href="{{ path('staff_toolkit_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                            <td>{{ entity.name }}</td>
-                            <td>{{ entity.slug }}</td>
-                            <td>{{ entity.url }}</td>
-                            <td>{% if entity.isactive == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.isdemo == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.issecure == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.ispayment == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.maintenancemode == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.caneditprofile == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.caneditpassword == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.enablebudget == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
-                            <td>{% if entity.enablebudget == 1 %}{{ entity.budgetamount }}{% else %}N/A{% endif %}</td>
-                            <td>{{ entity.theme.name }}</td>
-                            <td>
-                                <a class="btn btn-primary btn-small" href="{{ path('staff_company', { 'slug': entity.slug } ) }}">Companies</a>
-                                <a class="btn btn-small" href="{{ path('staff_toolkit_show', { 'id': entity.id }) }}">Details</a>
-                                <a class="btn btn-small" href="{{ path('staff_toolkit_edit', { 'id': entity.id }) }}">Edit</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
                     </tbody>
                 </table>
-                <div>
-                     {{ entities.render()|raw }}
-                </div>
                 <a class="btn" href="{{ path('staff_toolkit_new') }}">
                     Create a new entry
                 </a>

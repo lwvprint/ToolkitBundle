@@ -26,4 +26,29 @@ format: function (date) {
 $('.tool-tip').tooltip();
 
 /* DataTables */
-$('#datatable').dataTable();
+$(document).ready(function() {
+    $('#toolkit_datatable').dataTable({
+        "bProcessing": true,
+        "sAjaxSource": '../toolkit/toolkit.json',
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "sPaginationType": "bootstrap",
+        "aoColumns": [
+            { "mDataProp": "id" },
+            { "mDataProp": "name" },
+            { "mDataProp": "url" },
+            { "mDataProp": "is_active" },
+            { "mDataProp": null }
+        ],
+        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+            if ( aData['is_active'] == true )
+            {
+                $('td:eq(3)', nRow).html( '<i class="icon-ok"></i>' );
+            }
+            $('td:eq(4)', nRow).html(
+                '<a class="btn btn-small" href="../toolkit/'+ aData['id'] +'/show">View</a>'+
+                '<a class="btn btn-small" href="../toolkit/'+ aData['id'] +'/edit">Edit</a>'
+            );
+            return nRow;
+        }
+    });
+});
