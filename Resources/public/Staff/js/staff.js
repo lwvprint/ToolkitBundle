@@ -21,3 +21,9 @@ format: function (date) {
   return dom + "/" + month + "/" + date.getFullYear();
 }
 });
+
+/* Bootstrap Tooltips */
+$('.tool-tip').tooltip();
+
+/* DataTables */
+$('#datatable').dataTable();

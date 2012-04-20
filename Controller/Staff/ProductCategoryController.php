@@ -21,8 +21,13 @@ class ProductCategoryController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->findAll();
+        $entities = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->findBy(array('lvl' => 0));
+        //$entities = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->findAll();
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("staff_product_category"));
+        
         return $this->render('LWVToolkitBundle:Staff/ProductCategory:productCategory.html.twig', array(
             'entities' => $entities,
         ));
@@ -39,10 +44,15 @@ class ProductCategoryController extends Controller
         $entity = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Product\ProductCategory entity.');
+            throw $this->createNotFoundException('Unable to find Category.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("staff_product_category"));
+        $breadcrumbs->addItem("". $entity->getName() . "", $this->get("router")->generate("staff_product_category_show", array('id' => $entity->getId())));
 
         return $this->render('LWVToolkitBundle:Staff/ProductCategory:show.html.twig', array(
             'entity'      => $entity,
@@ -58,6 +68,11 @@ class ProductCategoryController extends Controller
     {
         $entity = new ProductCategory();
         $form   = $this->createForm(new ProductCategoryType(), $entity);
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("staff_product_category"));
+        $breadcrumbs->addItem("New Category", null);
 
         return $this->render('LWVToolkitBundle:Staff/ProductCategory:new.html.twig', array(
             'entity' => $entity,
@@ -106,6 +121,12 @@ class ProductCategoryController extends Controller
 
         $editForm = $this->createForm(new ProductCategoryType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("staff_product_category"));
+        $breadcrumbs->addItem("". $entity->getName() . "", $this->get("router")->generate("staff_product_category_show", array('id' => $entity->getId())));
+        $breadcrumbs->addItem("Edit", null);
 
         return $this->render('LWVToolkitBundle:Staff/ProductCategory:edit.html.twig', array(
             'entity'      => $entity,

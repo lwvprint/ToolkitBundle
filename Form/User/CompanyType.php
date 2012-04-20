@@ -10,20 +10,16 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            //->add('lft')
-            //->add('rgt')
-            //->add('root')
-            //->add('lvl')
             ->add('name')
-            ->add('account_no')
-            ->add('address1')
-            ->add('address2')
+            ->add('account_no', null, array('label' => 'Account #'))
+            ->add('address1', null, array('label' => 'Address 1'))
+            ->add('address2', null, array('label' => 'Address 2', 'required' => false))
             ->add('town', null, array('required' => false))
             ->add('city', null, array('required' => false))
-            ->add('post_code')
-            ->add('email')
-            ->add('website')
-            ->add('is_active')
+            ->add('post_code', null, array('label' => 'Post Code'))
+            ->add('email', 'email', array('required' => false))
+            ->add('website', 'url', array('required' => false))
+            ->add('is_active', null, array('label' => 'Active?', 'required' => false))
             ->add('parent', 'entity', array(
                 'class' => 'LWV\ToolkitBundle\Entity\User\Company',
                 'property' => 'name',
@@ -31,7 +27,8 @@ class CompanyType extends AbstractType
             ))
             ->add('toolkit', 'entity', array(
                 'class' => 'LWV\ToolkitBundle\Entity\Toolkit\Toolkit',
-                'property' => 'name'
+                'property' => 'name',
+                'required' => false
             ))
         ;
     }

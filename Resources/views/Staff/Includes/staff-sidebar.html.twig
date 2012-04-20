@@ -7,16 +7,16 @@
                     <li><a href="#"><i class="icon-home"></i> Home</a></li>
                     <li class="nav-header">Toolkit</li>
                     <li><a href="{{ path('staff_toolkit') }}"><i class="icon-list-alt"></i> Toolkit List</a></li>
-                    <li><a href="{{ path('staff_toolkit_new') }}">Add Toolkit </a></li>
+                    <li><a href="{{ path('staff_toolkit_new') }}"><i class="icon-plus-sign"></i> Add Toolkit </a></li>
                     
-                    <li><a href="{{ path('staff_company') }}">Company List</a></li>
-                    <li><a href="{{ path('staff_company_new') }}">Add Company</a></li>
+                    <li><a href="{{ path('staff_company', { slug: 'test' }) }}"><i class="icon-list-alt"></i> Company List</a></li>
+                    <li><a href="{{ path('staff_company_new',  { slug: 'test' }) }}"><i class="icon-plus-sign"></i> Add Company</a></li>
                     
-                    <li><a href="{{ path('staff_product_category') }}">Category List</a></li>
-                    <li><a href="{{ path('staff_product_category_new') }}">Add Category</a></li>
+                    <li><a href="{{ path('staff_product_category') }}"><i class="icon-list-alt"></i> Category List</a></li>
+                    <li><a href="{{ path('staff_product_category_new') }}"><i class="icon-plus-sign"></i> Add Category</a></li>
                     
                     <li class="nav-header">Designer </li>
-                    <li class="active"><a href="#"><i class="icon-list-alt"></i> Job System</a></li>
+                    <li><a href="#"><i class="icon-list-alt"></i> Job System</a></li>
                     <li><a href="#support"><i class="icon-question-sign"></i> Support</a></li>
                     <li class="nav-header">Misc</li>
                     <li><a href="#contacts"><i class="icon-user"></i> LWV Contacts</a></li>

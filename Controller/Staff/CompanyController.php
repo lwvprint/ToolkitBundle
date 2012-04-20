@@ -4,6 +4,7 @@ namespace LWV\ToolkitBundle\Controller\Staff;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use LWV\ToolkitBundle\Entity\Toolkit\Toolkit;
 use LWV\ToolkitBundle\Entity\User\Company;
 use LWV\ToolkitBundle\Form\User\CompanyType;
 
@@ -17,12 +18,28 @@ class CompanyController extends Controller
      * Lists all User\Company entities.
      *
      */
-    public function indexAction()
+    public function indexAction($slug)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('LWVToolkitBundle:User\Company')->findBy(array('lvl' => 0));
-        //$entities = $em->getRepository('LWVToolkitBundle:User\Company')->getCompanyWithParent();
+        $toolkit = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Toolkit\Toolkit')
+                ->findOneBy(array('slug' => $slug));
+        
+        if (!$toolkit) {
+            throw $this->createNotFoundException('Unable to find Toolkit.');
+        }
+        
+        $toolkitId = $toolkit->getId();
+        
+        $entities = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:User\Company')
+                ->findBy(array('toolkit' => $toolkitId));
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem($toolkit->getName(), $this->get("router")->generate("staff_toolkit"));
+        $breadcrumbs->addItem("Companies", null);
         
         return $this->render('LWVToolkitBundle:Staff/Company:company.html.twig', array(
             'entities' => $entities,
@@ -33,7 +50,7 @@ class CompanyController extends Controller
      * Finds and displays a User\Company entity.
      *
      */
-    public function showAction($id)
+    public function showAction($id, $slug)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -44,6 +61,12 @@ class CompanyController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem($entity->getToolkit()->getName(), $this->get("router")->generate("staff_toolkit"));
+        $breadcrumbs->addItem("Companies", $this->get("router")->generate("staff_company", array('slug' => $slug)));
+        $breadcrumbs->addItem($entity->getName(), null);
 
         return $this->render('LWVToolkitBundle:Staff/Company:show.html.twig', array(
             'entity'      => $entity,
@@ -59,6 +82,11 @@ class CompanyController extends Controller
     {
         $entity = new Company();
         $form   = $this->createForm(new CompanyType(), $entity);
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Companies", $this->get("router")->generate("staff_company"));
+        $breadcrumbs->addItem("New Company", null);
 
         return $this->render('LWVToolkitBundle:Staff/Company:new.html.twig', array(
             'entity' => $entity,
@@ -107,6 +135,12 @@ class CompanyController extends Controller
 
         $editForm = $this->createForm(new CompanyType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Companies", $this->get("router")->generate("staff_company"));
+        $breadcrumbs->addItem("". $entity->getName() . "", $this->get("router")->generate("staff_company_show", array('id' => $entity->getId())));
+        $breadcrumbs->addItem("Edit", null);
 
         return $this->render('LWVToolkitBundle:Staff/Company:edit.html.twig', array(
             'entity'      => $entity,

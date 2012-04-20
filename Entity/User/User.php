@@ -129,8 +129,7 @@ class User implements AdvancedUserInterface
     {
         return $this->isActive;
     }
-
-
+    
     /**
      * Get id
      *

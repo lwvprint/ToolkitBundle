@@ -12,12 +12,18 @@ class ThemeType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('theme_name', null, array('required' => false))
-            ->add('theme_path', null, array('required' => false))
+            ->add('name', null, array('required' => false))
+            ->add('path', null, array('required' => false))
+            ->addValidator(new CallbackValidator(function($form)
+            {
+                if($form['name']->getData() != NULL && $form['path']->getData() == NULL) {
+                    $form['path']->addError(new FormError('Theme path must be provided.'));
+                }
+            }));
         ;
     }
     
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'data_class' => 'LWV\ToolkitBundle\Entity\Theme\Theme',

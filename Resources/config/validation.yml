@@ -18,8 +18,6 @@ LWV\ToolkitBundle\Entity\User\User:
             - NotBlank: ~
 LWV\ToolkitBundle\Entity\User\Profile:
     properties:
-        address1:
-            - NotBlank: { groups: [profile] }
         name:
             - NotBlank: { groups: [profile] }
         pubName:
@@ -31,4 +29,22 @@ LWV\ToolkitBundle\Entity\Toolkit\Toolkit:
         url:
             - NotBlank: ~
         maintenance_message:
+            - NotBlank: ~
+LWV\ToolkitBundle\Entity\User\Company:
+    properties:
+        name:
+            - NotBlank: ~
+        account_no:
+            - NotBlank: ~
+        address1:
+            - NotBlank: ~
+        post_code:
+            - NotBlank: ~
+LWV\ToolkitBundle\Entity\Product\ProductCategory:
+    properties:
+        name:
+            - NotBlank: ~
+        slug:
+            - NotBlank: ~
+        description:
             - NotBlank: ~

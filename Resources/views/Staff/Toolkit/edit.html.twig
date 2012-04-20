@@ -8,6 +8,19 @@ Toolkit Edit :: {{ parent() }}
 {{ entity.name }}
 {% endblock %}
 
+{% block toolbar_options %}
+    <li>
+        <a class="toolbar_btn" href="{{ path('staff_toolkit_show', { 'id': entity.id }) }}" title="Back to List" >
+            <span class="process-icon-back" ></span>
+            <div>Back to {{ entity.name }}</div>
+        </a>
+        <a class="toolbar_btn" href="{{ path('staff_toolkit') }}" title="Back to List" >
+            <span class="process-icon-back" ></span>
+            <div>Back to List</div>
+        </a>
+    </li>
+{% endblock %}
+
 {% block content %}
 <section>
     <div class="container">
@@ -39,8 +52,8 @@ Toolkit Edit :: {{ parent() }}
                         <legend>Toolkit Theme</legend>
                         {{ form_row(edit_form.theme) }}
                         <p>or</p>
-                        {{ form_row(edit_form.new_theme.theme_name) }}
-                        {{ form_row(edit_form.new_theme.theme_path) }}
+                        {{ form_row(edit_form.new_theme.name) }}
+                        {{ form_row(edit_form.new_theme.path) }}
                     </fieldset>
                     <fieldset>
                         <div class="form-actions">

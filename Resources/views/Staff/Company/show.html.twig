@@ -1,93 +1,102 @@
-<h1>User\Company</h1>
+{% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
 
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
-        </tr>
-        <tr>
-            <th>Lft</th>
-            <td>{{ entity.lft }}</td>
-        </tr>
-        <tr>
-            <th>Rgt</th>
-            <td>{{ entity.rgt }}</td>
-        </tr>
-        <tr>
-            <th>Root</th>
-            <td>{{ entity.root }}</td>
-        </tr>
-        <tr>
-            <th>Lvl</th>
-            <td>{{ entity.lvl }}</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <td>{{ entity.name }}</td>
-        </tr>
-        <tr>
-            <th>Account_no</th>
-            <td>{{ entity.accountno }}</td>
-        </tr>
-        <tr>
-            <th>Address1</th>
-            <td>{{ entity.address1 }}</td>
-        </tr>
-        <tr>
-            <th>Address2</th>
-            <td>{{ entity.address2 }}</td>
-        </tr>
-        <tr>
-            <th>Town</th>
-            <td>{{ entity.town }}</td>
-        </tr>
-        <tr>
-            <th>City</th>
-            <td>{{ entity.city }}</td>
-        </tr>
-        <tr>
-            <th>Post_code</th>
-            <td>{{ entity.postcode }}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{ entity.email }}</td>
-        </tr>
-        <tr>
-            <th>Website</th>
-            <td>{{ entity.website }}</td>
-        </tr>
-        <tr>
-            <th>Is_active</th>
-            <td>{{ entity.isactive }}</td>
-        </tr>
-        <tr>
-            <th>Created_at</th>
-            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>Updated_at</th>
-            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
-        </tr>
-    </tbody>
-</table>
+{% block title %}
+View Company :: {{ parent() }}
+{% endblock %}
 
-<ul class="record_actions">
+{% block h1 %}
+{{ entity.name }}
+{% endblock %}
+
+{% block toolbar_options %}
     <li>
-        <a href="{{ path('staff_company') }}">
-            Back to the list
+        <a class="toolbar_btn" href="{{ path('staff_company', { 'slug': entity.toolkit.slug }) }}" title="Back to List" >
+            <span class="process-icon-back" ></span>
+            <div>Back to List</div>
         </a>
     </li>
-    <li>
-        <a href="{{ path('staff_company_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('staff_company_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <table class="record_properties table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td>{{ entity.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ entity.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Account #</th>
+                            <td>{{ entity.accountno }}</td>
+                        </tr>
+                        <tr>
+                            <th>Address 1</th>
+                            <td>{{ entity.address1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Address 2</th>
+                            <td>{{ entity.address2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Town</th>
+                            <td>{{ entity.town }}</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>{{ entity.city }}</td>
+                        </tr>
+                        <tr>
+                            <th>Post Code</th>
+                            <td>{{ entity.postcode }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ entity.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Website</th>
+                            <td>{{ entity.website }}</td>
+                        </tr>
+                        <tr>
+                            <th>Active?</th>
+                            <td>{% if entity.isactive == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Created</th>
+                            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Updated</th>
+                            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div class="span11">
+                        <a class="btn" href="{{ path('staff_company', { 'slug': entity.toolkit.slug }) }}">
+                            Back to the list
+                        </a>
+                        <a class="btn" href="{{ path('staff_company_edit', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">
+                            Edit
+                        </a>
+                    </div>
+                    <div class="span1">
+                        <form action="{{ path('staff_company_delete', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}" method="post">
+                            {{ form_widget(delete_form) }}
+                            <input class="btn-danger" type="submit" value="Delete" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

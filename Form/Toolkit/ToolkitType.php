@@ -44,7 +44,7 @@ class ToolkitType extends AbstractType
         ;
     }
     
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'data_class' => 'LWV\ToolkitBundle\Entity\Toolkit\Toolkit',

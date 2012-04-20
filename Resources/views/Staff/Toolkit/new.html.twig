@@ -7,6 +7,7 @@ Create New Toolkit :: {{ parent() }}
 {% block h1 %}
 Create New Toolkit
 {% endblock %}
+
 {% block toolbar_options %}
     <li>
         <a class="toolbar_btn" href="{{ path('staff_toolkit') }}" title="Back to List" >
@@ -14,8 +15,8 @@ Create New Toolkit
             <div>Back to List</div>
         </a>
     </li>
-
 {% endblock %}
+
 {% block content %}
 <section>
     <div class="container">
@@ -25,7 +26,7 @@ Create New Toolkit
 
                 {{ form_errors(form) }}
                     
-                <form action="{{ path('staff_toolkit_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate>
+                <form action="{{ path('staff_toolkit_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
                     <fieldset>
                         <legend>Toolkit Details</legend>
                         {{ form_row(form.name) }}
@@ -47,8 +48,8 @@ Create New Toolkit
                         <legend>Toolkit Theme</legend>
                         {{ form_row(form.theme) }}
                         <p>or</p>
-                        {{ form_row(form.new_theme.theme_name) }}
-                        {{ form_row(form.new_theme.theme_path) }}
+                        {{ form_row(form.new_theme.name) }}
+                        {{ form_row(form.new_theme.path) }}
                     </fieldset>
                     <fieldset>
                         <div class="form-actions">

@@ -28,3 +28,10 @@ staff_toolkit_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:delete" }
     requirements: { _method: post }
+    
+staff_toolkit_json:
+    pattern: /toolkit.{_format}
+    defaults: { _controller: "LWVToolkitBundle:Staff\Toolkit:rest", _format: json }
+    requirements:
+        _format: (json|xml)
+        _method:  GET

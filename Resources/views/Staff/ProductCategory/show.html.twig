@@ -1,11 +1,20 @@
 {% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
 
 {% block title %}
-Company List :: {{ parent() }}
+View Category :: {{ parent() }}
 {% endblock %}
 
 {% block h1 %}
 {{ entity.name }}
+{% endblock %}
+
+{% block toolbar_options %}
+    <li>
+        <a class="toolbar_btn" href="{{ path('staff_product_category') }}" title="Back to List" >
+            <span class="process-icon-back" ></span>
+            <div>Back to List</div>
+        </a>
+    </li>
 {% endblock %}
 
 {% block content %}
@@ -13,27 +22,11 @@ Company List :: {{ parent() }}
     <div class="container">
         <div class="row">
             <div class="span12">
-                <table class="record_properties table table-bordered table-striped">
+                <table class="record_properties table table-bordered">
                     <tbody>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
                             <td>{{ entity.id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Lft</th>
-                            <td>{{ entity.lft }}</td>
-                        </tr>
-                        <tr>
-                            <th>Rgt</th>
-                            <td>{{ entity.rgt }}</td>
-                        </tr>
-                        <tr>
-                            <th>Root</th>
-                            <td>{{ entity.root }}</td>
-                        </tr>
-                        <tr>
-                            <th>Lvl</th>
-                            <td>{{ entity.lvl }}</td>
                         </tr>
                         <tr>
                             <th>Name</th>
@@ -52,29 +45,36 @@ Company List :: {{ parent() }}
                             <td>{{ entity.image }}</td>
                         </tr>
                         <tr>
-                            <th>Created_at</th>
+                            <th>Toolkit</th>
+                            <td>{{ entity.toolkit.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Created</th>
                             <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
                         </tr>
                         <tr>
-                            <th>Updated_at</th>
+                            <th>Updated</th>
                             <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
                         </tr>
                     </tbody>
                 </table>
 
-
-                <a class="btn" href="{{ path('staff_product_category') }}">
-                    Back to the list
-                </a>
-
-                <a class="btn" href="{{ path('staff_product_category_edit', { 'id': entity.id }) }}">
-                    Edit
-                </a>
-
-                <form action="{{ path('staff_product_category_delete', { 'id': entity.id }) }}" method="post">
-                    {{ form_widget(delete_form) }}
-                    <button type="submit">Delete</button>
-                </form>
+                <div class="row">
+                    <div class="span11">
+                        <a class="btn" href="{{ path('staff_product_category') }}">
+                            Back to the list
+                        </a>
+                        <a class="btn" href="{{ path('staff_product_category_edit', { 'id': entity.id }) }}">
+                            Edit
+                        </a>
+                    </div>
+                    <div class="span1">
+                        <form action="{{ path('staff_product_category_delete', { 'id': entity.id }) }}" method="post">
+                            {{ form_widget(delete_form) }}
+                            <input class="btn-danger" type="submit" value="Delete" />
+                        </form>
+                    </div>
+                </div>
 
             </div>
         </div>

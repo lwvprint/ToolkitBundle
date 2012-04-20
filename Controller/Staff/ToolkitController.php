@@ -3,7 +3,12 @@
 namespace LWV\ToolkitBundle\Controller\Staff;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewHandler;
 
 use LWV\ToolkitBundle\Entity\Toolkit\Toolkit;
 use LWV\ToolkitBundle\Form\Toolkit\ToolkitType;
@@ -22,16 +27,44 @@ class ToolkitController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('LWVToolkitBundle:Toolkit\Toolkit')->findAll();
+        //$em = $this->getDoctrine()->getEntityManager();
+        //$query = $em->getRepository('LWVToolkitBundle:Toolkit\Toolkit')->findAll();
+        
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM LWVToolkitBundle:Toolkit\Toolkit a";
+        $query = $em->createQuery($dql);
+        
+        $paginator = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1),
+            10
+        );
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
         $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
+        
         return $this->render('LWVToolkitBundle:Staff/Toolkit:toolkit.html.twig', array(
             'entities' => $entities,
         ));
+    }
+    
+    public function restAction()
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM LWVToolkitBundle:Toolkit\Toolkit a";
+        $query = $em->createQuery($dql);
+        
+        $entities = $query->getResult();
+        
+        $view = View::create()
+                ->setData($entities)
+                ->setFormat('json')
+                ->setStatusCode(200);
+
+        // Return view
+        return $this->get('fos_rest.view_handler')->handle($view);
     }
 
     /**
@@ -49,10 +82,12 @@ class ToolkitController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
+        
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
         $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
         $breadcrumbs->addItem("". $entity->getName() . "", $this->get("router")->generate("staff_toolkit_show", array('id' => $entity->getId())));
+        
         return $this->render('LWVToolkitBundle:Staff/Toolkit:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -96,10 +131,7 @@ class ToolkitController extends Controller
             if ($form->isValid()) {
                 $postData = $request->request->get('toolkit');
                 
-                if($postData['theme'] != NULL){
-                    //$themeId = $postData['theme'];
-                    //$entity->setTheme();
-                } else {
+                if($postData['new_theme']['theme_name'] != NULL){
                     $name = $postData['new_theme']['theme_name'];
                     $path = $postData['new_theme']['theme_path'];
                     
@@ -140,6 +172,12 @@ class ToolkitController extends Controller
 
         $editForm = $this->createForm(new ToolkitType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+        
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
+        $breadcrumbs->addItem("". $entity->getName() . "", $this->get("router")->generate("staff_toolkit_show", array('id' => $entity->getId())));
+        $breadcrumbs->addItem("Edit", null);
 
         return $this->render('LWVToolkitBundle:Staff/Toolkit:edit.html.twig', array(
             'entity'      => $entity,

@@ -18,7 +18,7 @@ class PasswordRequestType extends AbstractType
         $builder->add('email');
     }
     
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         $collectionConstraint = new Collection(array(
             'email' => array(new Email(array('message' => 'Invalid email address')), new NotBlank())

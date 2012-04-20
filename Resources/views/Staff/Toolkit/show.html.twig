@@ -8,6 +8,15 @@ View Toolkit :: {{ parent() }}
 {{ entity.name }}
 {% endblock %}
 
+{% block toolbar_options %}
+    <li>
+        <a class="toolbar_btn" href="{{ path('staff_toolkit') }}" title="Back to List" >
+            <span class="process-icon-back" ></span>
+            <div>Back to List</div>
+        </a>
+    </li>
+{% endblock %}
+
 {% block content %}
 <section>
     <div class="container">

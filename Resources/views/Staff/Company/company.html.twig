@@ -8,6 +8,15 @@ Company List :: {{ parent() }}
 Company List
 {% endblock %}
 
+{% block toolbar_options %}
+<li>
+    <a class="toolbar_btn" href="{{ path('staff_company_new') }}" title="Add New" >
+        <span class="process-icon-new" ></span>
+        <div>Add New</div>
+    </a>
+</li>
+{% endblock %}
+
 {% block content %}
 <section>
     <div class="container">
@@ -32,8 +41,9 @@ Company List
                     </thead>
                     <tbody>
                     {% for entity in entities %}
+                        {% if entity.lvl == 0 %}
                         <tr>
-                            <td><a href="{{ path('staff_company_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                            <td><a href="{{ path('staff_company_show', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">{{ entity.id }}</a></td>
                             <td>{{ entity.name }}</td>
                             <td>{{ entity.accountno }}</td>
                             <td>{{ entity.address1 }}</td>
@@ -45,10 +55,16 @@ Company List
                             <td><a href="{{ entity.website }}" title="{{ entity.website }}"><i class="icon-home"></i></a></td>
                             <td>{% if entity.isactive == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                             <td>
-                                <a class="btn" href="{{ path('staff_company_show', { 'id': entity.id }) }}">show</a>
-                                <a class="btn" href="{{ path('staff_company_edit', { 'id': entity.id }) }}">edit</a>
+                                <a class="btn" href="{{ path('staff_company_show', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">show</a>
+                                <a class="btn" href="{{ path('staff_company_edit', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">edit</a>
                             </td>
                         </tr>
+                        {% else %}
+                        <tr>
+                            <td></td>
+                            <td>{{ entity.name }}</td>
+                        </tr>                
+                        {% endif %}
                     {% endfor %}
                     </tbody>
                 </table>

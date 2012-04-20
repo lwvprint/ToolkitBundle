@@ -8,7 +8,7 @@ LWVToolkitBundle_staff_toolkit:
 
 LWVToolkitBundle_staff_company:
     resource: "@LWVToolkitBundle/Resources/config/Staff/company.yml"
-    prefix:   /staff/company
+    prefix:   /staff/{slug}/company
 
 LWVToolkitBundle_staff_product_category:
     resource: "@LWVToolkitBundle/Resources/config/Staff/productcategory.yml"

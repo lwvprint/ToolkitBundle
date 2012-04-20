@@ -25,9 +25,16 @@ class Toolkit
     /**
      * @var string $name
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     protected $name;
+    
+    /**
+     * @var string $slug 
+     *
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    protected $slug;
 
     /**
      * @var string $url
@@ -618,5 +625,27 @@ class Toolkit
     public function getCompanies()
     {
         return $this->companies;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Toolkit
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
