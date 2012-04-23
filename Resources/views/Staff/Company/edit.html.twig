@@ -10,11 +10,11 @@ Company Edit :: {{ parent() }}
 
 {% block toolbar_options %}
     <li>
-        <a class="toolbar_btn" href="{{ path('staff_company_show', { 'id': entity.id }) }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_company_show', { 'id': entity.id, 'slug': slug }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to {{ entity.name }}</div>
         </a>
-        <a class="toolbar_btn" href="{{ path('staff_company') }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_company', { 'slug': slug }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to List</div>
         </a>
@@ -56,12 +56,12 @@ Company Edit :: {{ parent() }}
                 </form>
                 <div class="row">
                     <div class="span11">
-                        <a class="btn" href="{{ path('staff_company') }}">
+                        <a class="btn" href="{{ path('staff_company', { 'slug': slug }) }}">
                             Back to the list
                         </a>
                     </div>
                     <div class="span1">
-                        <form action="{{ path('staff_company_delete', { 'id': entity.id }) }}" method="post">
+                        <form action="{{ path('staff_company_delete', { 'id': entity.id, 'slug': slug }) }}" method="post">
                             {{ form_widget(delete_form) }}
                             <input class="btn-danger" type="submit" value="Delete" />
                         </form>

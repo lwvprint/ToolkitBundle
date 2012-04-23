@@ -10,7 +10,7 @@ Create New Company
 
 {% block toolbar_options %}
     <li>
-        <a class="toolbar_btn" href="{{ path('staff_company') }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_company', { 'slug': slug }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to List</div>
         </a>
@@ -26,14 +26,14 @@ Create New Company
 
                 {{ form_errors(form) }}
                     
-                <form action="{{ path('staff_company_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+                <form action="{{ path('staff_company_create', { 'slug': slug}) }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
                     <fieldset>
                         <div class="form-actions">
                             {{ form_rest(form) }}
                             <input class="btn-primary" type="submit" value="Create" />
                             <input class="btn-warning" type="reset" value="Reset">
-                            <a class="btn" href="{{ path('staff_company') }}">
+                            <a class="btn" href="{{ path('staff_company', { 'slug': slug }) }}">
                                 Back to the list
                             </a>
                         </div>

@@ -10,7 +10,7 @@ Company List
 
 {% block toolbar_options %}
 <li>
-    <a class="toolbar_btn" href="{{ path('staff_company_new') }}" title="Add New" >
+    <a class="toolbar_btn" href="{{ path('staff_company_new', { 'slug': slug }) }}" title="Add New" >
         <span class="process-icon-new" ></span>
         <div>Add New</div>
     </a>
@@ -28,11 +28,6 @@ Company List
                             <th>ID</th>
                             <th>Name</th>
                             <th>Account #</th>
-                            <th>Address 1</th>
-                            <th>Address 2</th>
-                            <th>Town</th>
-                            <th>City</th>
-                            <th>Postcode</th>
                             <th>Email</th>
                             <th>Website</th>
                             <th>Active?</th>
@@ -41,35 +36,28 @@ Company List
                     </thead>
                     <tbody>
                     {% for entity in entities %}
-                        {% if entity.lvl == 0 %}
                         <tr>
                             <td><a href="{{ path('staff_company_show', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">{{ entity.id }}</a></td>
                             <td>{{ entity.name }}</td>
                             <td>{{ entity.accountno }}</td>
-                            <td>{{ entity.address1 }}</td>
-                            <td>{{ entity.address2 }}</td>
-                            <td>{{ entity.town }}</td>
-                            <td>{{ entity.city }}</td>
-                            <td>{{ entity.postcode }}</td>
                             <td><a href="mailto:{{ entity.email }}" title="{{ entity.email }}"><i class="icon-envelope"></i></a></td>
                             <td><a href="{{ entity.website }}" title="{{ entity.website }}"><i class="icon-home"></i></a></td>
                             <td>{% if entity.isactive == 1 %}<i class="icon-ok"></i>{% else %}<i class="icon-remove"></i>{% endif %}</td>
                             <td>
-                                <a class="btn" href="{{ path('staff_company_show', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">show</a>
-                                <a class="btn" href="{{ path('staff_company_edit', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">edit</a>
+                                <div class="btn-group">
+                                    {% if entity.children|length > 0 %}
+                                    <a class="btn btn-small" href="{{ path('staff_company', { 'parent': entity.id, 'slug': entity.toolkit.slug }) }}">Sub-companies</a>
+                                    {% endif %}
+                                    <a class="btn btn-small" href="{{ path('staff_company_show', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">show</a>
+                                    <a class="btn btn-small" href="{{ path('staff_company_edit', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">edit</a>
+                                </div>
                             </td>
                         </tr>
-                        {% else %}
-                        <tr>
-                            <td></td>
-                            <td>{{ entity.name }}</td>
-                        </tr>                
-                        {% endif %}
                     {% endfor %}
                     </tbody>
                 </table>
                     
-                <a class="btn" href="{{ path('staff_company_new') }}">
+                <a class="btn" href="{{ path('staff_company_new', { 'slug': slug }) }}">
                     Create a new entry
                 </a>
                     

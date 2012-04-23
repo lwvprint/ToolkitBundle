@@ -1,6 +1,8 @@
 staff_product_category:
-    pattern:  /
-    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:index" }
+    pattern:  /{parent}
+    defaults: { _controller: "LWVToolkitBundle:Staff\productCategory:index", parent: null }
+    requirements:
+        parent: \d+
 
 staff_product_category_show:
     pattern:  /{id}/show

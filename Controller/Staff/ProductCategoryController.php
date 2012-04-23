@@ -17,11 +17,11 @@ class ProductCategoryController extends Controller
      * Lists all Product\ProductCategory entities.
      *
      */
-    public function indexAction()
+    public function indexAction($parent)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->findBy(array('lvl' => 0));
+        $entities = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->findBy(array('parent' => $parent));
         //$entities = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->findAll();
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");

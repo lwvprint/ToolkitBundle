@@ -10,7 +10,7 @@ View Company :: {{ parent() }}
 
 {% block toolbar_options %}
     <li>
-        <a class="toolbar_btn" href="{{ path('staff_company', { 'slug': entity.toolkit.slug }) }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_company', { 'slug': slug }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to List</div>
         </a>

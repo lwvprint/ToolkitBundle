@@ -53,15 +53,14 @@ class ToolkitController extends Controller
     public function restAction(Request $request)
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT t.id, t.name, t.url, t.is_active FROM LWVToolkitBundle:Toolkit\Toolkit t";
+        $dql = "SELECT t.id, t.name, t.slug, t.url, t.is_active FROM LWVToolkitBundle:Toolkit\Toolkit t";
         $query = $em->createQuery($dql);
         
         $entities = $query->getArrayResult();
         
-        foreach($entities as &$entity) {
-            $entity['null'] = 'null';
-            //array_push($entity, 'null');
-        }
+        //foreach($entities as &$entity) {
+        //    $entity['null'] = 'null';
+        //}
         
         $view = View::create()
                 ->setData(array('aaData' => $entities))
