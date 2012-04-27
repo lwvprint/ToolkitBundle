@@ -22,16 +22,16 @@ Company List
     <div class="container">
         <div class="row">
             <div class="span12">
-                <table class="records_list table table-bordered table-striped">
+                <table class="records_list table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Account #</th>
-                            <th>Email</th>
-                            <th>Website</th>
-                            <th>Active?</th>
-                            <th>Actions</th>
+                            <th width="20px">E</th>
+                            <th width="20px">W</th>
+                            <th width="20px">A</th>
+                            <th width="250px">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,8 +48,8 @@ Company List
                                     {% if entity.children|length > 0 %}
                                     <a class="btn btn-small" href="{{ path('staff_company', { 'parent': entity.id, 'slug': entity.toolkit.slug }) }}">Sub-companies</a>
                                     {% endif %}
-                                    <a class="btn btn-small" href="{{ path('staff_company_show', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">show</a>
-                                    <a class="btn btn-small" href="{{ path('staff_company_edit', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">edit</a>
+                                    <a class="btn btn-small" href="{{ path('staff_company_show', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">Show</a>
+                                    <a class="btn btn-small" href="{{ path('staff_company_edit', { 'id': entity.id, 'slug': entity.toolkit.slug }) }}">Edit</a>
                                 </div>
                             </td>
                         </tr>
@@ -58,7 +58,7 @@ Company List
                 </table>
                     
                 <a class="btn" href="{{ path('staff_company_new', { 'slug': slug }) }}">
-                    Create a new entry
+                    Add a new Company
                 </a>
                     
             </div>

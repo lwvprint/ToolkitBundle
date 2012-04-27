@@ -1,16 +1,16 @@
 {% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
 
 {% block title %}
-Create New Category :: {{ parent() }}
+Create New Product :: {{ parent() }}
 {% endblock %}
 
 {% block h1 %}
-Create New Category
+Create New Product
 {% endblock %}
 
 {% block toolbar_options %}
     <li>
-        <a class="toolbar_btn" href="{{ path('staff_product_category', { 'slug': slug }) }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to List</div>
         </a>
@@ -26,22 +26,24 @@ Create New Category
 
                 {{ form_errors(form) }}
                     
-                <form action="{{ path('staff_product_category_create', { 'slug': slug }) }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate>
+                <form action="{{ path('staff_product_create', { 'slug': slug, 'category': category }) }}" class="form-horizontal" method="post" {{ form_enctype(form) }} novalidate>
                     <fieldset>
-                        <legend>Category Details</legend>
+                        <legend>Product Details</legend>
                         {{ form_row(form.name) }}
                         {{ form_row(form.slug) }}
+                        {{ form_row(form.reference) }}
                         {{ form_row(form.description) }}
-                        {{ form_row(form.image) }}
-                        {{ form_row(form.parent) }}
-                        {{ form_row(form.toolkit) }}
+                        {{ form_row(form.active_from) }}
+                        {{ form_row(form.active_till) }}
+                        {{ form_row(form.is_active) }}
+                        {{ form_row(form.category) }}
                     </fieldset>
                     <fieldset>
                         <div class="form-actions">
                             {{ form_rest(form) }}
                             <input class="btn-primary" type="submit" value="Create" />
                             <input class="btn-warning" type="reset" value="Reset">
-                            <a class="btn" href="{{ path('staff_product_category', { 'slug': slug }) }}">
+                            <a class="btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}">
                                 Back to the list
                             </a>
                         </div>

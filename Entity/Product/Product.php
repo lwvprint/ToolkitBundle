@@ -79,6 +79,12 @@ class Product
      * @ORM\OneToMany(targetEntity="ProductImage", mappedBy="product")
      */
     protected $images;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="products")
+     * @ORM\JoinTable(name="products_tags")
+     */
+    protected $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="products")
@@ -89,6 +95,7 @@ class Product
     public function __construct()
     {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -342,6 +349,26 @@ class Product
     }
 
     /**
+     * Add tags
+     *
+     * @param LWV\ToolkitBundle\Entity\Product\Tag $tags
+     */
+    public function addTag(\LWV\ToolkitBundle\Entity\Product\Tag $tags)
+    {
+        $this->tags[] = $tags;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
      * Set category
      *
      * @param LWV\ToolkitBundle\Entity\Product\ProductCategory $category
@@ -356,7 +383,7 @@ class Product
     /**
      * Get category
      *
-     * @return LWV\ToolkitBundle\Entity\Product\ProductCategory
+     * @return LWV\ToolkitBundle\Entity\Product\ProductCategory 
      */
     public function getCategory()
     {

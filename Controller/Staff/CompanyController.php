@@ -38,6 +38,7 @@ class CompanyController extends Controller
         
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
+        $breadcrumbs->addItem("Toolkit List", $this->get("router")->generate("staff_toolkit"));
         $breadcrumbs->addItem($toolkit->getName(), $this->get("router")->generate("staff_toolkit"));
         $breadcrumbs->addItem("Companies", $this->get("router")->generate("staff_company", array('slug' => $slug)));
         

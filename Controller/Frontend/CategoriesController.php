@@ -17,11 +17,13 @@ class CategoriesController extends Controller
         $company = $user->getCompany();
         $toolkit = $company->getToolkit();
 
-        $categories = $this->get('doctrine')->getEntityManager()
+        $categories = $this->getDoctrine()
+                ->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\ProductCategory')
-                ->findBy(array('toolkit' => $toolkit->getId()), array('name' => 'ASC'));
+                ->findBy(array('parent' => null, 'toolkit' => $toolkit->getId()), array('name' => 'ASC'));
 
-        $products = $this->get('doctrine')->getEntityManager()
+        $products = $this->getDoctrine()
+                ->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\Product')
                 ->getActiveProductsWithImages();
 
@@ -41,15 +43,22 @@ class CategoriesController extends Controller
         $company = $user->getCompany();
         $toolkit = $company->getToolkit();
         
-        $category = $this->getDoctrine()->getEntityManager()
+        $category = $this->getDoctrine()
+                ->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\ProductCategory')
                 ->findOneBy(array('slug' => $slug, 'toolkit' => $toolkit->getId()));
 
         if (!$category) {
             throw $this->createNotFoundException('No category found for '.$slug);
         }
+        
+        $subCategories = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Product\ProductCategory')
+                ->findBy(array('parent' => $category->getId()));
 
-        $products = $this->get('doctrine')->getEntityManager()
+        $products = $this->getDoctrine()
+                ->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\Product')
                 ->findBy(array('category' => $category->getId(), 'is_active' => '1'));
 
@@ -61,7 +70,11 @@ class CategoriesController extends Controller
         $breadcrumbs->addItem("Categories", $this->get("router")->generate("categories"));
         $breadcrumbs->addItem($category->getName(), $this->get("router")->generate("category", array('slug' => $slug)));
 
-        return $this->render('LWVToolkitBundle:Frontend\Category:category.html.twig', array('category' => $category, 'products' => $products));
+        return $this->render('LWVToolkitBundle:Frontend\Category:category.html.twig', array(
+            'category' => $category,
+            'sub_categories' => $subCategories,
+            'products' => $products
+            ));
     }
 
 }

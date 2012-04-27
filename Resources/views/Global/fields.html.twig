@@ -1,29 +1,56 @@
 {% block field_row %}
-{% spaceless %}
-    <div class="control-group {% if errors|length > 0 %} error {% endif %}">
-        {{ form_label(form) }}
-        <div class="controls">
-            {{ form_widget(form) }}
-            {{ form_errors(form) }}
-        </div>
+<div class="control-group {% if errors|length > 0 %} error {% endif %}">
+    {{ form_label(form) }}
+    <div class="controls">
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
     </div>
-{% endspaceless %}
-{% endblock field_row %}
+</div>
+{% endblock %}
 
 {% block field_label %}
 <label class="control-label">
     {{ label }}
 </label>
-{% endblock field_label %}
+{% endblock %}
+
+{% block datetime_row %}
+<div class="control-group {% if errors|length > 0 %} error {% endif %}">
+    {{ form_label(form) }}
+    <div class="controls">
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block datetime_label %}
+<label class="control-label">
+    {{ label }}
+</label>
+{% endblock %}
+
+{% block datetime_widget %}
+<div {{ block('widget_container_attributes') }}>
+    <div>
+    {{ form_widget(form.date.day, { 'attr': { 'class': 'span1' } }) }}
+    {{ form_widget(form.date.month, { 'attr': { 'class': 'span1' } }) }}
+    {{ form_widget(form.date.year, { 'attr': { 'class': 'span1' } }) }}
+    <span class="help-block">Date, eg 31-Dec-2012.</span>
+    </div>
+    <div>
+    {{ form_widget(form.time.hour, { 'attr': { 'class': 'span1' } }) }}:{{ form_widget(form.time.minute, { 'attr': { 'class': 'span1' } }) }}
+    <span class="help-block">Time, eg 17:35.</span>
+    </div>
+</div>
+{% endblock %}
 
 {% block field_errors %}
-{% spaceless %}
-    {% if errors|length > 0 %}
-    <span class="help-inline">
-        {% for error in errors %}
-            {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br/>
-        {% endfor %}
-    </span>
-    {% endif %}
-{% endspaceless %}
-{% endblock field_errors %}
+{% if errors|length > 0 %}
+<span class="help-inline">
+    {% for error in errors %}
+        {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br/>
+    {% endfor %}
+</span>
+{% endif %}
+{% endblock %}

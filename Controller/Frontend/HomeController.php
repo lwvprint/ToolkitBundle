@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\ProductCategory')
-                ->findBy(array('toolkit' => $toolkit));
+                ->findBy(array('parent' => null, 'toolkit' => $toolkit), array('name' => 'ASC'));
 
         $products = $this->get('doctrine')->getEntityManager()
                 ->getRepository('LWVToolkitBundle:Product\Product')

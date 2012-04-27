@@ -43,7 +43,7 @@ class ToolkitController extends Controller
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
-        $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
+        $breadcrumbs->addItem("Toolkit List", null);
         
         return $this->render('LWVToolkitBundle:Staff/Toolkit:toolkit.html.twig', array(
             //'entities' => $entities,
@@ -53,7 +53,7 @@ class ToolkitController extends Controller
     public function restAction(Request $request)
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT t.id, t.name, t.slug, t.url, t.is_active FROM LWVToolkitBundle:Toolkit\Toolkit t";
+        $dql = "SELECT t.id, t.name, t.slug, t.url, t.is_active, t.maintenance_mode, t.is_secure, t.is_payment FROM LWVToolkitBundle:Toolkit\Toolkit t";
         $query = $em->createQuery($dql);
         
         $entities = $query->getArrayResult();
@@ -89,8 +89,8 @@ class ToolkitController extends Controller
         
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("Home", $this->get("router")->generate("staff_home"));
-        $breadcrumbs->addItem("Toolkits", $this->get("router")->generate("staff_toolkit"));
-        $breadcrumbs->addItem("". $entity->getName() . "", $this->get("router")->generate("staff_toolkit_show", array('id' => $entity->getId())));
+        $breadcrumbs->addItem("Toolkit List", $this->get("router")->generate("staff_toolkit"));
+        $breadcrumbs->addItem($entity->getName(), null);
         
         return $this->render('LWVToolkitBundle:Staff/Toolkit:show.html.twig', array(
             'entity'      => $entity,
@@ -126,6 +126,7 @@ class ToolkitController extends Controller
     {
         $entity  = new Toolkit();
         $theme = new Theme();
+        
         $request = $this->getRequest();
         $form    = $this->createForm(new ToolkitType(), $entity);
         

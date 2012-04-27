@@ -1,16 +1,16 @@
 {% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
 
 {% block title %}
-View Category :: {{ parent() }}
+View Product :: {{ parent() }}
 {% endblock %}
 
 {% block h1 %}
-{{ entity.name }}
+{{ product.name }}
 {% endblock %}
 
 {% block toolbar_options %}
     <li>
-        <a class="toolbar_btn" href="{{ path('staff_product_category', { 'slug': slug }) }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_product', { 'category': category }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to List</div>
         </a>
@@ -26,51 +26,63 @@ View Category :: {{ parent() }}
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <td>{{ entity.id }}</td>
+                            <td>{{ product.id }}</td>
                         </tr>
                         <tr>
                             <th>Name</th>
-                            <td>{{ entity.name }}</td>
+                            <td>{{ product.name }}</td>
                         </tr>
                         <tr>
                             <th>Slug</th>
-                            <td>{{ entity.slug }}</td>
+                            <td>{{ product.slug }}</td>
+                        </tr>
+                        <tr>
+                            <th>Reference</th>
+                            <td>{{ product.reference }}</td>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <td>{{ entity.description }}</td>
+                            <td>{{ product.description }}</td>
                         </tr>
                         <tr>
-                            <th>Image</th>
-                            <td>{{ entity.image }}</td>
+                            <th>Active?</th>
+                            <td>{{ product.isactive }}</td>
                         </tr>
                         <tr>
-                            <th>Toolkit</th>
-                            <td>{{ entity.toolkit.name }}</td>
+                            <th>Active from</th>
+                            <td>{{ product.activefrom|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Active till</th>
+                            <td>{{ product.activetill|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <td>{{ product.category.name }}</td>
                         </tr>
                         <tr>
                             <th>Created</th>
-                            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+                            <td>{{ product.createdat|date('Y-m-d H:i:s') }}</td>
                         </tr>
                         <tr>
                             <th>Updated</th>
-                            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+                            <td>{{ product.updatedat|date('Y-m-d H:i:s') }}</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="row">
                     <div class="span11">
-                        <a class="btn" href="{{ path('staff_product_category', { 'slug': slug }) }}">
+                        <a class="btn" href="{{ path('staff_product', { 'category': category }) }}">
                             Back to the list
                         </a>
-                        <a class="btn" href="{{ path('staff_product_category_edit', { 'id': entity.id, 'slug': slug }) }}">
+                        <a class="btn" href="{{ path('staff_product_edit', { 'id': product.id, 'category': category }) }}">
                             Edit
                         </a>
                     </div>
                     <div class="span1">
-                        <form action="{{ path('staff_product_category_delete', { 'id': entity.id, 'slug': slug }) }}" method="post">
-                            {{ form_widget(delete_form) }}
+                        <form action="{{ path('staff_product_delete', { 'id': product.id, 'category': category }) }}" method="post">
+                            {# form_widget(delete_form) #}
                             <input class="btn-danger" type="submit" value="Delete" />
                         </form>
                     </div>

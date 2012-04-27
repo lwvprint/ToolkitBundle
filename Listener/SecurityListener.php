@@ -6,6 +6,7 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -69,6 +70,9 @@ class SecurityListener
 	            //$this->redirectToAdmin = true;
 	            throw new NotFoundHttpException('Maintenance Mode Enabled.');
 		    }
+            if($toolkit->getUrl() != $request->getHttpHost()) {
+                throw new AccessDeniedHttpException();
+            }
 
     	}
 

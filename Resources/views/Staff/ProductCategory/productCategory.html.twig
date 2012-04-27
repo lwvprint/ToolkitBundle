@@ -13,7 +13,7 @@ Category List
     <div class="container">
         <div class="row">
             <div class="span12">
-                <table class="records_list table table-bordered table-striped">
+                <table class="records_list table">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -21,37 +21,42 @@ Category List
                             <th>Slug</th>
                             <th>Description</th>
                             <th>Image</th>
-                            <th>Toolkit</th>
-                            <th>Created</th>
-                            <th>Updated</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for entity in entities %}
                         <tr>
-                            <td><a href="{{ path('staff_product_category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                            <td><a href="{{ path('staff_product_category_show', { 'id': entity.id, 'slug': slug }) }}">{{ entity.id }}</a></td>
                             <td>{{ entity.name }}</td>
                             <td>{{ entity.slug }}</td>
                             <td>{{ entity.description }}</td>
                             <td>{{ entity.image }}</td>
-                            <td>{{ entity.toolkit.name }}</td>
-                            <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
-                            <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif%}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-small" href="{{ path('staff_product_category_show', { 'id': entity.id }) }}">show</a>
-                                    <a class="btn btn-small" href="{{ path('staff_product_category_edit', { 'id': entity.id }) }}">edit</a>
+                                    {% if entity.products|length > 0 %}
+                                    <a class="btn btn-small" href="{{ path('staff_product', { 'slug': slug, 'category': entity.slug }) }}">Products</a>                                        
+                                    {% endif %}
+                                    {% if entity.children|length > 0 %}
+                                    <a class="btn btn-small" href="{{ path('staff_product_category', { 'parent': entity.id, 'slug': entity.toolkit.slug }) }}">Sub-categories</a>
+                                    {% endif %}
+                                    <a class="btn btn-small" href="{{ path('staff_product_category_show', { 'id': entity.id, 'slug': slug }) }}">Show</a>
+                                    <a class="btn btn-small" href="{{ path('staff_product_category_edit', { 'id': entity.id, 'slug': slug }) }}">Edit</a>
                                 </div>
                             </td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
+                <div class="btn-group">
+                    <a class="btn" href="{{ path('staff_product_category_new', { 'slug': slug }) }}">
+                        Add a new Category
+                    </a>
 
-                <a class="btn" href="{{ path('staff_product_category_new') }}">
-                    Create a new entry
-                </a>
+                    <a class="btn" href="{{ path('staff_product_new', { 'slug': slug }) }}">
+                        Add a new Product
+                    </a>
+                </div>
             </div>
         </div>
     </div>

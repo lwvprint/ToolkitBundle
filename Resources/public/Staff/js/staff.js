@@ -35,18 +35,40 @@ $(document).ready(function() {
         "aoColumns": [
             { "asSorting": [ "asc", "desc" ], "mDataProp": "name" },
             { "mDataProp": "url" },
-            { "bSortable": false, "mDataProp": "is_active" },
-            { "bSortable": false, "mDataProp": null }
+            { "bSortable": false, "mDataProp": "is_active", "sWidth": "20px" },
+            { "bSortable": false, "mDataProp": "maintenance_mode", "sWidth": "20px" },
+            { "bSortable": false, "mDataProp": "is_secure", "sWidth": "20px" },
+            { "bSortable": false, "mDataProp": "is_payment", "sWidth": "20px" },
+            { "bSortable": false, "mDataProp": null, "sWidth": "250px" }
         ],
         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            if ( aData['is_active'] == true )
-            {
+            if ( aData['is_active'] == true ) {
                 $('td:eq(2)', nRow).html( '<i class="icon-ok"></i>' );
+            } else {
+                $('td:eq(3)', nRow).html( '<i class="icon-remove"></i>' );
             }
-            $('td:eq(3)', nRow).html(
-                '<div class="btn-group"><a class="btn btn-small" href="../'+ aData['slug'] +'/company">Companies</a>'+
-                '<a class="btn btn-small" href="../toolkit/'+ aData['id'] +'/show">View</a>'+
-                '<a class="btn btn-small" href="../toolkit/'+ aData['id'] +'/edit">Edit</a></div>'
+            if ( aData['maintenance_mode'] == true ) {
+                $('td:eq(3)', nRow).html( '<i class="icon-ok"></i>' );
+            } else {
+                $('td:eq(3)', nRow).html( '<i class="icon-remove"></i>' );
+            }
+            if ( aData['is_secure'] == true ) {
+                $('td:eq(4)', nRow).html( '<i class="icon-ok"></i>' );
+            } else {
+                $('td:eq(4)', nRow).html( '<i class="icon-remove"></i>' );
+            }
+            if ( aData['is_payment'] == true ) {
+                $('td:eq(5)', nRow).html( '<i class="icon-ok"></i>' );
+            } else {
+                $('td:eq(5)', nRow).html( '<i class="icon-remove"></i>' );
+            }
+            $('td:eq(6)', nRow).html(
+                '<div class="btn-group">'+
+                '<a class="btn btn-small" href="../'+ aData['slug']+'/product_category">Categories</a>'+
+                '<a class="btn btn-small" href="../'+ aData['slug'] +'/company">Companies</a>'+
+                '<a class="btn btn-small" href="../toolkit/'+ aData['id'] +'/show">Show</a>'+
+                '<a class="btn btn-small" href="../toolkit/'+ aData['id'] +'/edit">Edit</a>'+
+                '</div>'
             );
             return nRow;
         }

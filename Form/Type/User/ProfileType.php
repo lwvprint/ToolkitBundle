@@ -21,7 +21,7 @@ class ProfileType extends AbstractType
         $builder->add('telephone');
     }
 
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'data_class' => 'LWV\ToolkitBundle\Entity\User\Profile',

@@ -1,0 +1,57 @@
+{% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
+
+{% block title %}
+Product List :: {{ parent() }}
+{% endblock %}
+
+{% block h1 %}
+Product List
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <table class="records_list table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Ref</th>
+                            <th>Desc</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% if products|length == 0 %}
+                        <tr>
+                            <td>No Products Found</td>
+                        </tr>
+                    {% else %}
+                    {% for product in products %}
+                        <tr>
+                            <td><a href="{{ path('staff_product_show', { 'slug': slug, 'category': category, 'id': product.id }) }}">{{ product.id }}</a></td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.reference }}</td>
+                            <td>{{ product.description }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small" href="{{ path('staff_product_show', { 'slug': slug, 'category': category, 'id': product.id }) }}">Show</a>
+                                    <a class="btn btn-small" href="{{ path('staff_product_edit', { 'slug': slug, 'category': category, 'id': product.id }) }}">Edit</a>
+                                </div>  
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+
+                <a class="btn" href="{{ path('staff_product_new', { 'slug': slug, 'category': category }) }}">
+                    Add a new Product
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
