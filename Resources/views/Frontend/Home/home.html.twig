@@ -21,7 +21,9 @@ Welcome to our toolkit  :: {{ parent() }}
                                 </a>
                             </div>
                             <div class="category-details">
-                                <h3>{{ category.name }}</h3>
+                                <a href="{{ path('category', { 'slug': category.slug }) }}">
+                                    <h3>{{ category.name }}</h3>
+                                </a>
                                 <p>{{ category.description }}</p>
                             </div>
                             <div class="clear"></div>

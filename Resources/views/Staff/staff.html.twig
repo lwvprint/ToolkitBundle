@@ -1,4 +1,5 @@
 {% extends 'LWVToolkitBundle::base.html.twig' %}
+
 {% block head_style %}
 {{ parent() }}{% stylesheets
     'bundles/lwvtoolkit/Staff/css/*'
@@ -7,10 +8,13 @@
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
 {% endstylesheets %}
 {% endblock head_style %}
+
 {% block head_meta %}
 <meta name="robots" content="noindex,nofollow" />
 {% endblock %}
+
 {% block title %}LWV Admin{% endblock %}
+
 {% block navbar %}
 <header id="top-bar">
     {% block top_bar %}
@@ -29,6 +33,7 @@
     <div class="clearfix"></div>
 </section>
 {% endblock navbar %}
+
 {% block page_header %}
 {% if app.request.get('_route') != 'staff_home' %}
         <section id="toolbar">
@@ -59,34 +64,31 @@
 {% else %}
 
 {% endif %}
-
 {% endblock page_header %}
 
-
-
 {% block content_row %}
-        {% block content %}
-        <div class="span9">Test Date</div>
-        <div class="span3">
-            {% block content_sidebar %}
-            {{ parent() }}
-            {% endblock content_sidebar %}
-        </div>
-        {% endblock content %}
+    {% block content %}
+    <div class="span9">Test Date</div>
+    <div class="span3">
+        {% block content_sidebar %}
+        {{ parent() }}
+        {% endblock content_sidebar %}
+    </div>
+    {% endblock content %}
 {% endblock content_row %}
 
-        {% block footer %}
-            {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
-        {% endblock %}
-        {% block foot_script %}
-        {{ parent() }}
-        {% javascripts
-            '@LWVToolkitBundle/Resources/public/js/bootstrap-datepicker.js'
-            '@LWVToolkitBundle/Resources/public/js/jquery.dataTables.min.js'
-            '@LWVToolkitBundle/Resources/public/js/DT_bootstrap.js'
-            '@LWVToolkitBundle/Resources/public/Staff/js/*'
-            filter='yui_js' output='js/staff.js'
-        %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {% endblock foot_script %}
+{% block footer %}
+    {% include 'LWVToolkitBundle:Staff\\Includes:footer.html.twig' %}
+{% endblock %}
+        
+{% block foot_script %}
+    {{ parent() }}
+    {% javascripts
+        '@LWVToolkitBundle/Resources/public/js/jquery.dataTables.min.js'
+        '@LWVToolkitBundle/Resources/public/js/jquery.dataTables.Xbootstrap.js'
+        '@LWVToolkitBundle/Resources/public/Staff/js/*'
+        filter='?yui_js' output='js/staff.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock foot_script %}

@@ -1,20 +1,20 @@
 {% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
 
 {% block title %}
-Category Edit :: {{ parent() }}
+Product Edit :: {{ parent() }}
 {% endblock %}
 
 {% block h1 %}
-{{ entity.name }}
+{{ product.name }}
 {% endblock %}
 
 {% block toolbar_options %}
     <li>
-        <a class="toolbar_btn" href="{{ path('staff_product_category_show', { 'id': entity.id, 'slug': slug }) }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_product_show', { 'id': product.id, 'slug': slug, 'category': category }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
-            <div>Back to {{ entity.name }}</div>
+            <div>Back to {{ product.name }}</div>
         </a>
-        <a class="toolbar_btn" href="{{ path('staff_product_category', { 'slug': slug }) }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to List</div>
         </a>
@@ -30,15 +30,43 @@ Category Edit :: {{ parent() }}
 
                 {{ form_errors(edit_form) }}
                     
-                <form action="{{ path('staff_product_category_update', { 'id': entity.id, 'slug': slug }) }}" class="form-horizontal" method="post" {{ form_enctype(edit_form) }}>
+                <form action="{{ path('staff_product_update', { 'id': product.id, 'slug': slug, 'category': category }) }}" class="form-horizontal" method="post" {{ form_enctype(edit_form) }}>
                     <fieldset>
                         <legend>Category Details</legend>
                         {{ form_row(edit_form.name) }}
                         {{ form_row(edit_form.slug) }}
+                        {{ form_row(edit_form.reference) }}
                         {{ form_row(edit_form.description) }}
-                        {{ form_row(edit_form.image) }}
-                        {{ form_row(edit_form.parent) }}
-                        {{ form_row(edit_form.toolkit) }}
+                        {{ form_row(edit_form.is_active) }}
+                        
+                        {# form_row(edit_form.expires) #}
+                        <div class="control-group">
+                            {# form_row(form.active_from) #}
+                            {{ form_label(edit_form.expires) }}
+                            <div class="controls">
+                                {{ form_widget(edit_form.expires, { 'attr': {'checked': 'checked'} }) }}
+                                {{ form_errors(edit_form.expires) }}
+                            </div>
+                        </div>
+
+                        <div class="control-group {% if product.activeFrom is null %}toggle-hidden{% endif %}">
+                            {# form_row(form.active_from) #}
+                            {{ form_label(edit_form.active_from) }}
+                            <div class="controls">
+                                {{ form_widget(edit_form.active_from) }}
+                                {{ form_errors(edit_form.active_from) }}
+                            </div>
+                        </div>
+                        <div class="control-group {% if product.activeTill is null %}toggle-hidden{% endif %}">
+                            {# form_row(form.active_till) #}
+                            {{ form_label(edit_form.active_till) }}
+                            <div class="controls">
+                                {{ form_widget(edit_form.active_till) }}
+                                {{ form_errors(edit_form.active_till) }}
+                            </div>
+                        </div>
+                        {{ form_row(edit_form.category) }}
+                        {{ form_row(edit_form.tags) }}
                     </fieldset>
                     <fieldset>
                         <div class="form-actions">
@@ -50,12 +78,12 @@ Category Edit :: {{ parent() }}
                 </form>
                 <div class="row">
                     <div class="span11">
-                        <a class="btn" href="{{ path('staff_product_category', { 'slug': slug }) }}">
+                        <a class="btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}">
                             Back to the list
                         </a>
                     </div>
                     <div class="span1">
-                        <form action="{{ path('staff_product_category_delete', { 'id': entity.id, 'slug': slug }) }}" method="post">
+                        <form action="{{ path('staff_product_delete', { 'id': product.id, 'slug': slug, 'category': category }) }}" method="post">
                             {{ form_widget(delete_form) }}
                             <input class="btn-danger" type="submit" value="Delete" />
                         </form>

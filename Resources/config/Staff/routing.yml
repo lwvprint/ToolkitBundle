@@ -17,6 +17,10 @@ LWVToolkitBundle_staff_product_category:
 LWVToolkitBundle_staff_product:
     resource: "@LWVToolkitBundle/Resources/config/Staff/product.yml"
     prefix:   /staff/{slug}/{category}/product
+    
+LWVToolkitBundle_staff_product_image:
+    resource: "@LWVToolkitBundle/Resources/config/Staff/productimage.yml"
+    prefix: /staff/{slug}/{category}/{product}/product_image
 
 LWVToolkitBundle_settings_modify:
     resource: "@LWVToolkitBundle/Resources/config/Staff/settings.yml"

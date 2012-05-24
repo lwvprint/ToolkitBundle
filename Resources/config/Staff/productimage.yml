@@ -1,0 +1,9 @@
+staff_product_image_new:
+    pattern: /new
+    defaults: { _controller: "LWVToolkitBundle:Staff\productimage:new" }
+staff_product_image_upload:
+    pattern: /upload
+    defaults: { _controller: "LWVToolkitBundle:Staff\productimage:upload" }
+staff_product_image_delete:
+    pattern: /{id}/delete
+    defaults: { _controller: "LWVToolkitBundle:Staff\productimage:delete" }

@@ -73,7 +73,7 @@ class ProductCategory
     protected $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $image;
 
@@ -228,6 +228,11 @@ class ProductCategory
     public function getName()
     {
         return $this->name;
+    }
+    
+    public function getIndentedName()
+    {
+        return str_repeat("-", $this->lvl).$this->name;
     }
 
     /**

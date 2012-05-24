@@ -2,6 +2,7 @@
 
 namespace LWV\ToolkitBundle\Form\Product;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
@@ -17,12 +18,22 @@ class ProductCategoryType extends AbstractType
             ->add('name')
             ->add('slug')
             ->add('description')
-            ->add('image')
+            ->add('image', 'file')
             //->add('created_at')
             //->add('updated_at')
+            //->add('parent', 'entity', array(
+            //    'class' => 'LWV\ToolkitBundle\Entity\Product\ProductCategory',
+            //    'property' => 'name',
+            //    'required' => false
+            //))
             ->add('parent', 'entity', array(
                 'class' => 'LWV\ToolkitBundle\Entity\Product\ProductCategory',
-                'property' => 'name',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.root', 'ASC')
+                        ->addOrderBy('u.lft', 'ASC');
+                },
+                'property' => 'indentedName',
                 'required' => false
             ))
             ->add('toolkit', 'entity', array(
@@ -34,6 +45,6 @@ class ProductCategoryType extends AbstractType
 
     public function getName()
     {
-        return 'lwv_toolkitbundle_product_productcategorytype';
+        return 'product_category';
     }
 }

@@ -48,3 +48,11 @@ LWV\ToolkitBundle\Entity\Product\ProductCategory:
             - NotBlank: ~
         description:
             - NotBlank: ~
+LWV\ToolkitBundle\Entity\Product\Product:
+    properties:
+        name:
+            - NotBlank: ~
+        slug:
+            - NotBlank: ~
+        reference:
+            - NotBlank: ~

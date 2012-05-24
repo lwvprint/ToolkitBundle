@@ -263,3 +263,7 @@ a.no-hover:hover {
 .toolbarBox .process-icon-help-new{ background-image: url('../img/process-icon-help-new.png');}
 
 div.fix-toolbar {border-bottom: 1px solid #E0E0E0;position:fixed;top:38px;opacity:0.9;z-index:1;}
+
+.toggle-hidden {
+    display: none;
+}

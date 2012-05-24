@@ -19,7 +19,7 @@ staff_product_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "LWVToolkitBundle:Staff\product:edit" }
 
-staff_productupdate:
+staff_product_update:
     pattern:  /{id}/update
     defaults: { _controller: "LWVToolkitBundle:Staff\product:update" }
     requirements: { _method: post }

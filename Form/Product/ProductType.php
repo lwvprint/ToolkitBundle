@@ -10,37 +10,49 @@ class ProductType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
+        //var_dump($options);
+        //$id = $options['toolkitId'];
+        //$id = '1';
+        
         $builder
             ->add('name')
             ->add('slug')
             ->add('reference')
-            ->add('description')
-            ->add('active_from')
-            ->add('active_till')
-            ->add('is_active')
+            ->add('description', null, array('required' => false))
+            ->add('is_active', null, array('label' => 'Active?', 'required' => false))
+            ->add('expires', 'checkbox', array('label' => 'Expires?', 'property_path' => false, 'required' => false))
+            ->add('active_from', null, array('required' => false))
+            ->add('active_till', null, array('required' => false))
             ->add('category', 'entity', array(
                 'class' => 'LWV\ToolkitBundle\Entity\Product\ProductCategory',
-                'query_builder' => function(EntityRepository $er) {
+                'query_builder' => function(EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('u')
                         ->where('u.toolkit = :id')
-                        ->setParameter('id', '2')
-                        ->orderBy('u.lvl', 'ASC')
-                        ->orderBy('u.name', 'ASC');
+                        ->setParameter('id', $options['toolkitId'])
+                        ->orderBy('u.root', 'ASC')
+                        ->addOrderBy('u.lft', 'ASC');
                 },
                 'empty_value' => 'Choose an option',
-                'property' => 'name',
-            ));
+                'property' => 'indentedName',
+            ))
+            ->add('tags', 'entity', array(
+                'class' => 'LWV\ToolkitBundle\Entity\Product\Tag',
+                //'expanded' => true,
+                'property' => 'tag',
+                'multiple' => true
+                ));
     }
     
     public function getDefaultOptions()
     {
         return array(
             'data_class' => 'LWV\ToolkitBundle\Entity\Product\Product',
+            'toolkitId' => null
         );
     }
 
     public function getName()
     {
-        return 'lwv_toolkitbundle_product_type';
+        return 'product_type';
     }
 }

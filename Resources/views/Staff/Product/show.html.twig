@@ -10,7 +10,7 @@ View Product :: {{ parent() }}
 
 {% block toolbar_options %}
     <li>
-        <a class="toolbar_btn" href="{{ path('staff_product', { 'category': category }) }}" title="Back to List" >
+        <a class="toolbar_btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}" title="Back to List" >
             <span class="process-icon-back" ></span>
             <div>Back to List</div>
         </a>
@@ -73,16 +73,16 @@ View Product :: {{ parent() }}
 
                 <div class="row">
                     <div class="span11">
-                        <a class="btn" href="{{ path('staff_product', { 'category': category }) }}">
+                        <a class="btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}">
                             Back to the list
                         </a>
-                        <a class="btn" href="{{ path('staff_product_edit', { 'id': product.id, 'category': category }) }}">
+                        <a class="btn" href="{{ path('staff_product_edit', { 'id': product.id, 'slug': slug, 'category': category }) }}">
                             Edit
                         </a>
                     </div>
                     <div class="span1">
-                        <form action="{{ path('staff_product_delete', { 'id': product.id, 'category': category }) }}" method="post">
-                            {# form_widget(delete_form) #}
+                        <form action="{{ path('staff_product_delete', { 'id': product.id, 'slug': slug, 'category': category }) }}" method="post">
+                            {{ form_widget(delete_form) }}
                             <input class="btn-danger" type="submit" value="Delete" />
                         </form>
                     </div>

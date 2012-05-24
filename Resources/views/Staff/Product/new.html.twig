@@ -33,22 +33,49 @@ Create New Product
                         {{ form_row(form.slug) }}
                         {{ form_row(form.reference) }}
                         {{ form_row(form.description) }}
-                        {{ form_row(form.active_from) }}
-                        {{ form_row(form.active_till) }}
                         {{ form_row(form.is_active) }}
+                        {{ form_row(form.expires) }}
+                        <div class="control-group toggle-hidden">
+                            {# form_row(form.active_from) #}
+                            {{ form_label(form.active_from) }}
+                            <div class="controls">
+                                {{ form_widget(form.active_from) }}
+                                {{ form_errors(form.active_from) }}
+                            </div>
+                        </div>
+                        <div class="control-group toggle-hidden">
+                            {# form_row(form.active_till) #}
+                            {{ form_label(form.active_till) }}
+                            <div class="controls">
+                                {{ form_widget(form.active_till) }}
+                                {{ form_errors(form.active_till) }}
+                            </div>
+                        </div>
                         {{ form_row(form.category) }}
+                        <!--<div class="control-group">
+                            <label class="control-label">Images</label>
+                            <div class="controls">
+                                <div id="uploader">
+                                </div>
+                            </div>
+                        </div>-->
+                        {{ form_row(form.tags) }}
                     </fieldset>
                     <fieldset>
                         <div class="form-actions">
                             {{ form_rest(form) }}
                             <input class="btn-primary" type="submit" value="Create" />
                             <input class="btn-warning" type="reset" value="Reset">
-                            <a class="btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}">
-                                Back to the list
-                            </a>
                         </div>
                     </fieldset>
                 </form>
+                <div class="row">
+                    <div class="span12">
+                        <a class="btn" href="{{ path('staff_product', { 'slug': slug, 'category': category }) }}">
+                            Back to the list
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

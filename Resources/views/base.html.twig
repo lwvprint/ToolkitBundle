@@ -7,8 +7,10 @@
 {# Override this block to add your own files! #}
 {% stylesheets
     'bundles/lwvtoolkit/css/bootstrap-2.0.2.css' filter='cssrewrite'
+    'bundles/lwvtoolkit/css/chosen.css'
     'bundles/lwvtoolkit/css/global.css'
     'bundles/lwvtoolkit/css/ui.totop.css'
+    'bundles/lwvtoolkit/js/jquery.plupload.queue/css/jquery.plupload.queue.css'
     filter='?yui_css' output='css/global.css'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
@@ -93,8 +95,11 @@
             '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
             '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
             '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+            '@LWVToolkitBundle/Resources/public/js/chosen.jquery.min.js'
             '@LWVToolkitBundle/Resources/public/js/jquery.ui.totop.js'
             '@LWVToolkitBundle/Resources/public/js/jquery-easing.min.js'
+            '@LWVToolkitBundle/Resources/public/js/plupload.full.js'
+            '@LWVToolkitBundle/Resources/public/js/jquery.plupload.queue/jquery.plupload.queue.js'
             '@LWVToolkitBundle/Resources/public/js/global.js'
             filter="yui_js" output='js/global.js'
         %}

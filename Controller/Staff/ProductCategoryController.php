@@ -3,6 +3,7 @@
 namespace LWV\ToolkitBundle\Controller\Staff;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use LWV\ToolkitBundle\Entity\Product\ProductCategory;
 use LWV\ToolkitBundle\Form\Product\ProductCategoryType;
@@ -89,7 +90,14 @@ class ProductCategoryController extends Controller
      */
     public function newAction($slug)
     {
+        $em = $this->getDoctrine()
+                    ->getEntityManager()
+                    ->getRepository('LWVToolkitBundle:Toolkit\Toolkit')
+                    ->findOneBy(array('slug' => $slug));
+        
         $entity = new ProductCategory();
+        $entity->setToolkit($em);
+        
         $form   = $this->createForm(new ProductCategoryType(), $entity);
         
         $breadcrumbs = $this->get("white_october_breadcrumbs");
@@ -108,14 +116,35 @@ class ProductCategoryController extends Controller
      * Creates a new Product\ProductCategory entity.
      *
      */
-    public function createAction()
+    public function createAction($slug)
     {
-        $entity  = new ProductCategory();
+        $entity = new ProductCategory();
+        $uploadDir = '../web/uploads/images/'.$slug;
+        
         $request = $this->getRequest();
-        $form    = $this->createForm(new ProductCategoryType(), $entity);
+        
+        $form = $this->createForm(new ProductCategoryType(), $entity);
+        
         $form->bindRequest($request);
 
         if ($form->isValid()) {
+            $postData = $request->request->get('product_category');
+                
+            $categorySlug = $postData['slug'];
+                
+            // Create folders in upload dir
+            if(!file_exists($uploadDir)) {
+                @mkdir($uploadDir);
+            }
+            
+            $targetDir = $uploadDir.'/'.$categorySlug;
+            
+            if(!file_exists($targetDir)) {
+                @mkdir($targetDir);
+            }
+            
+            $entity->setImage($targetDir.'/'.$entity->file->getClientOriginalName());
+            
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
@@ -126,6 +155,7 @@ class ProductCategoryController extends Controller
         return $this->render('LWVToolkitBundle:Staff/ProductCategory:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'slug' => $slug
         ));
     }
 
@@ -171,7 +201,7 @@ class ProductCategoryController extends Controller
         $entity = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Product\ProductCategory entity.');
+            throw $this->createNotFoundException('Unable to find Product Category.');
         }
 
         $editForm   = $this->createForm(new ProductCategoryType(), $entity);
@@ -211,7 +241,7 @@ class ProductCategoryController extends Controller
             $entity = $em->getRepository('LWVToolkitBundle:Product\ProductCategory')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Product\ProductCategory entity.');
+                throw $this->createNotFoundException('Unable to find Product Category.');
             }
 
             $em->remove($entity);

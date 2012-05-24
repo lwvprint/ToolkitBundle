@@ -40,12 +40,12 @@ class Product
     protected $reference;
 
     /**
-     * @ORM\Column(type="datetime", length=25)
+     * @ORM\Column(type="datetime", length=25, nullable=true)
      */
     protected $active_from;
 
     /**
-     * @ORM\Column(type="datetime", length=25)
+     * @ORM\Column(type="datetime", length=25, nullable=true)
      */
     protected $active_till;
 

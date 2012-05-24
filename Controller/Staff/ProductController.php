@@ -40,27 +40,34 @@ class ProductController extends Controller
         ));
     }
     
-    public function showAction($category, $id)
+    public function showAction($id, $slug, $category)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $product = $em->getRepository('LWVToolkitBundle:Product\Product')->find($id);
+        $product = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Product\Product')
+                ->find($id);
 
         if (!$product) {
             throw $this->createNotFoundException('Unable to find Product.');
         }
 
-        //$deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id);
         
         return $this->render('LWVToolkitBundle:Staff/Product:show.html.twig', array(
             'product' => $product,
-            'category' => $category
-            //'delete_form' => $deleteForm->createView(),
+            'slug' => $slug,
+            'category' => $category,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
     
     public function newAction($slug, $category)
     {
+        $toolkit = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Toolkit\Toolkit')
+                ->findOneBy(array('slug' => $slug));
+                
         $product = new Product();
         
         if($category != 'default'){
@@ -78,7 +85,7 @@ class ProductController extends Controller
         $product->setActiveFrom(new \DateTime($dateFrom));
         $product->setActiveTill(new \DateTime($dateTill));
         
-        $form = $this->createForm(new ProductType(), $product);
+        $form = $this->createForm(new ProductType(), $product, array('toolkitId' => $toolkit->getId()));
 
         return $this->render('LWVToolkitBundle:Staff/Product:new.html.twig', array(
             'product' => $product,
@@ -88,13 +95,18 @@ class ProductController extends Controller
         ));
     }
     
-    public function createAction()
+    public function createAction($slug, $category)
     {
+        $toolkit = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Toolkit\Toolkit')
+                ->findOneBy(array('slug' => $slug));
+        
         $product = new Product();
         
         $request = $this->getRequest();
         
-        $form = $this->createForm(new ProductType(), $product);
+        $form = $this->createForm(new ProductType(), $product, array('toolkitId' => $toolkit->getId()));
         
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
@@ -104,33 +116,108 @@ class ProductController extends Controller
                 $em->persist($product);
                 $em->flush();
                 
-                return $this->redirect($this->generateUrl('staff_product_show', array('id' => $product->getId())));
+                return $this->redirect($this->generateUrl('staff_product_show', array('id' => $product->getId(), 'slug' => $slug, 'category' => $category)));
             }
         }
         
         return $this->render('LWVToolkitBundle:Staff/Product:new.html.twig', array(
             'product' => $product,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
+            'slug' => $slug,
+            'category' => $category
         ));
     }
     
-    public function editAction()
+    public function editAction($id, $slug, $category)
     {
+        $toolkit = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Toolkit\Toolkit')
+                ->findOneBy(array('slug' => $slug));
+
+        $product = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Product\Product')
+                ->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException('Unable to find Product.');
+        }
+
+        $editForm = $this->createForm(new ProductType(), $product, array('toolkitId' => $toolkit->getId()));
         
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('LWVToolkitBundle:Staff/Product:edit.html.twig', array(
+            'product' => $product,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+            'slug' => $slug,
+            'category' => $category
+        ));
     }
     
-    public function updateAction()
+    public function updateAction($id, $slug, $category)
     {
+        $product = $this->getDoctrine()
+                ->getEntityManager()
+                ->getRepository('LWVToolkitBundle:Product\Product')
+                ->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException('Unable to find Product.');
+        }
+
+        $editForm = $this->createForm(new ProductType(), $product);
         
+        $deleteForm = $this->createDeleteForm($id);
+
+        $request = $this->getRequest();
+
+        $editForm->bindRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('staff_product_edit', array('id' => $id, 'slug' => $slug, 'category' => $category)));
+        }
+
+        return $this->render('LWVToolkitBundle:Staff/ProductCategory:edit.html.twig', array(
+            'product' => $product,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
     
-    public function deleteAction()
+    public function deleteAction($slug, $category, $id)
     {
-        
+        $form = $this->createDeleteForm($id);
+        $request = $this->getRequest();
+
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $entity = $em->getRepository('LWVToolkitBundle:Product\Product')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Product Category.');
+            }
+
+            $entity->setDeletedAt(new \DateTime());
+            $em->persist($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('staff_product_category'));
     }
     
-    public function createDeleteForm()
+    public function createDeleteForm($id)
     {
-        
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
     }
 }

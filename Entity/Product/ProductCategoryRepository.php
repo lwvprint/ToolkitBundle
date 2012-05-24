@@ -1,5 +1,7 @@
 <?php
 namespace LWV\ToolkitBundle\Entity\Product;
+
+use Doctrine\ORM\EntityRepository;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
 /**
@@ -9,10 +11,10 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  * repository methods below.
  */
 
-class ProductCategoryRepository extends NestedTreeRepository
+class ProductCategoryRepository extends EntityRepository
 {
     // FINISH THIS!
-    public function getAllCategoriesBySegment()
+    /*public function getAllCategoriesBySegment()
     {
         $dql = 'SELECT c FROM LWV\ToolkitBundle\Entity\Product\ProductCategory c ' .
                'ORDER BY c.name ASC';
@@ -20,5 +22,10 @@ class ProductCategoryRepository extends NestedTreeRepository
         $query = $this->getEntityManager()->createQuery($dql);
 
         return $query->getResult();
+    }*/
+    
+    public function getIndentedName()
+    {
+        return str_repeat("  ", $this->lvl).$this->name;
     }
 }

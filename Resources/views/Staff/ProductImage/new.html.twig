@@ -1,0 +1,86 @@
+{% extends 'LWVToolkitBundle:Staff:staff.html.twig' %}
+
+{% block title %}
+Upload New Product Image :: {{ parent() }}
+{% endblock %}
+
+{% block h1 %}
+Upload New Product Image
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2>{{ product.name }}</h2>
+                <div id="plupload">
+                </div>
+                <h3>Current Images</h3>
+                {% for image in product.images %}
+                    <img src="/{{ image.image }}" alt="" width="100px" />
+                    <a class="btn btn-small" href="{{ path('staff_product_image_delete', { 'slug': slug, 'category': category, 'product': product.slug, 'id': image.id }) }}">Delete</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block foot_script %}
+{{ parent() }}
+<script type="text/javascript">
+$(function() {
+	$("#plupload").pluploadQueue({
+		// General settings
+		runtimes : 'html5,html4',
+		url : '{{ path('staff_product_image_upload', { 'slug': slug, 'category': category, 'product': product.slug }) }}',
+		max_file_size : '10mb',
+		chunk_size : '1mb',
+		unique_names : false,
+        rename: true,
+        multiple_queues: true,
+        
+		// Specify what files to browse for
+		filters : [
+			{title : "Image files", extensions : "jpg,jpeg,gif,png"},
+		],
+        
+        preinit: {
+            UploadComplete: function(up, files) {
+                // Called when a file has finished uploading
+                console.log('[FilesUploaded]');
+                window.location = '{{ path('staff_product_image_new', { 'slug': slug, 'category': category, 'product': product.slug } ) }}';
+            }
+        }
+
+		// Flash settings
+		//flash_swf_url : '/plupload/js/plupload.flash.swf',
+
+		// Silverlight settings
+		//silverlight_xap_url : '/plupload/js/plupload.silverlight.xap'
+	});
+
+	// Client side form validation
+	$('form').submit(function(e) {
+        var uploader = $('#uploader').pluploadQueue();
+
+        // Files in queue upload them first
+        if (uploader.files.length > 0) {
+            // When all files are uploaded submit form
+            uploader.bind('StateChanged', function() {
+                if (uploader.files.length === (uploader.total.uploaded + uploader.total.failed)) {
+                    $('form')[0].submit();
+                }
+            });
+                
+            uploader.start();
+        } else {
+            alert('You must queue at least one file.');
+        }
+
+        return false;
+    });
+});
+</script>
+{% endblock %}
